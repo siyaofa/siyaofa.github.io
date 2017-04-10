@@ -9,3 +9,4 @@ blog 这篇文章将会介绍如何用Python2.7 和opencv-python2.4 及Vpython �
 4.最重要的是知道该如何玩魔方…… 现在将正式进入到正文内容
 ```
 你可以从这里看关于[魔方助手](https://siyaofa.github.io/help)的介绍，以及如何使用魔方助手去还原一个3x3x3的魔方
+你也可以[在线阅读pdf文档](https://siyaofa.github.io/pdf/cube)或[直接下载](https://siyaofa.github.io/pdf/cube.pdf)
