@@ -1,3 +1,13 @@
+##siyaofa的博客
+
+你可以从这里看关于[魔方助手](http://www.baidu.com)的介绍，以及如何使用魔方助手去还原一个3x3x3的魔方
+
+
+
+
+
+
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/siyaofa/siyaofa.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
