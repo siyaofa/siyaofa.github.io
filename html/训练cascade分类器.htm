@@ -10,8 +10,8 @@
 	{font-family:宋体;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
@@ -49,6 +49,12 @@ p.MsoFooter, li.MsoFooter, div.MsoFooter
 	layout-grid-mode:char;
 	font-size:9.0pt;
 	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#954F72;
+	text-decoration:underline;}
 p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	{margin:0cm;
 	margin-bottom:.0001pt;
@@ -82,25 +88,26 @@ ul
 
 </head>
 
-<body lang=ZH-CN style='text-justify-trim:punctuation'>
+<body lang=ZH-CN link="#0563C1" vlink="#954F72" style='text-justify-trim:punctuation'>
 
 <div class=WordSection1 style='layout-grid:15.6pt'>
 
 <p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>这篇文章将会告诉你如何利用<span
 lang=EN-US>OpenCV</span>中自带的程序<span lang=EN-US>opencv_createsamples.exe</span>和<span
-lang=EN-US>opencv_traincascade.exe</span>创建样本并训练训练级联<span lang=EN-US>Adaboost</span>分类器。</span></p>
+lang=EN-US>opencv_traincascade.exe</span>创建样本并训练训练级联<span lang=EN-US>Adaboost</span>分类器。（前提需要把<span
+lang=EN-US>OpenCV</span>安装目录下这两个文件的路径加入到系统的环境变量中）</span></p>
 
 <p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>准备工作如下：</span></p>
 
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
 lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>1.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>一些魔方的样本，并且样本中只包含正样本</span></p>
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>一些魔方的样本，并且样本中只包含魔方，记为正样本</span></p>
 
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
 lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>2.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>一些背景的样本，并且背景中不包含有魔方</span></p>
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>一些背景的样本，并且背景中不包含有魔方，记为负样本</span></p>
 
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
 lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>3.<span
@@ -115,12 +122,869 @@ style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>并把魔方规�
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
 lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>5.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>背景大小没有要求，但是一定要大于<span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>背景大小没有特定要求，但是一定要大于<span
 lang=EN-US>24x24</span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
 
+<p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>把所有的正样本放于文件夹<span
+lang=EN-US>pos</span>，所有的负样本放于文件夹<span lang=EN-US>neg</span>中。</span></p>
+
 <p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>pos</span><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>文件夹下，<span lang=EN-US>cmd</span>执行<span
+lang=EN-US>dir /b&gt;pos.txt</span></span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>打开生成的<span
+lang=EN-US>pos.txt</span>去掉第一行或者最后一行的<span lang=EN-US>pos.txt</span>。把所有的<span
+lang=EN-US> jpg </span>替换成<span lang=EN-US> jpg 1 0 0 24 24</span>。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+width=271 height=139 id="图片 1" src="训练cascade分类器.files/image001.png"></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>neg</span><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>文件夹下，<span lang=EN-US>cmd</span>执行<span
+lang=EN-US>dir /b&gt;neg.txt</span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>打开生成的<span lang=EN-US>neg.txt</span>去掉第一行或者最后一行的<span
+lang=EN-US>neg.txt</span>。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>在每行的开始加入<span lang=EN-US>neg/</span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+width=212 height=113 id="图片 2" src="训练cascade分类器.files/image002.png"></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>准备训练样本</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>Cmd</span><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>下执行<span lang=EN-US>opencv_createsamples.exe
+-info pos\pos.txt -vec pos.vec -bg neg\neg.txt -num 2681 -w 24 -h 24</span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>Info file name:
+pos\pos.txt</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>得到如下的结果，表明成功</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Img file name: (NULL)</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Vec file name: pos.vec</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>BG  file name:
+neg\neg.txt</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Num: 2681</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>BG color: 0</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>BG threshold: 80</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Invert: FALSE</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Max intensity deviation:
+40</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Max x angle: 1.1</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Max y angle: 1.1</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Max z angle: 0.5</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Show samples: FALSE</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Width: 24</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Height: 24</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Max Scale: -1</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Create training samples
+from images collection...</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>Done. Created 2681 samples</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:14.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>直接输入<span lang=EN-US>opencv_createsamples.exe</span>显示帮助信息</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>接下来开始训练样本</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>Cmd</span><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>下执行<span lang=EN-US>opencv_traincascade.exe
+-data xml -vec pos.vec -bg neg\neg.txt -numpos 2681 -numneg 1102 -numstages 20
+-featureType LBP -w 24 -h 24</span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>得到</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>PARAMETERS:</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>cascadeDirName: xml</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>vecFileName: pos.vec</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>bgFileName: neg\neg.txt</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>numPos: 2000</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>numNeg: 1000</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>numStages: 20</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>precalcValBufSize[Mb] :
+1024</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>precalcIdxBufSize[Mb] :
+1024</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>acceptanceRatioBreakValue
+: -1</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>stageType: BOOST</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>featureType: LBP</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>sampleWidth: 24</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>sampleHeight: 24</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>boostType: GAB</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>minHitRate: 0.995</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>maxFalseAlarmRate: 0.5</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>weightTrimRate: 0.95</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>maxDepth: 1</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>maxWeakCount: 100</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>Number of unique
+features given windowSize [24,24] : 8464</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+width=518 height=641 id="图片 4" src="训练cascade分类器.files/image003.png"></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>静静的等待训练就可以了。在我的笔记本上训练时间大概为<span
+lang=EN-US>25mins</span>。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>其中会有一些问题，请参考</span><span
+lang=EN-US><a
+href="http://stackoverflow.com/questions/16058080/how-to-train-cascade-properly"><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>stackoverflow</span></a></span><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>和</span><span
+lang=EN-US><a href="http://blog.csdn.net/xidianzhimeng/article/details/42147601"><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>OpenCV</span><span
+lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'><span
+lang=EN-US>中Adaboost</span></span><span lang=EN-US style='font-size:16.0pt;
+font-family:"微软雅黑",sans-serif'><span lang=EN-US>训练的经验总结</span></span></a></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>打开生成目录<span lang=EN-US>xml</span>，其中的<span
+lang=EN-US>cascade.xml</span>就是后面程序中需要的特征分类器。</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>为了方便区分，重名名为<span
+lang=EN-US>cube_cascade.xml</span></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>对自带的人脸识别作简单的修改</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0 width=1313
+ style='width:984.8pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=1313 valign=top style='width:984.8pt;border:solid windowtext 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:blue;
+  background:white'>import</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'> cv2</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:blue;
+  background:white'>import</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'> os</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:blue;
+  background:white'>import</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'> os</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>.</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'>path</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>&nbsp;</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>CascadeClassifier</span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:gray;
+  background:white'>&quot;cube_cascade.xml&quot;</span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>n</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:blue;
+  background:white'>if</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'> n</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>==</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>0</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    cam </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>VideoCapture</span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>while</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>True</span></b><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       _</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> img </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cam</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>read</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>()</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       gray_img </span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cvtColor</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>COLOR_BGR2GRAY</span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       cubes </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>detectMultiScale</span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>gray_img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>1.3</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>,</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'> </span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>5</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>for</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube_x</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_y</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_w</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_h </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>in</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cubes</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           cv2</span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>rectangle</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_x</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube_y</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>),</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_x</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>+</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_w</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube_y</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>+</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_h</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>),</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>255</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>),</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>2</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>imshow</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:gray;
+  background:white'>'img'</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>flip</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>1</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>))</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>        </span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       key </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>waitKey</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>30</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>&amp;</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>0xff</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>if</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> key </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>==</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>27</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:blue;background:white'>break</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    cam</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>release</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>()</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>destroyAllWindows</span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>()</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:blue;
+  background:white'>else</span></b><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    imgDir</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:gray;
+  background:white'>'test_img'</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    alpha</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>10</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>for</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> parent</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>dirname</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>filenames </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>in</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> os</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>walk</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>imgDir</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>):</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>for</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> filename </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>in</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> filenames</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:blue;background:white'>print</span></b><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>(</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'>imgDir</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>+</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:gray;background:white'>'/'</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>+</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'>filename</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           img</span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>imread</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>imgDir</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>+</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:gray;
+  background:white'>'/'</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>+</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>filename</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           res </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>resize</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>),</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> fx</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>1.0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>/</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>alpha</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> fy</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>1.0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>/</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>alpha</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           gray_img </span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cvtColor</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>COLOR_BGR2GRAY</span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           cubes </span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube_haar</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>detectMultiScale</span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>gray_img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>1.3</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>,</span></b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:black;background:white'> </span><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>5</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:blue;background:white'>for</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube_x</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_y</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_w</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_h </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>in</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cubes</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>              cv2</span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>rectangle</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>img</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_x</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube_y</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>),</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_x</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>+</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_w</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cube_y</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>+</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>cube_h</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>),</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>255</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>0</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>),</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>2</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           cv2</span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>imshow</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>filename</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>,</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>res</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>    </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>while</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>True</span></b><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       key </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>=</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> cv2</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>waitKey</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>(</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:red;
+  background:white'>30</span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>)</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>&amp;</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>0xff</span></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>       </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:blue;background:white'>if</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> key </span><b><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:navy;background:white'>==</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'> </span><span lang=EN-US style='font-size:10.0pt;
+  font-family:"Courier New";color:red;background:white'>27</span><b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:navy;
+  background:white'>:</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           cv2</span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:navy;background:white'>.</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>destroyAllWindows</span><b><span lang=EN-US
+  style='font-size:10.0pt;font-family:"Courier New";color:navy;background:white'>()</span></b></p>
+  <p class=MsoNormal align=left style='text-align:left;text-autospace:none'><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>           </span><b><span lang=EN-US style='font-size:
+  10.0pt;font-family:"Courier New";color:blue;background:white'>break</span></b><span
+  lang=EN-US style='font-size:10.0pt;font-family:"Courier New";color:black;
+  background:white'>  </span></p>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New";
+  color:black;background:white'>    </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=640 height=480 id="图片 5" src="训练cascade分类器.files/image004.png"></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=640 height=480 id="图片 6" src="训练cascade分类器.files/image005.png"></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=640 height=480 id="图片 7" src="训练cascade分类器.files/image006.png"></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=640 height=480 id="图片 8" src="训练cascade分类器.files/image007.png"></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>当然实验结果还是有点问题的，分类器并不是很好。实时的准确率大概只有<span
+lang=EN-US>80~90%</span>。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>因为魔方样本不是很多，<span lang=EN-US>500</span>多个重复了<span
+lang=EN-US>4</span>次。。。。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>如果你对图像识别也感兴趣，</span><span lang=EN-US><a
+href="mailto:可以联系siyaofa@outlook.com"><span lang=EN-US style='font-size:16.0pt;
+font-family:"微软雅黑",sans-serif'><span lang=EN-US>可以联系siyaofa@outlook.com</span></span></a></span><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>标明主题<span lang=EN-US>rubikcube+python+opencv+vpython</span></span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal align=right style='text-align:right'><span style='font-size:
+16.0pt;font-family:"微软雅黑",sans-serif'>转载请著名</span><span lang=EN-US><a
+href="https://siyaofa.github.io/"><span style='font-size:16.0pt;font-family:
+"微软雅黑",sans-serif'>Siyaofa</span></a></span></p>
+
+<p class=MsoNormal align=right style='text-align:right'><span lang=EN-US
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>Siyaofa all copyrights
+reserves</span></p>
 
 </div>
 
