@@ -1,13 +1,13 @@
 <html>
 
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
 <meta name=Generator content="Microsoft Word 15 (filtered)">
 <style>
 <!--
  /* Font Definitions */
  @font-face
-	{font-family:����;
+	{font-family:宋体;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:"Cambria Math";
@@ -16,13 +16,13 @@
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 @font-face
-	{font-family:΢���ź�;
+	{font-family:微软雅黑;
 	panose-1:2 11 5 3 2 2 4 2 2 4;}
 @font-face
-	{font-family:"\@΢���ź�";
+	{font-family:"\@微软雅黑";
 	panose-1:2 11 5 3 2 2 4 2 2 4;}
 @font-face
-	{font-family:"\@����";
+	{font-family:"\@宋体";
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
@@ -33,7 +33,7 @@
 	font-size:10.5pt;
 	font-family:"Calibri",sans-serif;}
 p.MsoHeader, li.MsoHeader, div.MsoHeader
-	{mso-style-link:"ҳü Char";
+	{mso-style-link:"页眉 Char";
 	margin:0cm;
 	margin-bottom:.0001pt;
 	text-align:center;
@@ -43,7 +43,7 @@ p.MsoHeader, li.MsoHeader, div.MsoHeader
 	font-size:9.0pt;
 	font-family:"Calibri",sans-serif;}
 p.MsoFooter, li.MsoFooter, div.MsoFooter
-	{mso-style-link:"ҳ�� Char";
+	{mso-style-link:"页脚 Char";
 	margin:0cm;
 	margin-bottom:.0001pt;
 	layout-grid-mode:char;
@@ -58,11 +58,11 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	font-size:10.5pt;
 	font-family:"Calibri",sans-serif;}
 span.Char
-	{mso-style-name:"ҳü Char";
-	mso-style-link:ҳü;}
+	{mso-style-name:"页眉 Char";
+	mso-style-link:页眉;}
 span.Char0
-	{mso-style-name:"ҳ�� Char";
-	mso-style-link:ҳ��;}
+	{mso-style-name:"页脚 Char";
+	mso-style-link:页脚;}
 .MsoChpDefault
 	{font-family:"Calibri",sans-serif;}
  /* Page Definitions */
@@ -86,41 +86,41 @@ ul
 
 <div class=WordSection1 style='layout-grid:15.6pt'>
 
-<p class=MsoNormal><span style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>��ƪ���½���������������<span
-lang=EN-US>OpenCV</span>���Դ��ĳ���<span lang=EN-US>opencv_createsamples.exe</span>��<span
-lang=EN-US>opencv_traincascade.exe</span>����������ѵ��ѵ������<span lang=EN-US>Adaboost</span>��������</span></p>
+<p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>这篇文章将会告诉你如何利用<span
+lang=EN-US>OpenCV</span>中自带的程序<span lang=EN-US>opencv_createsamples.exe</span>和<span
+lang=EN-US>opencv_traincascade.exe</span>创建样本并训练训练级联<span lang=EN-US>Adaboost</span>分类器。</span></p>
 
-<p class=MsoNormal><span style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>׼���������£�</span></p>
-
-<p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
-lang=EN-US style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>1.<span
-style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>һЩħ��������������������ֻ����������</span></p>
+<p class=MsoNormal><span style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>准备工作如下：</span></p>
 
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
-lang=EN-US style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>2.<span
+lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>1.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>һЩ���������������ұ����в�������ħ��</span></p>
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>一些魔方的样本，并且样本中只包含正样本</span></p>
 
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
-lang=EN-US style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>3.<span
+lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>2.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>��ħ���ͱ���ͼƬ�Ӳ�ɫ��ת��Ϊ�Ҷ�ͼ��</span></p>
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>一些背景的样本，并且背景中不包含有魔方</span></p>
 
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
-lang=EN-US style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>4.<span
+lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>3.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>����ħ���淶��<span lang=EN-US>24x24</span>����</span></p>
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>把魔方和背景图片从彩色，转换为灰度图像</span></p>
 
 <p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
-lang=EN-US style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>5.<span
+lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>4.<span
 style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
-style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>������Сû��Ҫ�󣬵���һ��Ҫ����<span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>并把魔方规范到<span lang=EN-US>24x24</span>像素</span></p>
+
+<p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>背景大小没有要求，但是一定要大于<span
 lang=EN-US>24x24</span></span></p>
 
-<p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>&nbsp;</span></p>
+<p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
 
-<p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"΢���ź�",sans-serif'>&nbsp;</span></p>
+<p class=MsoNormal><span lang=EN-US style='font-size:16.0pt;font-family:"微软雅黑",sans-serif'>&nbsp;</span></p>
 
 </div>
 
