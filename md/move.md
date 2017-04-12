@@ -16,5 +16,6 @@
 
 [还原视频](http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html)
 ```
-优酷还原视频:<iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng==' frameborder=0 'allowfullscreen'></iframe>
+优酷还原视频:<iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng=='>
 ```
+<iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng=='>
