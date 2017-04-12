@@ -16,6 +16,12 @@
 
 http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html
 
+<http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html>
+
+url:http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html
+
+<embed http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html/>
+
 [还原视频](http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html)
 
 ```
