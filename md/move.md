@@ -13,6 +13,11 @@
 ![下面](https://siyaofa.github.io/pic/Bottom.jpg)
 
 最终的视频
+<video src="https://siyaofa.github.io/video/stepByStep.mp4" controls="controls">
+您的浏览器不支持 video 标签。
+</video>
+
+
 
 [还原视频](http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html)
 
