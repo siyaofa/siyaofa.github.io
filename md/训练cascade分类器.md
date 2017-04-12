@@ -45,37 +45,21 @@ Info file name: pos\\pos.txt
 得到如下的结果，表明成功
 
 Img file name: (NULL)
-
 Vec file name: pos.vec
-
 BG file name: neg\\neg.txt
-
 Num: 2681
-
 BG color: 0
-
 BG threshold: 80
-
 Invert: FALSE
-
 Max intensity deviation: 40
-
 Max x angle: 1.1
-
 Max y angle: 1.1
-
 Max z angle: 0.5
-
 Show samples: FALSE
-
 Width: 24
-
 Height: 24
-
 Max Scale: -1
-
 Create training samples from images collection...
-
 Done. Created 2681 samples
 
 直接输入opencv\_createsamples.exe显示帮助信息
@@ -88,45 +72,25 @@ Cmd下执行opencv\_traincascade.exe -data xml -vec pos.vec -bg neg\\neg.txt
 得到
 
 PARAMETERS:
-
 cascadeDirName: xml
-
 vecFileName: pos.vec
-
 bgFileName: neg\\neg.txt
-
 numPos: 2000
-
 numNeg: 1000
-
 numStages: 20
-
 precalcValBufSize[Mb] : 1024
-
 precalcIdxBufSize[Mb] : 1024
-
 acceptanceRatioBreakValue : -1
-
 stageType: BOOST
-
 featureType: LBP
-
 sampleWidth: 24
-
 sampleHeight: 24
-
 boostType: GAB
-
 minHitRate: 0.995
-
 maxFalseAlarmRate: 0.5
-
 weightTrimRate: 0.95
-
 maxDepth: 1
-
 maxWeakCount: 100
-
 Number of unique features given windowSize [24,24] : 8464
 
 ![](media/69d5e404c700781586a7fdb310ca3da1.png)
@@ -141,8 +105,48 @@ Number of unique features given windowSize [24,24] : 8464
 
 对自带的人脸识别作简单的修改
 
-| **import** cv2 **import** os **import** os**.**path cube**=**cv2**.**CascadeClassifier**(**"cube\_cascade.xml"**)** n**=**0 **if** n**==**0**:** cam **=** cv2**.**VideoCapture**(**0**) while True:** \_**,** img **=** cam**.**read**()** gray\_img **=** cv2**.**cvtColor**(**img**,** cv2**.**COLOR\_BGR2GRAY**)** cubes **=** cube**.**detectMultiScale**(**gray\_img**,** 1.3**,** 5**) for** cube\_x**,**cube\_y**,**cube\_w**,**cube\_h **in** cubes**:** cv2**.**rectangle**(**img**, (**cube\_x**,** cube\_y**), (**cube\_x**+**cube\_w**,** cube\_y**+**cube\_h**), (**0**,**255**,**0**),** 2**)** cv2**.**imshow**(**'img'**,** cv2**.**flip**(**img**,**1**))** key **=** cv2**.**waitKey**(**30**) &** 0xff **if** key **==** 27**: break** cam**.**release**()** cv2**.**destroyAllWindows**() else:** imgDir**=**'test\_img' alpha**=**10 **for** parent**,**dirname**,**filenames **in** os**.**walk**(**imgDir**): for** filename **in** filenames**: print(**imgDir**+**'/'**+**filename**)** img**=**cv2**.**imread**(**imgDir**+**'/'**+**filename**)** res **=** cv2**.**resize**(**img**, (**0**,**0**),** fx**=**1.0**/**alpha**,** fy**=**1.0**/**alpha**)** gray\_img **=** cv2**.**cvtColor**(**img**,** cv2**.**COLOR\_BGR2GRAY**)** cubes **=** cube\_haar**.**detectMultiScale**(**gray\_img**,** 1.3**,** 5**) for** cube\_x**,**cube\_y**,**cube\_w**,**cube\_h **in** cubes**:** cv2**.**rectangle**(**img**, (**cube\_x**,** cube\_y**), (**cube\_x**+**cube\_w**,** cube\_y**+**cube\_h**), (**0**,**255**,**0**),** 2**)** cv2**.**imshow**(**filename**,**res**) while True:** key **=** cv2**.**waitKey**(**30**) &** 0xff **if** key **==** 27**:** cv2**.**destroyAllWindows**() break** |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+```markdown
+import cv2
+import os
+import os.path
+
+cube=cv2.CascadeClassifier("cube_cascade.xml")
+n=0
+if n==0:
+	cam = cv2.VideoCapture(0)
+	while True:
+		_, img = cam.read()
+		gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+		cubes = cube.detectMultiScale(gray_img, 1.3, 5)
+		for cube_x,cube_y,cube_w,cube_h in cubes:
+			cv2.rectangle(img, (cube_x, cube_y), (cube_x+cube_w, cube_y+cube_h), (0,255,0), 2)
+		cv2.imshow('img', cv2.flip(img,1))			
+		key = cv2.waitKey(30) & 0xff
+		if key == 27:
+			break
+	cam.release()
+	cv2.destroyAllWindows()
+else:
+	imgDir='test_img'
+	alpha=10
+	for parent,dirname,filenames in os.walk(imgDir):
+		for filename in filenames:
+			print(imgDir+'/'+filename)
+			img=cv2.imread(imgDir+'/'+filename)
+			res = cv2.resize(img, (0,0), fx=1.0/alpha, fy=1.0/alpha)
+			gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+			cubes = cube_haar.detectMultiScale(gray_img, 1.3, 5)
+			for cube_x,cube_y,cube_w,cube_h in cubes:
+				cv2.rectangle(img, (cube_x, cube_y), (cube_x+cube_w, cube_y+cube_h), (0,255,0), 2)
+			cv2.imshow(filename,res)
+	while True:
+		key = cv2.waitKey(30) & 0xff
+		if key == 27:
+			cv2.destroyAllWindows()
+			break	
+	
+
+```
 
 
 再加两张图
@@ -155,7 +159,7 @@ Number of unique features given windowSize [24,24] : 8464
 
 因为魔方样本不是很多，500多个重复了4次。。。。
 
-如果你对图像识别也感兴趣，[可以联系siyaofa\@outlook.com](可以联系siyaofa@outlook.com)标明主题rubikcube+python+opencv+vpython
+如果你对图像识别也感兴趣，可以联系[siyaofa@outlook.com](可以联系siyaofa@outlook.com)标明主题rubikcube+python+opencv+vpython
 
 转载请著名[Siyaofa](https://siyaofa.github.io/)
 
