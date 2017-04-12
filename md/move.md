@@ -14,34 +14,9 @@
 
 最终的视频
 
-http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html
-
 <http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html>
 
 <http://player.youku.com/embed/XMjcwMzk0NDM3Ng==>
 
-url:http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html
-
-<embed http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html/>
-
 [还原视频](http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html)
 
-```
-优酷还原视频:<iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng=='>
-```
-
-<iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng=='>
-
-http://player.youku.com/embed/XMjcwMzk0NDM3Ng==
-
-<embed src='http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
-
-```
-<embed src='http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
-```
-
-http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf
-
-```
-http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf
-```
