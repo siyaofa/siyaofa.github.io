@@ -16,6 +16,10 @@
 
 <http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html>
 
+<video width="480" height="320" controls>
+<source src="http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html">
+</video>
+
 <http://player.youku.com/embed/XMjcwMzk0NDM3Ng==>
 
 [还原视频](http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html)
