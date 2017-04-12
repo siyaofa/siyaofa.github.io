@@ -18,6 +18,8 @@ http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html
 
 <http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html>
 
+<http://player.youku.com/embed/XMjcwMzk0NDM3Ng==>
+
 url:http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html
 
 <embed http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html/>
