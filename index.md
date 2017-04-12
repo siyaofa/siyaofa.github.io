@@ -16,8 +16,6 @@
 
 因为魔方具体的还原算法是用别人已经编译好的exe文件算的，因此暂时不支持跨平台编译
 
-1.[如何在图像中定位到魔方所在的位置](https://siyaofa.github.io/html/训练cascade分类器.htm)
-
 1.[如何在图像中定位到魔方所在的位置](https://siyaofa.github.io/md/训练cascade分类器)
 
 2.[识别魔方当前状态并建立还原动画](https://siyaofa.github.io/md/move)
