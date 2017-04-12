@@ -19,3 +19,13 @@
 优酷还原视频:<iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng=='>
 ```
 <iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng=='>
+
+<embed src='http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
+```
+<embed src='http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
+```
+
+http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf
+```
+http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf
+```
