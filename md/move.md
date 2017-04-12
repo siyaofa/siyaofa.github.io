@@ -14,24 +14,5 @@
 
 最终的视频
 
-<http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html>
-
-<video width="480" height="320" controls>
-<source src="http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html">
-</video>
-
-<video width="480" height="320" controls>
-http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf
-</video>
-
-<video width="480" height="320" controls>
-<embed src='http://player.youku.com/player.php/sid/XMjcwMzk0NDM3Ng==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
-</video>
-
-<video width="480" height="320" controls>
-<iframe height=498 width=510 src='http://player.youku.com/embed/XMjcwMzk0NDM3Ng==' frameborder=0 'allowfullscreen'></iframe>
-</video>
-<http://player.youku.com/embed/XMjcwMzk0NDM3Ng==>
-
 [还原视频](http://v.youku.com/v_show/id_XMjcwMzk0NDM3Ng==.html)
 
