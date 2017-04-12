@@ -105,7 +105,7 @@ Number of unique features given windowSize [24,24] : 8464
 
 对自带的人脸识别作简单的修改
 
-```markdown
+```python
 import cv2
 import os
 import os.path
