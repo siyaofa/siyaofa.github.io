@@ -1,6 +1,6 @@
 在识别到魔方所在区域之后，我们只需要识别出魔方每个面的当前状态就可以重建出魔方整体的情况
 
- ![前面](pic/Front.jpg)
+ ![前面](../pic/Front.jpg)
  
  ![后面](https://siyaofa.github.io/pic/Back.jpg)
   
