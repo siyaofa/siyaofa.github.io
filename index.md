@@ -19,3 +19,5 @@
 1 [如何在图像中定位到魔方所在的位置](https://siyaofa.github.io/md/训练cascade分类器)
 
 2 [识别魔方当前状态并建立还原动画](https://siyaofa.github.io/md/move)
+
+3 [源码行数统计脚本](md/source_total_lines_count)
