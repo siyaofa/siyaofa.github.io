@@ -20,4 +20,4 @@
 
 2 [识别魔方当前状态并建立还原动画](https://siyaofa.github.io/md/move)
 
-3 [源码行数统计脚本](md/source_total_lines_count)
+3 [源码行数统计脚本](./md/source_total_lines_count)
