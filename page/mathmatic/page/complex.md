@@ -6,8 +6,12 @@ $$
 z=a+bi
 $$
 
+$a^2 + b^2 = c^2$
+
 {% raw %}
-$$\frac{\partial J}{\partial \theta_k^{(j)}}=\sum_{i:r(i,j)=1}{\big((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\big)x_k^{(i)}}+\lambda \theta_k^{(j)}$$
+$$
+z=a+bi
+$$
 {% endraw %}
 
 <img src="http://latex.codecogs.com/svg.latex?z=a+bi" />
