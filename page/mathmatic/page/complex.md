@@ -1,7 +1,7 @@
-{% include mathjax_support.html %}
+---
+---
 
----
----
+{% include mathjax_support.html %}
 
 # 复数
 
