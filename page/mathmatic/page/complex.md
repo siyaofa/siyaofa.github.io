@@ -11,12 +11,6 @@ $$
 
 $a^2 + b^2 = c^2$
 
-{% raw %}
-$$
-z=a+bi
-$$
-{% endraw %}
-
 <img src="http://latex.codecogs.com/svg.latex?z=a+bi" />
 
 ## 复数的意义
