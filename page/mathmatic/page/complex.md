@@ -4,6 +4,10 @@
 
 $$z=a+bi$$
 
+<img src="http://latex.codecogs.com/gif.latex?\frac{\partial J}{\partial \theta_k^{(j)}}=\sum_{i:r(i,j)=1}{\big((\theta^{(j)})^Tx^{(i)}-y^{(i,j)}\big)x_k^{(i)}}+\lambda \theta_k^{(j)}" />
+
+<img src="http://latex.codecogs.com/gif.latex?z=a+bi" />
+
 ## 复数的意义
 
 把问题求解的作用域扩充了。在某些条件下实数域无法求解，而复数域可以求解。
