@@ -1,7 +1,5 @@
 theme: jekyll-theme-slate
-kramdown:
-  footnote_backlink:   '&#x21a9;&#xfe0e;'
-  math_engine:         mathjax
-  math_engine_opts:
-    preview:           true
-    preview_as_code:   true
+
+author:
+  name:                <siyaofa> <>
+  email:               <siyaofa@outlook.com>
