@@ -8,6 +8,6 @@
 
 控制
 
-数学
+[数学](page/mathmatic/contents)
 
 [示例项目](page/project/contents)
