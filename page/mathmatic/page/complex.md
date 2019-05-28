@@ -1,6 +1,5 @@
 ---
 title: 复数
-layout: post
 ---
 
 # 复数
