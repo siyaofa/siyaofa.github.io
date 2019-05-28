@@ -1,15 +1,11 @@
+
+
 ---
 ---
 
 # 复数
 
 ## 复数的起源
-
-$$
-z=a+bi
-$$
-
-$a^2 + b^2 = c^2$
 
 <img src="http://latex.codecogs.com/svg.latex?z=a+bi" />
 

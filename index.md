@@ -1,5 +1,12 @@
+{% include mathjax_support %}
 
 # 目录
+
+$$
+z=a+bi
+$$
+
+$a^2 + b^2 = c^2$
 
 计算机
 
