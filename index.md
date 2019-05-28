@@ -1,14 +1,7 @@
-<script type="text/javascript" async
-    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+---
+---
 
 # 目录
-
-$$
-z=a+bi
-$$
-
-$a^2 + b^2 = c^2$
 
 计算机
 

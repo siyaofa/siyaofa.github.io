@@ -1,11 +1,41 @@
 ---
 ---
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+</script>
+<script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 # 复数
+
+$$
+z=a+bi
+$$
+
+$a^2 + b^2 = c^2$
 
 ## 复数的起源
 
-<img src="http://latex.codecogs.com/svg.latex?z=a+bi" />
+[comment]: <> (<img src="http://latex.codecogs.com/svg.latex?z=a+bi" />)
 
 ## 复数的意义
 
