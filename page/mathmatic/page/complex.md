@@ -1,7 +1,6 @@
 ---
+layout: post
 ---
-
-{% include mathjax_support.html %}
 
 # 复数
 
