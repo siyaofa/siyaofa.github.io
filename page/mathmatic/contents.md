@@ -1,7 +1,10 @@
-# 目录
+---
+---
 
-[复数](page/complex)
+[TOC]
 
-[线性代数](page/linear_algebra)
+## [复数](page/complex)
 
-[微分方程](page/differential_equation)
+## [线性代数](page/linear_algebra)
+
+## [微分方程](page/differential_equation)
