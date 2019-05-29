@@ -1,7 +1,7 @@
 ---
 ---
 
-[TOC]
+{:toc}
 
 ## [复数](page/complex)
 

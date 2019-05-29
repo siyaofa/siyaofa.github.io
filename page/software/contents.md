@@ -1,7 +1,7 @@
 ---
 ---
 
-[TOC]
+{:toc}
 
 ## [设计模式](page/design_pattern)
 
