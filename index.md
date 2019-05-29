@@ -3,7 +3,7 @@
 
 # 目录
 
-计算机
+[计算机](page/computer/contents)
 
 硬件
 
