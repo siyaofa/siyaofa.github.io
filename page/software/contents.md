@@ -2,7 +2,8 @@
 ---
 
 # 目录
-* TOC
+{: .no_toc}
+- TOC
 {:toc}
 
 ## [设计模式](page/design_pattern)
