@@ -1,7 +1,8 @@
 ---
 ---
 
-
+* TOC
+{:toc}
 
 # [计算机](page/computer/contents)
 
