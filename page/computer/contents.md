@@ -35,6 +35,6 @@
 
 嵌入式操作系统主要有Linux、Windows和Vxworks.
 
-# [TCP/IP](page/tcp_id)
+# [TCP/IP](page/tcp_ip)
 
 OSI参考模型
