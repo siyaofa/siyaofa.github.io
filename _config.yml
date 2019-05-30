@@ -1,4 +1,16 @@
 theme: jekyll-theme-slate
+# Setup
+title: Siyaofa
+tagline:          'A Jekyll theme'
+description:      'Siyaofa Blog'
+url:              https://siyaofa.github.io
+baseurl:          /
+
+author:
+  name:           'Siyaofa'
+  url:            https://siyaofa.github.io
+
+paginate:         5
 # markdown: kramdown
 # defaults:
 #   -
