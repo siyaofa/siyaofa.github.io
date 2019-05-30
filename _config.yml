@@ -1,12 +1,12 @@
 theme: jekyll-theme-slate
 markdown: kramdown
-defaults:
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-      type: "posts" # previously `post` in Jekyll 2.2.
-    values:
-      layout: "post"
+# defaults:
+#   -
+#     scope:
+#       path: "" # an empty string here means all files in the project
+#       type: "posts" # previously `post` in Jekyll 2.2.
+#     values:
+#       layout: "post"
 plugins:
   - jekyll-sitemap
   - jekyll-mermaid
