@@ -1,6 +1,6 @@
 ---
 layout: page
-title: software
+title: 软件
 ---
 
 ## [设计模式](pages/software/page/design_pattern)

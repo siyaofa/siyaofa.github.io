@@ -1,6 +1,6 @@
 ---
 layout: page
-title: controller
+title: 控制器
 ---
 
 # 控制器

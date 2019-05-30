@@ -1,6 +1,6 @@
 ---
 layout: page
-title: architecture
+title: 软件架构
 ---
 
 # 软件架构

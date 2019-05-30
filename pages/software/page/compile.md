@@ -1,6 +1,6 @@
 ---
 layout: page
-title: compile
+title: 编译
 ---
 
 # 编译原理

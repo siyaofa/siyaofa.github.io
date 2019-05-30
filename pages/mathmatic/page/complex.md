@@ -1,6 +1,6 @@
 ---
 layout: page
-title: complex
+title: 复数
 ---
 
 # 复数

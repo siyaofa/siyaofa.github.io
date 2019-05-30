@@ -1,6 +1,6 @@
 ---
 layout: page
-title: language
+title: 语言
 ---
 
 # 编程语言

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: sensor
+title: 传感器
 ---
 
 
