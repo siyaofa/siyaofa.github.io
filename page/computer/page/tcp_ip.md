@@ -1,5 +1,4 @@
 ---
-https://unpkg.com/mermaid@7.1.0/dist/
 ---
 
 [TOC]
