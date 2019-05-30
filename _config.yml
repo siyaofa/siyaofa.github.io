@@ -21,6 +21,3 @@ paginate:         5
 #       layout: "post"
 github:
   repo:           https://github.com/siyaofa
-plugins:
-  - jekyll-sitemap
-  - jekyll-mermaid
