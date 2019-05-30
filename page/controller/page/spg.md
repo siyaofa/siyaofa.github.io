@@ -1,10 +1,7 @@
 ---
+layout: post
+title: setpoint generator
 ---
-
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 
 # Setpoint
 

@@ -1,10 +1,7 @@
 ---
+layout: post
+title: compile
 ---
-
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 
 # 编译原理
 

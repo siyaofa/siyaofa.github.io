@@ -3,10 +3,6 @@ layout: post
 title: TCP/IP
 ---
 
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 
 ## TCP/IP起源
 

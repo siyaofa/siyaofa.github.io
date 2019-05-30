@@ -1,10 +1,7 @@
 ---
+layout: post
+title: controller
 ---
-
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 
 # 控制器
 

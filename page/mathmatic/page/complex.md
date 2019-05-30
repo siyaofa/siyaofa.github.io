@@ -1,6 +1,6 @@
 ---
-title: 复数
 layout: post
+title: complex
 ---
 
 # 复数

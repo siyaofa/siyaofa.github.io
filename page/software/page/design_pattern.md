@@ -1,3 +1,8 @@
+---
+layout: post
+title: design pattern
+---
+
 # 设计模式
 
 主要用于软件设计阶段，配合UML使用会更加直观。

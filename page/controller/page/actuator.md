@@ -1,8 +1,5 @@
 ---
+layout: post
+title: actuator
 ---
-
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 

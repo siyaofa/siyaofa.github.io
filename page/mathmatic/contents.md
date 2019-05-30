@@ -1,7 +1,7 @@
 ---
+layout: post
+title: mathmatic contents
 ---
-
-{:toc}
 
 ## [复数](page/complex)
 

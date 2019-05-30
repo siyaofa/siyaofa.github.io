@@ -1,3 +1,8 @@
+---
+layout: post
+title: language
+---
+
 # 编程语言
 
 目前接触的编程语言主要有:

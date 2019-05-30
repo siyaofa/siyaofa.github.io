@@ -1,10 +1,7 @@
 ---
+layout: post
+title: software contents
 ---
-
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 
 ## [设计模式](page/design_pattern)
 

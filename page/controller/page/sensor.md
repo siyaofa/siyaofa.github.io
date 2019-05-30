@@ -1,10 +1,8 @@
 ---
+layout: post
+title: sensor
 ---
 
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 
 # 传感器
 

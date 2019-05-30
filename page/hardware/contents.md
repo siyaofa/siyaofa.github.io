@@ -1,10 +1,7 @@
 ---
+layout: post
+title: hardware contents
 ---
-
-# 目录
-{: .no_toc}
-- TOC
-{:toc}
 
 ## 总线
 
