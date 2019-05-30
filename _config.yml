@@ -1,4 +1,13 @@
 # theme: jekyll-theme-slate
+
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
+
 # Setup
 title: Siyaofa
 tagline:          'A Jekyll theme'
