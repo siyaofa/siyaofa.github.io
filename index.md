@@ -1,9 +1,7 @@
 ---
+layout: default
+title: Home
 ---
-
-# 目录
-* TOC
-{:toc}
 
 ## [计算机](page/computer/contents)
 

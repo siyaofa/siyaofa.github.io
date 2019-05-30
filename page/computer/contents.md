@@ -1,7 +1,7 @@
 ---
+layout: post
+title: computer contents
 ---
-
-[TOC]
 
 # [硬件组成](page/computer)
 

@@ -1,5 +1,6 @@
 ---
-title: This is my title
+layout: post
+title: TCP/IP
 ---
 
 # 目录

@@ -1,10 +1,12 @@
 ---
+layout: post
+title: controller contents
 ---
 
 # 目录
-{: .no_toc}
+<!-- {: .no_toc}
 - TOC
-{:toc}
+{:toc} -->
 
 ## [传感器](page/sensor)
 

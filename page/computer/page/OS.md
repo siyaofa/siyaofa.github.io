@@ -1,7 +1,7 @@
 ---
+layout: post
+title: Operation System
 ---
-
-[TOC]
 
 # 主流操作系统
 
