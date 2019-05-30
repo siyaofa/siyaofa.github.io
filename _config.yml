@@ -19,6 +19,8 @@ paginate:         5
 #       type: "posts" # previously `post` in Jekyll 2.2.
 #     values:
 #       layout: "post"
+github:
+  repo:           https://github.com/siyaofa
 plugins:
   - jekyll-sitemap
   - jekyll-mermaid
