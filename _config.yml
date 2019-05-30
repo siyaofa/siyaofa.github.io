@@ -7,3 +7,6 @@ defaults:
       type: "posts" # previously `post` in Jekyll 2.2.
     values:
       layout: "post"
+plugins:
+  - jekyll-sitemap
+  - jekyll-mermaid
