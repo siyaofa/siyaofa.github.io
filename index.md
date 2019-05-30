@@ -7,11 +7,11 @@
 
 ## [计算机](page/computer/contents)
 
-## 硬件
+## [硬件](page/hardware/contents)
 
 ## [软件](page/software/contents)
 
-## 控制
+## [控制](page/controller/contents)
 
 ## [数学](page/mathmatic/contents)
 
