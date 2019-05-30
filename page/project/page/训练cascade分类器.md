@@ -1,3 +1,8 @@
+---
+layout: page
+title: cascade
+---
+
 这篇文章将会告诉你如何利用OpenCV中自带的程序opencv\_createsamples.exe和opencv\_traincascade.exe创建样本并训练训练级联Adaboost分类器。（前提需要把OpenCV安装目录下这两个文件的路径加入到系统的环境变量中）
 
 准备工作如下：

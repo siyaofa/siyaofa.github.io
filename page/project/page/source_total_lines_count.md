@@ -1,3 +1,8 @@
+---
+layout: page
+title: source counter
+---
+
 ```python
 #coding=gbk
 import os
