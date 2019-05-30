@@ -1,5 +1,5 @@
 theme: jekyll-theme-slate
-markdown: kramdown
+# markdown: kramdown
 # defaults:
 #   -
 #     scope:
