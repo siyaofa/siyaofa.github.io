@@ -3,10 +3,11 @@ layout: page
 title: 控制
 ---
 
-# 目录
 <!-- {: .no_toc}
 - TOC
 {:toc} -->
+
+自动化控制原理
 
 ## [传感器](pages/controller/page/sensor)
 
