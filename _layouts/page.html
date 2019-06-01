@@ -4,7 +4,13 @@ layout: default
 
 {% include mathjax_support.html %}
 
+
+
 <div class="page">
   <h1 class="page-title">{{ page.title }}</h1>
+  {: .no_toc}
+  - TOC
+  {:toc} 
+
   {{ content }}
 </div>

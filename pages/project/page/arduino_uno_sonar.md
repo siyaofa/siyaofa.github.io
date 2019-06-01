@@ -1,6 +1,6 @@
 ---
 layout: page
-title: arduino uno 测距
+title: Arduino Uno 测距
 ---
 
 <!---
@@ -9,13 +9,11 @@ v1.0    2019.06.01  lous    文件创建
 
 -->
 
-# 使用 Arduino Uno 和超神波传感器测距
-
 实物图
 
 ![image](../pic/arduino_sonar.jpg)
 
-超神波传感器模块解析数据源码如下
+超声波传感器模块解析数据源码如下
 
 ```c
 /*
@@ -61,7 +59,7 @@ void loop()
 distance = pulseIn(EchoPin, HIGH) / 58.00;//单位cm
 ```
 
-在超神波和被测物体未发生相对位移时
+在超声波和被测物体未发生相对位移时
 
 终端串口打印出的输入如下
 
@@ -69,4 +67,4 @@ distance = pulseIn(EchoPin, HIGH) / 58.00;//单位cm
 
 采样周期可近似为500ms，采样周期即2Hz。
 
-采集到的原始数据需要滤波后才可以使用。
+采集到的原始数据需要滤波[]后才可以使用。
