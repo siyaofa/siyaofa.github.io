@@ -37,7 +37,7 @@ title: Home
 </div>
 
 
-## [软件](pages/computer/contents)
+## [软件](pages/software/contents)
 
 实际工作中有一半的时间是花费在软件相关的工作上。
 
