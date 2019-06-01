@@ -1,6 +1,6 @@
 ---
 layout: page
-title: mathmatic contents
+title: 数学
 ---
 
 ## [复数](page/complex)
