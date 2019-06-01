@@ -1,8 +1,7 @@
 ---
 layout: page
-title: Setpoint Generator
+title: Setpoint
 ---
-
 
 设置生成点
 

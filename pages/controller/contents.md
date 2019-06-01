@@ -9,7 +9,7 @@ title: 控制
 
 自动化控制原理
 
-## [传感器](pages/controller/page/sensor)
+## [传感器](page/sensor)
 
 功能：获取被控对象的状态信息。
 
@@ -25,7 +25,7 @@ graph LR;
 
 ```
 
-## [执行器](pages/controller/page/actuator)
+## [执行器](page/actuator)
 
 功能：把控制量输出给被控对象。
 
@@ -38,7 +38,7 @@ graph LR;
 
 ```
 
-## [控制器](pages/controller/page/controller)
+## [控制器](page/controller)
 
 功能：通过逻辑计算，把逻辑值下发给执行器，从而改变被控对象的状态。
 
@@ -52,4 +52,4 @@ graph LR;
 
 ```
 
-### [轨迹规划](pages/controller/page/spg)
+### [轨迹规划](page/spg)

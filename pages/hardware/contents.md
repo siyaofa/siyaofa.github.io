@@ -1,12 +1,19 @@
 ---
 layout: page
-title: hardware contents
+title: 硬件
 ---
 
 ## 总线
 
-## FPGA
+PCI总线
 
+VME总线
+
+CAN总线
+
+## [FPGA](page/FPGA)
+
+现场可编程门阵列
 
 ### HDL
 
@@ -18,8 +25,6 @@ title: hardware contents
 #### Verilog
 
 语法设计参考C语言。
-
-
 
 #### VHDL
 

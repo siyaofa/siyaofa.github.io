@@ -3,8 +3,6 @@ layout: page
 title: 复数
 ---
 
-# 复数
-
 $$
 z=a+bi
 $$
