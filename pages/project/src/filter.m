@@ -27,3 +27,12 @@ t=sample_period*[1:length(x)];
 figure
 plot(t,x,t,y_2,t,y_4,t,y_6,t,y_8);
 legend('x','y \alpha = 0.2','y \alpha = 0.4','y \alpha = 0.6','y \alpha = 0.8');
+
+
+%¼ÆËãÒ»½×ÂË²¨Æ÷BodeÍ¼
+figure
+fcut=0.6283;%½ØÖ¹ÆµÂÊ
+RC=1/2/pi/fcut;
+pkg load control
+y_rc = tf(1,[RC,1]);
+bode(y_rc)
