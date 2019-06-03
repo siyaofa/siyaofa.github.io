@@ -8,9 +8,9 @@ x=[48.33	48.34	48.33	48.45	48.74	49.17	48.74	48.34	48.34	48.33	48.45	48.34	49.21
 
 function y=rc_filter(alpha,x)
   y=x;
-for i=2:length(x)
+  for i=2:length(x)
     y(i)=alpha*x(i)+(1-alpha)*y(i-1);
-endfor
+  endfor
 endfunction
 
 %alpha=0.3;
