@@ -31,8 +31,19 @@ legend('x','y \alpha = 0.2','y \alpha = 0.4','y \alpha = 0.6','y \alpha = 0.8');
 
 %¼ÆËãÒ»½×ÂË²¨Æ÷BodeÍ¼
 figure
-fcut=0.6283;%½ØÖ¹ÆµÂÊ
-RC=1/2/pi/fcut;
+f_cut=0.2;%½ØÖ¹ÆµÂÊ
+RC=1/2/pi/f_cut;
 pkg load control
-y_rc = tf(1,[RC,1]);
-bode(y_rc)
+lpf = tf(1,[RC 1]);
+bode(lpf);
+
+
+lpf(x-mean(x))
+alpha=2*pi*sample_period*f_cut;
+x_rc_filtered=lsim(lpf,x,t);
+x_rc_filtered(1:10)=x(1:10);
+y_lpf=rc_filter(alpha,x);
+
+figure
+plot(t,y_lpf,t,x_rc_filtered,t,x)
+legend('y_lpf','x_rc_filtered','x')
