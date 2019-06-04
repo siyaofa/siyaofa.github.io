@@ -27,6 +27,9 @@ $$
 X(\omega)={\int_{-\infty}^\infty}x(t)e^{-j{\omega}t}dt
 $$
 
+![image](../pic/Fourier_transform_time_and_frequency_domains_(small).gif)
+
+
 ### [拉普拉斯变换](https://baike.baidu.com/item/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%8F%98%E6%8D%A2)
 
 $$
