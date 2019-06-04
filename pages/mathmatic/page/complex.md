@@ -23,8 +23,18 @@ $$
 
 ### [傅里叶变换](https://baike.baidu.com/item/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2)
 
+#### 连续傅里叶变换
+
+正变换
+
 $$
-X(\omega)={\int_{-\infty}^\infty}x(t)e^{-j{\omega}t}dt
+X(\omega)=\frac{1}{\sqrt{2\pi}}{\int_{-\infty}^\infty}x(t)e^{-i{\omega}t}dt
+$$
+
+逆变换
+
+$$
+x(t)=\frac{1}{\sqrt{2\pi}}{\int_{-\infty}^\infty}X(\omega)e^{i{\omega}t}d\omega
 $$
 
 ![image](../pic/Fourier_transform_time_and_frequency_domains_(small).gif)

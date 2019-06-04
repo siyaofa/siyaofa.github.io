@@ -13,5 +13,9 @@ v1.0    2019.06.04  lous    文件创建
 
 ## 滤波器
 
-FIR（Finite Impulse Response）滤波器：有限长单位冲激响应滤波器
+FIR(Finite Impulse Response)滤波器：有限长单位冲激响应滤波器
+IIR()
 
+
+
+[如何快速设计一个FIR滤波器（一）](https://zhuanlan.zhihu.com/p/45138629)
