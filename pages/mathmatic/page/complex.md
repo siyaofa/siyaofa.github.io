@@ -42,13 +42,22 @@ $$
 
 ### [拉普拉斯变换](https://baike.baidu.com/item/%E6%8B%89%E6%99%AE%E6%8B%89%E6%96%AF%E5%8F%98%E6%8D%A2)
 
+
+正变换
+
 $$
-X(s)={\int_0^\infty}x(t)e^{-st}dt
+F(s)={\int_0^\infty}f(t)e^{-st}dt
 $$
 
 其中
 
 $$s=\sigma+j\omega$$
+
+逆变换
+
+$$
+f(t)={\mathcal{L}^{-1}}[F(s)]=\frac{1}{2{\pi}j}{\int}_{\beta-j\infty}^{\beta+j\infty}F(s)e^{st}ds
+$$
 
 
 

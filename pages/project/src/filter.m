@@ -47,3 +47,20 @@ y_lpf=rc_filter(alpha,x);
 figure
 plot(t,y_lpf,t,x_rc_filtered,t,x)
 legend('y_lpf','x_rc_filtered','x')
+
+%根据传函作bode图
+pkg load control
+figure
+TF=tf([1],[1 1]);
+bode(TF);
+
+
+20*log10(sqrt(1/2))
+
+pkg load symbolic
+syms s;
+Lf=1/(s+1);
+f=ilaplace(Lf);
+figure
+subplot(121);ezplot(Lf);
+subplot(122);ezplot(f);
