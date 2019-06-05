@@ -15,6 +15,9 @@ title: 操作系统
 
 嵌入式操作系统主要有Linux、Windows和Vxworks.
 
+ROS 机器人操作系统
+https://baike.baidu.com/item/ros/4710560
+
 ## 系统内核
 
 系统内核指操作系统内部的核心部分。

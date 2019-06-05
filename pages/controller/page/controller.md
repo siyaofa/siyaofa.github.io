@@ -80,6 +80,10 @@ $T_d$ 微分时间
 #### 离散PID控制器
 
 
+@todo 
+- 补充离散PID公式推导
+- 补充某场景下仿真，例如一质量为1kg的木块，在桌面上的静摩擦力系数为Ks，动摩擦力系数为Km，电机出力为线性的F=K·Input。设置点从0m以最大加速度1m/s^2，最大速度0.5m/s走到1m处。分析计算整个行程内的位置误差和速度误差。假设采样周期为1ms。
+
 C语言下的伪代码
 ```c
 double previous_error=0.0;
@@ -118,5 +122,15 @@ for(;;)
 一看二调多分析，调节质量不会低.
 
 
+### LQG控制器
+
+https://zh.wikipedia.org/zh-hans/LQG%E6%8E%A7%E5%88%B6
+https://baike.baidu.com/item/LQR
+
+https://blog.csdn.net/heyijia0327/article/details/39270597
+
+https://wenku.baidu.com/view/ca8f8b68b84ae45c3b358c9a.html
+
+LQG即线性二次高斯控制
 
 
