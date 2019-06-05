@@ -133,4 +133,10 @@ https://wenku.baidu.com/view/ca8f8b68b84ae45c3b358c9a.html
 
 LQG即线性二次高斯控制
 
+### MPC
+
+https://baike.baidu.com/item/MPC/3586091
+
+
+
 
