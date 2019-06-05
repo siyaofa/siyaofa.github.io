@@ -50,9 +50,12 @@ legend('y_lpf','x_rc_filtered','x')
 
 %根据传函作bode图
 pkg load control
+kp=0.7;
+ki=0.03;
+kd=0.01;
 figure
-TF=tf([1],[1 1]);
-bode(TF);
+Gs=tf([kd kp ki],[1]);
+bode(Gs);
 
 
 20*log10(sqrt(1/2))
