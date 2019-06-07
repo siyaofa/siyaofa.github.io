@@ -49,15 +49,22 @@ $t_0=0$时刻从A到B点首先是一个加加速段，
 
 $t_0$~$t_1$内
 
-加速度$a(t)=\int_0^tJerkdt=Jerk{\cdot}t$.
+加速度$a(t)=\int_0^tJerkdt\\
+=Jerk{\cdot}t$.
 
-速度$v(t)=\int_0^ta(t)dt=\int_0^tJerk{\cdot}tdt=\frac{Jerk{\cdot}t^2}{2}$.
+速度$v(t)=\int_0^ta(t)dt\\
+=\int_0^tJerk{\cdot}tdt\\
+=\frac{Jerk{\cdot}t^2}{2}$.
 
-位移$s(t)=\int_0^tv(t)dt=\int_0^t\frac{Jerk{\cdot}t^2}{2}dt=\frac{Jerk{\cdot}t^3}{6}$
+位移$s(t)=\int_0^tv(t)dt\\
+=\int_0^t\frac{Jerk{\cdot}t^2}{2}dt\\
+=\frac{Jerk{\cdot}t^3}{6}$
 
 则在结束匀加加速度时刻$t_1$
 
-速度$v_1=\frac{Jerk\cdot{t_1}^2}{2}=\frac{Jerk\times({\frac{Accelaration_{max}}{Jerk}})^2}{2}=\frac{Accelaration_{max}^2}{2{\cdot}Jerk}$
+速度$v_1=\frac{Jerk\cdot{t_1}^2}{2}\\
+=\frac{Jerk\times({\frac{Accelaration_{max}}{Jerk}})^2}{2}\\
+=\frac{Accelaration_{max}^2}{2{\cdot}Jerk}$
 
 位移$s_1=\frac{Jerk{\cdot}t_1^3}{6}=\frac{Accelaration_{max}^3}{6{\cdot}Jerk^2}$
 #### 匀加速段 ($t_1$ ~ $t_2$)
@@ -66,22 +73,47 @@ $t_1$时刻到$t_2$
 
 因为有匀减减速段的存在，所以速度不能直接在匀速的到达最大值。
 
-$v_2=Velocity_{max}-v_1=Velocity_{max}-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}$
+$v_2=Velocity_{max}-v_1\\
+=Velocity_{max}-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}$
 
-匀加速段持续时间$t_{acc}=\frac{v_2-v_1}{Accelaration_{max}}=\frac{Velocity_{max}-\frac{Accelaration_{max}^2}{Jerk}}{Accelaration_{max}}=\frac{Velocity_{max}}{Accelaration_{max}}-\frac{Accelaration_{max}}{Jerk}$
+匀加速段持续时间$t_{acc}=\frac{v_2-v_1}{Accelaration_{max}}\\
+=\frac{Velocity_{max}-\frac{Accelaration_{max}^2}{Jerk}}{Accelaration_{max}}\\
+=\frac{Velocity_{max}}{Accelaration_{max}}-\frac{Accelaration_{max}}{Jerk}$
 
-$t_2=t_1+t_{acc}=\frac{Accelaration_{max}}{Jerk}+\frac{Velocity_{max}-{\frac{Accelaration_{max}^2}{2{\cdot}Jerk}}}{Accelaration_{max}}$
+$t_2=t_1+t_{acc}=\frac{Velocity_{max}}{Accelaration_{max}}$
 
 加速度$a(t)=Accelaration_{max}$
 
-速度$v(t)=v_1+\int_{t_1}^{t}a(t)dt=v_1+\int_{t_1}^{t}Accelaration_{max}dt=v_1+Accelaration_{max}\cdot(t-t_1)=\frac{Accelaration_{max}^2}{2{\cdot}Jerk}+Accelaration_{max}\cdot(t-\frac{Accelaration_{max}}{Jerk})=Accelaration_{max}{\cdot}{t}-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}$.
+速度$v(t)=v_1+\int_{t_1}^{t}a(t)dt\\
+=v_1+\int_{t_1}^{t}Accelaration_{max}dt\\
+=v_1+Accelaration_{max}\cdot(t-t_1)\\
+=\frac{Accelaration_{max}^2}{2{\cdot}Jerk}+Accelaration_{max}\cdot(t-\frac{Accelaration_{max}}{Jerk})\\
+=Accelaration_{max}{\cdot}{t}-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}$.
 
-位移$s(t)=s_1+\int_{t_1}^tv(t)dt=s_1+\int_{t_1}^t(Accelaration_{max}{\cdot}{t}-\frac{Accelaration_{max}^2}{2{\cdot}Jerk})dt=s_1+\frac{Accelaration_{max}}{2}(t^2-t_1^2)-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}(t-t_1)=\frac{Accelaration_{max}}{2}{\cdot}t^2-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}t+s_1-\frac{Accelaration_{max}}{2}{\cdot}t_1^2+\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}t_1=\frac{Accelaration_{max}}{2}{\cdot}t^2-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}t+\frac{Accelaration_{max}^3}{6{\cdot}Jerk^2}$
+位移
+$s(t)=s_1+\int_{t_1}^tv(t)dt\\
+=s_1+\int_{t_1}^t(Accelaration_{max}{\cdot}{t}-\frac{Accelaration_{max}^2}{2{\cdot}Jerk})dt\\
+=s_1+\frac{Accelaration_{max}}{2}(t^2-t_1^2)-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}(t-t_1)\\
+=\frac{Accelaration_{max}}{2}{\cdot}t^2-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}t+s_1-\frac{Accelaration_{max}}{2}{\cdot}t_1^2+\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}t_1\\
+=\frac{Accelaration_{max}}{2}{\cdot}t^2-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}{\cdot}t+\frac{Accelaration_{max}^3}{6{\cdot}Jerk^2}$
 
-
+$s_2=\frac{Velocity_{max}^2}{2Accelaration_{max}}-\frac{Velocity_{max}{\cdot}Accelaration_{max}}{2{\cdot}Jerk}+\frac{Accelaration_{max}^3}{6{\cdot}Jerk^2}$
 
 
 #### 匀减减速段 ($t_2$ ~ $t_3$)
+
+持续时间也为$t_{jerk}=\frac{Accelaration_{max}}{Jerk}$
+
+$t_3=t_2+t_{jerk}\\=\frac{Velocity_{max}}{Accelaration_{max}}+\frac{Accelaration_{max}}{Jerk}$
+
+$a(t)=Accelaration_{max}-Jerk{\cdot}t$
+
+$v(t)=v_2+\int_{t_2}^{t}a(t)dt\\=v_2+Accelaration_{max}(t-t_2)-\frac{Jerk}{2}(t^2-t_2^2)\\=-\frac{Jerk}{2}{\cdot}t^2+Accelaration_{max}{\cdot}t-\frac{Accelaration_{max}^2}{2{\cdot}Jerk}+\frac{Jerk{\cdot}Velocity_{max}^2}{2{\cdot}Accelaration_{max}^2}$
+
+
+$a_3=0$,$v_3=Velocity_{max}$
+
+
 #### 匀速段 ($t_3$ ~ $t_4$)
 #### 匀减减速段 ($t_4$ ~ $t_5$)
 #### 匀减速段 ($t_5$ ~ $t_6$)
