@@ -93,8 +93,7 @@ $t_2=t_1+t_{acc}=\frac{Vel}{Acc}$
 =\frac{Acc^2}{2{\cdot}Jerk}+Acc\cdot(t-\frac{Acc}{Jerk})\\
 =Acc{\cdot}{t}-\frac{Acc^2}{2{\cdot}Jerk}$$.
 
-位移
-$$s(t)=s_1+\int_{t_1}^tv(t)dt\\
+位移$$s(t)=s_1+\int_{t_1}^tv(t)dt\\
 =s_1+\int_{t_1}^t(Acc{\cdot}{t}-\frac{Acc^2}{2{\cdot}Jerk})dt\\
 =s_1+\frac{Acc}{2}(t^2-t_1^2)-\frac{Acc^2}{2{\cdot}Jerk}{\cdot}(t-t_1)\\
 =\frac{Acc}{2}{\cdot}t^2-\frac{Acc^2}{2{\cdot}Jerk}{\cdot}t+s_1-\frac{Acc}{2}{\cdot}t_1^2+\frac{Acc^2}{2{\cdot}Jerk}{\cdot}t_1\\
@@ -112,12 +111,16 @@ $t_3=t_2+t_{jerk}\\
 
 $a(t)=Acc-Jerk{\cdot}(t-\frac{Vel}{Acc})$
 
-$v(t)=v_2+\int_{t_2}^{t}a(t)dt\\
+$$
+v(t)=v_2+\int_{t_2}^{t}a(t)dt\\
 =v_2+(Acc+\frac{Jerk{\cdot}Vel}{Acc})(t-t_2)-\frac{Jerk}{2}(t^2-t_2^2)\\
-=-\frac{Jerk}{2}{\cdot}t^2+(Acc+\frac{Jerk{\cdot}Vel}{Acc}){\cdot}t-\frac{Acc^2}{2{\cdot}Jerk}-\frac{Jerk{\cdot}Vel^2}{2{\cdot}Acc^2}$ 
+=-\frac{Jerk}{2}{\cdot}t^2+(Acc+\frac{Jerk{\cdot}Vel}{Acc}){\cdot}t-\frac{Acc^2}{2{\cdot}Jerk}-\frac{Jerk{\cdot}Vel^2}{2{\cdot}Acc^2}
+$$ 
 
-$s(t)=s_2+\int_{t2}^tv(t)dt\\
-=-\frac{Jerk}{6}{\cdot}t^3+\frac{Acc+\frac{Jerk{\cdot}Vel}{Acc}}{2}{\cdot}t^2-\frac{1}{2}(\frac{Acc}{Jerk}+\frac{Jerk{\cdot}Vel^2}{Acc})t-\frac{Jerk{\cdot}Vel^3}{3Acc^3}-\frac{Vel^2}{2Acc}+\frac{Acc{\cdot}Vel}{2Jerk}+\frac{Jerk{\cdot}Vel^2}{2Acc^2}$
+$$
+s(t)=s_2+\int_{t2}^tv(t)dt\\
+=-\frac{Jerk}{6}{\cdot}t^3+\frac{Acc+\frac{Jerk{\cdot}Vel}{Acc}}{2}{\cdot}t^2-\frac{1}{2}(\frac{Acc}{Jerk}+\frac{Jerk{\cdot}Vel^2}{Acc})t-\frac{Jerk{\cdot}Vel^3}{3Acc^3}-\frac{Vel^2}{2Acc}+\frac{Acc{\cdot}Vel}{2Jerk}+\frac{Jerk{\cdot}Vel^2}{2Acc^2}
+$$
 
 $a_3=0$,$v_3=Vel$
 $v_3=Vel$
