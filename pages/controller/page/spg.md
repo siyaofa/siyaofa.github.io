@@ -67,6 +67,9 @@ $t_0$~$t_1$内
 =\frac{Acc^2}{2{\cdot}Jerk}$
 
 位移$s_1=\frac{Jerk{\cdot}t_1^3}{6}=\frac{Acc^3}{6{\cdot}Jerk^2}$
+
+移动距离
+$d_1=|s_1|=\frac{Acc^3}{6{\cdot}Jerk^2}$
 #### 匀加速段 ($t_1$ ~ $t_2$)
 
 $t_1$时刻到$t_2$
@@ -84,18 +87,18 @@ $t_2=t_1+t_{acc}=\frac{Vel}{Acc}$
 
 加速度$a(t)=Acc$
 
-速度$v(t)=v_1+\int_{t_1}^{t}a(t)dt\\
+速度$$v(t)=v_1+\int_{t_1}^{t}a(t)dt\\
 =v_1+\int_{t_1}^{t}Accdt\\
 =v_1+Acc\cdot(t-t_1)\\
 =\frac{Acc^2}{2{\cdot}Jerk}+Acc\cdot(t-\frac{Acc}{Jerk})\\
-=Acc{\cdot}{t}-\frac{Acc^2}{2{\cdot}Jerk}$.
+=Acc{\cdot}{t}-\frac{Acc^2}{2{\cdot}Jerk}$$.
 
 位移
-$s(t)=s_1+\int_{t_1}^tv(t)dt\\
+$$s(t)=s_1+\int_{t_1}^tv(t)dt\\
 =s_1+\int_{t_1}^t(Acc{\cdot}{t}-\frac{Acc^2}{2{\cdot}Jerk})dt\\
 =s_1+\frac{Acc}{2}(t^2-t_1^2)-\frac{Acc^2}{2{\cdot}Jerk}{\cdot}(t-t_1)\\
 =\frac{Acc}{2}{\cdot}t^2-\frac{Acc^2}{2{\cdot}Jerk}{\cdot}t+s_1-\frac{Acc}{2}{\cdot}t_1^2+\frac{Acc^2}{2{\cdot}Jerk}{\cdot}t_1\\
-=\frac{Acc}{2}{\cdot}t^2-\frac{Acc^2}{2{\cdot}Jerk}{\cdot}t+\frac{Acc^3}{6{\cdot}Jerk^2}$
+=\frac{Acc}{2}{\cdot}t^2-\frac{Acc^2}{2{\cdot}Jerk}{\cdot}t+\frac{Acc^3}{6{\cdot}Jerk^2}$$
 
 $s_2=\frac{Vel^2}{2Acc}-\frac{Vel{\cdot}Acc}{2{\cdot}Jerk}+\frac{Acc^3}{6{\cdot}Jerk^2}$
 
@@ -122,8 +125,10 @@ $s_3=\frac{1}{2}{\cdot(\frac{Vel{\cdot}Acc}{Jerk}+\frac{Vel^2}{Acc})}$
 
 #### 匀速段 ($t_3$ ~ $t_4$)
 
-$t_{vel}=\frac{Dist-2s_3}{Vel}\\
-=\frac{Dist}{Vel}-\frac{Vel}{Acc}-\frac{Acc}{Jerk}$
+$$
+t_{vel}=\frac{Dist-2s_3}{Vel}\\
+=\frac{Dist}{Vel}-\frac{Vel}{Acc}-\frac{Acc}{Jerk}
+$$
 
 $t_4=\frac{Dist}{Vel}$
 
@@ -131,8 +136,10 @@ $a(t)=0$
 
 $v(t)=Vel$
 
-$s(t)=s_3+Vel(t-t_3)\\
-=Vel{\cdot}t-\frac{Vel}{2}(\frac{Vel}{Acc}+\frac{Acc}{Jerk})$
+$$
+s(t)=s_3+Vel(t-t_3)\\
+=Vel{\cdot}t-\frac{Vel}{2}(\frac{Vel}{Acc}+\frac{Acc}{Jerk})
+$$
 
 $s_4=Dist-\frac{Vel}{2}(\frac{Vel}{Acc}+\frac{Acc}{Jerk})$
 
@@ -140,15 +147,15 @@ $v_4=v_3=Vel$
 
 #### 匀减减速段 ($t_4$ ~ $t_5$)
 
-$t_{jerk}=\frac{Acc}{Jerk}$
+$$t_{jerk}=\frac{Acc}{Jerk}$$
 
-$t_5=\frac{Dist}{Vel}+\frac{Acc}{Jerk}$
+$$t_5=\frac{Dist}{Vel}+\frac{Acc}{Jerk}$$
 
-$a(t)=-Jerk(t-t_4)\\
-=-Jerk{\cdot}t+\frac{Jerk{\cdot}Dist}{Vel}$
+$$a(t)=-Jerk(t-t_4)\\
+=-Jerk{\cdot}t+\frac{Jerk{\cdot}Dist}{Vel}$$
 
-$v(t)=v_4+\int_{t_4}^{t}a(t)dt\\
-=-\frac{Jerk}{2}t^2+\frac{Jerk{\cdot}Dist}{Vel}t+Vel-\frac{Jerk{\cdot}Dist^2}{2Vel^2}$
+$$v(t)=v_4+\int_{t_4}^{t}a(t)dt\\
+=-\frac{Jerk}{2}t^2+\frac{Jerk{\cdot}Dist}{Vel}t+Vel-\frac{Jerk{\cdot}Dist^2}{2Vel^2}$$
 
 
 $v_5=v_2=Vel-\frac{Acc^2}{2{\cdot}Jerk}$
