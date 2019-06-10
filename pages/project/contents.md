@@ -11,5 +11,7 @@
 
 - [一阶低通滤波器对超声波距离数据分析](page/一阶低通滤波器)
 
+- [Python Tkinter 调用 C动态库](page/python_tkinter_clib.md)
+
 
 ![扫描关注](pic/QR4.jpg)
