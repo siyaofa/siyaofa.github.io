@@ -1,14 +1,19 @@
 clear;close all;clc;
 
+%加加速度 m/s^3
 jerk=4;
+%加速度 m/s^2
 acc=0.4;
-vel=0.1;%100mm/s
-dist=-0.3;%1m
-
-sample_period=0.001;%采样周期1ms
+%速度 m/s
+vel=0.1;
+%距离 m
+dist=-0.3;
+%采样周期 s
+sample_period=0.001;
 
 [t,acc,vel,shift,switch_time]=spg(sample_period,jerk,acc,vel,dist);
 
+%绘图
 figure
 subplot(311);
 plot(t,acc);
