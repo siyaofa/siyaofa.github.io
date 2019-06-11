@@ -1,38 +1,42 @@
-clear;close all;clc;
+function [t,acc,vel,shift,switch_time]=spg(sp,jerk,max_acc,max_vel,distance)
 
-jerk=4;
-acc=0.4;
-vel=0.1;%100mm/s
-dist=1;%1m
+direction=sign(distance);
+time=zeros(7,1);
+t_jerk=abs(max_acc/jerk);
+t_acc=abs(max_vel/max_acc);
+t_vel=abs(distance/max_acc);
+time(1)=t_jerk;
+time(2)=t_acc;
+time(3)=t_jerk+t_acc;
+time(4)=t_vel;
+time(5)=t_vel+t_jerk;
+time(6)=t_vel+t_acc;
+time(7)=t_vel+t_acc+t_jerk;
+switch_time=time;
 
-%总时间t
-total_time=dist/vel+vel/acc+acc/jerk;
+t=0:sp:time(7)*1.2;
 
-sample_period=0.001;%采样周期1ms
+acc=jerk*t.*(t>=0 & t<time(1)) ...
++max_acc.*(t>=time(1) & t<time(2)) ...
++(max_acc-jerk*(t-time(2))).*(t>=time(2) & t< time(3)) ...
++0.*(t>=time(3) & t<time(4)) ...
++(-jerk*(t-time(4))).*(t>=time(4) & t<time(5)) ...
++(-max_acc).*(t>=time(5) & t<time(6)) ...
++(-max_acc+jerk*(t-time(6))).*(t>=time(6) & t<=time(7));
 
-time=0:sample_period:total_time;
+acc=direction*acc;
 
-t=zeros(7,1);
-t(1)=acc/jerk;
-t(2)=vel/acc;
-t(3)=vel/acc+acc/jerk;
-t(4)=dist/vel;
-t(5)=dist/vel+acc/jerk;
-t(6)=dist/vel+vel/acc;
-t(7)=dist/vel+vel/acc+acc/jerk;
+vel=zeros(size(t));
 
-t_int=t/sample_period;
-
-jerk_t=zeros(size(time));
-acc_t=zeros(size(time));
-vel_t=zeros(size(time));
-s_t=zeros(size(time));
+for i=1:length(t)
+vel(i)=sum(acc(1:i));
+end
+vel=vel*sp;
 
 
-acc_t(1:t_int(1))=jerk*time(1:t_int(1));
-acc_t(t_int(1):t_int(2))=acc;
-acc_t(t_int(2):t_int(3))=acc-jerk*(time(t_int(2):t_int(3))-t(2));
+shift=zeros(size(t));
 
-
-figure
-plot(time,acc_t);
+for i=1:length(t)
+shift(i)=sum(vel(1:i));
+end
+shift=shift*sp;
