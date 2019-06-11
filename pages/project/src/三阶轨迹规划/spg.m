@@ -3,9 +3,9 @@ function [t,acc,vel,shift,switch_time]=spg(sp,jerk,max_acc,max_vel,distance)
 direction=sign(distance);
 %加速度曲线分段的边界
 time=zeros(7,1);
-t_jerk=abs(max_acc/jerk);
-t_acc=abs(max_vel/max_acc);
-t_vel=abs(distance/max_acc);
+t_jerk=max_acc/jerk;
+t_acc=max_vel/max_acc;
+t_vel=abs(distance/max_vel);
 time(1)=t_jerk;
 time(2)=t_acc;
 time(3)=t_jerk+t_acc;

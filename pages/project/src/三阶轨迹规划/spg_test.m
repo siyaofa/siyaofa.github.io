@@ -7,7 +7,7 @@ acc=0.4;
 %速度 m/s
 vel=0.1;
 %距离 m
-dist=-0.3;
+dist=0.3;
 %采样周期 s
 sample_period=0.001;
 
@@ -39,3 +39,10 @@ xlim([0 t(end)]);
 title("Shift");
 ylabel('m')
 xlabel('s')
+
+#保存数据
+f=fopen("setpoint_data.txt",'w');
+for i=1:length(shift)
+fprintf(f,"%g\n",shift(i));
+end
+fclose(f);
