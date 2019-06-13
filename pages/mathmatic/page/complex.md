@@ -130,8 +130,7 @@ $$
 两者之间的关系为
 
 $$
-z=e^{sT}=e^{(\sigma+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T} \\
-=e^{{\sigma}{\frac{2\pi}{{\omega}_s}}}e^{j{\omega}{\frac{2\pi}{{\omega}_s}}}
+z=e^{sT}=e^{(\sigma+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T}=e^{{\sigma}{\frac{2\pi}{{\omega}_s}}}e^{j{\omega}{\frac{2\pi}{{\omega}_s}}}
 $$
 
 ##### $\mathcal{S}{\rightarrow}\mathcal{Z}$
