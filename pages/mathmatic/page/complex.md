@@ -132,9 +132,16 @@ $$
 
 其中$r=e^{{\sigma}T}$
 
-1.$\sigma<0{\rightarrow}r<1$， $\mathcal{S}$域上是左半平面，$\mathcal{Z}$域上是单位圆内。
-2.$\sigma=0{\rightarrow}r=1$，$\mathcal{S}$域上是虚轴，$\mathcal{Z}$域上是单位圆。
-3.$\sigma>0{\rightarrow}r>1$，$\mathcal{S}$域上是右半平面，$\mathcal{Z}$域上是单位圆外。
+ ${\sigma}<0{\rightarrow}r<1$
+
+$\mathcal{S}$域上是左半平面，$\mathcal{Z}$域上是单位圆内。
+
+ ${\sigma}=0{\rightarrow}r=1$ 
+$\mathcal{S}$域上是虚轴，$\mathcal{Z}$域上是单位圆。
+
+ ${\sigma}>0{\rightarrow}r>1$ 
+
+$\mathcal{S}$域上是右半平面，$\mathcal{Z}$域上是单位圆外。
 
 这也是为什么控制理论中判断系统稳定性时，S域判断的是极点在否左半平面，Z域判断极点是否在单位圆内。
 
@@ -150,7 +157,7 @@ $$
 T=\frac{2\pi}{{\omega}_s}
 $$
 
-其中${\omega_s}$为采样频率（rad/s）
+其中${\omega_s}$为采样频率
 
 两者之间的关系为
 
