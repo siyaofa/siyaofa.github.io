@@ -51,7 +51,9 @@ $$
 
 其中
 
-$$s=\sigma+j\omega$$
+$$
+s={\sigma}+j{\omega}
+$$
 
 逆变换
 
