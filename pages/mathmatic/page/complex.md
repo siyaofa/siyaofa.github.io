@@ -113,7 +113,7 @@ $$
 
 最后一句话作者应该表达的是傅氏变换结论。
 
-### $\mathcal{S}$域$\mathcal{Z}$域转换
+### ${\mathcal{S}}$ 域 ${\mathcal{Z}}$ 域转换 
 
 欧拉和Tustin
 
