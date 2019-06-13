@@ -158,13 +158,13 @@ z=e^{sT}=e^{(\sigma+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T} \\
 =e^{{\sigma}{\frac{2\pi}{{\omega}_s}}}e^{j{\omega}{\frac{2\pi}{{\omega}_s}}}
 $$
 
-$s{\rightarrow}z$
+##### $\mathcal{S}{\rightarrow}\mathcal{Z}$
 
 $$
 z=e^{sT}=\frac{e^{sT/2}}{e^{-sT/2}}{\approx}\frac{1+sT/2}{1-sT/2}
 $$
 
-$z{\rightarrow}s$
+##### $\mathcal{Z}{\rightarrow}\mathcal{S}$
 
 $$
 s=\frac{ln(z)}{T}{\approx}\frac{2}{T}\frac{z-1}{z+1}=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}
