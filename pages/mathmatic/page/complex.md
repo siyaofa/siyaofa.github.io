@@ -115,15 +115,19 @@ $$
 
 复数S平面
 
-$$s={\sigma}+j{\omega}$$
+$$
+s={\sigma}+j{\omega}
+$$
 
 说明$s$域是个直角坐标系，其中
 
-$${\sigma}$$ 是实轴坐标，$${\omega}$$ 是虚轴坐标
+${\sigma}$ 是实轴坐标，${\omega}$ 是虚轴坐标
 
 复数Z平面
 
-$z=e^{sT}=e^{({\sigma}+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T}=re^{j{\omega}T}$
+$$
+z=e^{sT}=e^{({\sigma}+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T}=re^{j{\omega}T}
+$$
 
 其中$r=e^{{\sigma}T}$
 
@@ -141,14 +145,18 @@ $z=e^{sT}=e^{({\sigma}+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T}=re^{j{\omega}T}$
 
 采样周期为
 
-$$T=\frac{2\pi}{{\omega}_s}$$
+$$
+T=\frac{2\pi}{{\omega}_s}
+$$
 
-其中$\omega_s$为采样频率（rad/s）
+其中${\omega_s}$为采样频率（rad/s）
 
 两者之间的关系为
 
-$$z=e^{sT}=e^{(\sigma+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T} \\
-=e^{{\sigma}{\frac{2\pi}{{\omega}_s}}}e^{j{\omega}{\frac{2\pi}{{\omega}_s}}}$$
+$$
+z=e^{sT}=e^{(\sigma+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T} \\
+=e^{{\sigma}{\frac{2\pi}{{\omega}_s}}}e^{j{\omega}{\frac{2\pi}{{\omega}_s}}}
+$$
 
 $s{\rightarrow}z$
 
@@ -163,9 +171,3 @@ s=\frac{ln(z)}{T}{\approx}\frac{2}{T}\frac{z-1}{z+1}=\frac{2}{T}\frac{1-z^{-1}}{
 $$
 
 通过Tustin变换就可以把S域的传递函数用时序数字信号的输入和输出表示出来。
-
-
-
-
-
-
