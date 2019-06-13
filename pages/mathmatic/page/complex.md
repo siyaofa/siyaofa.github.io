@@ -125,18 +125,18 @@ $$
 T=\frac{2\pi}{{\omega}_s}
 $$
 
-其中${\omega_s}$为采样频率
+其中${{\omega}_s}$为采样频率
 
 两者之间的关系为
 
 $$
-z=e^{sT}=e^{(\sigma+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T}=e^{{\sigma}{\frac{2\pi}{{\omega}_s}}}e^{j{\omega}{\frac{2\pi}{{\omega}_s}}}
+z=e^{sT}=e^{({\sigma}+j{\omega})T}=e^{{\sigma}T}e^{j{\omega}T}
 $$
 
 ##### $\mathcal{S}{\rightarrow}\mathcal{Z}$
 
 $$
-z=e^{sT}=\frac{e^{sT/2}}{e^{-sT/2}}{\approx}\frac{1+sT/2}{1-sT/2}
+z=e^{sT}=\frac{e^{sT/2}}{e^{-sT/2}}{\approx}{\frac{1+sT/2}{1-sT/2}}
 $$
 
 ##### $\mathcal{Z}{\rightarrow}\mathcal{S}$
