@@ -123,9 +123,6 @@ $$
 
 复数Z平面
 
-$$
-z=e^{sT}=e^{({\sigma}+j\omega)T}=e^{{\sigma}T}e^{j{\omega}T}=re^{j{\omega}T}
-$$
 
 其中$r=e^{{\sigma}T}$
 
