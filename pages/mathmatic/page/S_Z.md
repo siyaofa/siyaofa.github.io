@@ -3,6 +3,11 @@ layout: page
 title: Laplace变换 Z变换之间的关系
 ---
 
+<!--
+github latax 公式编辑器有bug。
+{}多重嵌套不合适 能用空格分开就用空格分开吧
+-->
+
 ### $\mathcal{S}$域$\mathcal{Z}$域映射关系
 
 复数S平面
