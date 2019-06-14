@@ -120,7 +120,7 @@ $$
 
 其中$r=e^{ \sigma T }$
 
-- $ \sigma < 0 \rightarrow r<1$，$\mathcal{S}$域上是左半平面，$\mathcal{Z}$域上是单位圆内。
+- $ \sigma <0 \rightarrow r<1$，$\mathcal{S}$域上是左半平面，$\mathcal{Z}$域上是单位圆内。
 
 - $ \sigma =0 \rightarrow r=1$，$\mathcal{S}$域上是虚轴，$\mathcal{Z}$域上是单位圆。
 
