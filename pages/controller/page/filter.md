@@ -26,6 +26,7 @@ IIR()
 
 
 #### 过程估计
+
 假设状态向量为$x$则$k$时刻的状态可由$k-1$时刻的状态表示如下：
 
 $$
@@ -44,7 +45,15 @@ $v_k$为$k$时刻的测量噪声。
 
 假设$v$和$w$都为白噪声。
 
-#### 滤波器计算
+$$
+p(w) \sim N(0,Q)
+$$
+
+$$
+p(v) \sim N(0,R)
+$$
+
+#### 计算
 
 先验估计（预测）误差
 
@@ -58,20 +67,16 @@ $$
 e_k \equiv x_k - \hat{x} _k 
 $$
 
-估计误差的协方差
-$$
-P_k^-=E[ e_k^- e_k^{-T}]
-$$
-
-$$
-P_k=E[ e_k e_k^T]
-$$
-
-$$
-\hat{x}_k=\hat{x}_k^- + K(z_k - H \hat{x}_k^-)
-$$
+$\hat{x} _k^-$为$x_k$的先验值（观测值未获取时的预测值），$\hat{x} _k$为$x_k$的后验值（观测值$z_k$获取到后的估计值）。
 
 
+估计误差的协方差$P_k^-=E[ e_k^- e_k^{-T}]$
+
+后验估计误差的协方差$P_k=E[ e_k e_k^T]$
+
+$$
+\hat{x}_k=\hat{x}_k^- + K(z_k - \hat{z}_k)=\hat{x}_k^- + K(z_k - H \hat{x}_k^-)
+$$
 
 增益系数$K$代表着先验值的权重。
 
@@ -80,6 +85,39 @@ K_k = P_k^- H^T (H P_k^- H^T + R)^{-1} \\
 =\frac{P_k^-H^T}{H P_k^- H^T + R}
 $$
 
+当测量值权重增大时，$R \downarrow K_k \uparrow $
+
+当预测值权重增大时，$R \uparrow K_k \downarrow $
+
+#### 概率
+
+$$
+E[x_k] = \hat{x}_k
+$$
+
+$$
+P_k = E[(x_k - \hat{x}_k)(x_k - \hat{x}_k)^T]
+$$
+
+#### 卡尔曼滤波器的计算过程
+
+```c
+
+for(;;)
+{
+    time_update();
+    measurement_update();
+}
+
+```
+
+$$
+\hat{x}_k^- = A \hat{x}_{k-1} + B u_{k-1}
+$$
+
+$$
+P_k^- = A P_{k-1} A^T + Q
+$$
 
 ### 陷波滤波器 (notch filter)
 
