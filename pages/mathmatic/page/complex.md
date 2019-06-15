@@ -98,7 +98,7 @@ x[n]=\mathcal{Z}^{-1}\{X(z)\}=\frac{1}{2{\pi}j}{\oint_C}X(z)z^{n-1}dz
 $$
 
 <!--
-github latax 公式编辑器有bug。
+github.io latax 公式编辑器有bug。
 {}多重嵌套不合适 能用空格分开就用空格分开吧
 -->
 
