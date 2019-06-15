@@ -25,7 +25,7 @@ IIR()
 [UNC 推导](https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf)
 
 
-#### 过程估计
+#### 过程
 
 假设状态向量为$x$则$k$时刻的状态可由$k-1$时刻的状态表示如下：
 
@@ -111,12 +111,28 @@ for(;;)
 
 ```
 
+预测阶段
+
 $$
 \hat{x}_k^- = A \hat{x}_{k-1} + B u_{k-1}
 $$
 
 $$
 P_k^- = A P_{k-1} A^T + Q
+$$
+
+估计阶段
+
+$$
+K_k = P_k^- H^T (H P_k^- H^T + R)^{-1}
+$$
+
+$$
+\hat{x}_k = \hat{x}_k^- + K(z_k - H \hat{x}_k^-)
+$$
+
+$$
+P_k = (I - K_kH)P_k^-
 $$
 
 ### 陷波滤波器 (notch filter)
