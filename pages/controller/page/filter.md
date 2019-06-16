@@ -22,9 +22,6 @@ IIR()
 
 ### 卡尔曼滤波器
 
-[UNC 推导](https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf)
-
-
 #### 过程
 
 假设状态向量为$x \in \mathcal{R}^n$则$k$时刻的状态可由$k-1$时刻的状态表示如下：
@@ -75,6 +72,8 @@ $$
 
 $\hat{x} _k^-$为$x_k$的先验值（观测值未获取时的预测值），$\hat{x} _k$为$x_k$的后验值（观测值$z_k$获取到后的估计值）。
 
+
+
 $$
 e_{k+1}^- = x_{k+1} - \hat{x}_{k+1}^- \\
 = (A x_k + B u_k + w_k) - (A \hat{x}_k + B u_k) \\
@@ -86,15 +85,49 @@ $$
 
 后验估计误差的协方差$P_k=E[ e_k e_k^T]$
 
-$$
-\hat{x}_k=\hat{x}_k^- + K(z_k - \hat{z}_k)=\hat{x}_k^- + K(z_k - H \hat{x}_k^-)
-$$
-
-增益系数$K$代表着先验值的权重。
+我们可以通过一个权重系数$K \in [0,1] $来决定如何更新$x_k$的估计值，如果我们完全相信预测值$z_k$，$K=0$， $\hat{x}_k=\hat{x}_k^-$；如果我们完全相信测量值$\hat{x}_k = z_k$，$K=1$。
 
 $$
-K_k = P_k^- H^T (H P_k^- H^T + R)^{-1} \\
+\hat{x}_k=\hat{x}_k^- + K(z_k - \hat{z}_k) \\
+=\hat{x}_k^- + K(z_k - H \hat{x}_k^-) \\
+=\hat{x}_k^- + K(H x_k + v_k - H \hat{x}_k^-) \\
+=\hat{x}_k^- + KH x_k + K v_k - KH \hat{x}_k^- 
+$$
+
+则有
+
+$$
+e_k = x_k - \hat{x}_k \\
+= x_k - ( \hat{x}_k^- + KH x_k + K v_k - KH \hat{x}_k^-  ) \\
+= (I-KH)(x_k - \hat{x}_k^-) - Kv_k \\
+= (I-KH)e_k^- - K v_k
+$$
+
+$$
+P_k = E[e_ke_k^T] \\
+= (I-KH) e_k^- (I-KH)^T - K R K^T \\
+= P_k^- - KHP_k^- - P_k^- H^T K^T + K(H P_k^- H^T + R)K^T
+$$
+
+最优估计即使$P_k$最小
+
+对$K$求偏导
+
+$$
+\frac{\Theta P_k}{\Theta K} = -2(HP_k^-)^T + 2K(HP_K^-H^T +R )
+$$
+
+令$\frac{\Theta P_k}{\Theta K} = 0$，则有
+
+$$
+K = P_k^- H^T (H P_k^- H^T + R)^{-1} \\
 =\frac{P_k^-H^T}{H P_k^- H^T + R}
+$$
+
+$P_k^- = E[e_k^- e_k^{-T}]$ 代表先验误差的协方差
+
+$$
+K = \frac{预测误差}{预测误差 + 测量误差}
 $$
 
 当测量值权重增大时，$R \downarrow K_k \uparrow $
@@ -120,6 +153,10 @@ P_{k+1}^- = E[ e_{k+1}^- e_{k+1}^{-T}] \\
 =A P_k A^T + Q
 $$
 
+说明下次的预测误差$P_k^-$由本次的估计误差$P_k$和过程误差$Q$组成
+
+
+
 #### 卡尔曼滤波器的计算过程
 
 ```c
@@ -143,7 +180,9 @@ for(;;)
 4. $ P_k = (I - K_kH)P_k^-$ 
 5. $ \hat{x}_k = \hat{x}_k^- + K_k (z_k - H \hat{x}_k^-) $ 状态更新
 
+[UNC 推导](https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf)
 
+[图解](https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/)
 
 ### 陷波滤波器 (notch filter)
 
