@@ -180,6 +180,8 @@ for(;;)
 4. $ P_k = (I - K_kH)P_k^-$ 
 5. $ \hat{x}_k = \hat{x}_k^- + K_k (z_k - H \hat{x}_k^-) $ 状态更新
 
+[Octave Arduino 实际测试效果](../../project/page/octave_kalman_filter.md)
+
 [UNC 推导](https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf)
 
 [图解](https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/)
