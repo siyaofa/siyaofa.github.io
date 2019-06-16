@@ -39,9 +39,10 @@ Multiwii是一开源的飞控项目。能够兼容绝大多数市面上常见的
 
 ### Multiwii 固件
 
-Github 固件源码 https://github.com/multiwii/multiwii-firmware
+[Github 仓库](https://github.com/multiwii/multiwii-firmware) 
 
-[Google网盘](https://code.google.com/archive/p/multiwii/)
+[Google 网盘](https://code.google.com/archive/p/multiwii/)
+
 
 |源文件|说明|
 --|--
