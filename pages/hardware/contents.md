@@ -3,7 +3,7 @@ layout: page
 title: 硬件
 ---
 
-## 总线
+## [总线](page/BUS.md)
 
 PCI总线
 

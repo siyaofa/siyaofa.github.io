@@ -39,9 +39,8 @@ Multiwii是一开源的飞控项目。能够兼容绝大多数市面上常见的
 
 ### Multiwii 固件
 
-[Github 仓库](https://github.com/multiwii/multiwii-firmware) 
-
-[Google 网盘](https://code.google.com/archive/p/multiwii/)
+- [Github 仓库](https://github.com/multiwii/multiwii-firmware) 
+- [Google 网盘](https://code.google.com/archive/p/multiwii/)
 
 
 |源文件|说明|
@@ -59,8 +58,8 @@ MultiWii.ino|Arduino项目的文件。实际是空的，实现都在cpp内。
 Output.h Output.cpp|电机输出
 Protocol.h Protocol.cpp|串口通信协议
 RX.h RX.cpp| 接收模块，接受来自遥控器的指令并解析。
-Sensors.h Sensors.cpp| 获取加速度传感器、陀螺仪、气压计、磁力计和超声波传感器的原始值。
-Serial.h Serial.cpp| 串口通讯模块，应该是调试GUI程序使用的。
+Sensors.h Sensors.cpp| 通过*I2C*获取加速度传感器、陀螺仪、气压计、磁力计和超声波传感器的原始值。
+Serial.h Serial.cpp| 串口通讯模块，调试GUI程序使用的。
 Telemetry.h Telemetry.cpp|
 types.h|
 
