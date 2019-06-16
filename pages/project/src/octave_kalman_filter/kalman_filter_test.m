@@ -13,10 +13,6 @@ u=zeros(size(z));%输入值
 K=zeros(size(z));%卡尔曼增益
 t=1:length(z);
 
-Q=0.01*std(sonar);%过程噪声
-[x,K]=kalman_filter(z,u,A,B,R,Q,H);
-
-
 figure(1)
 filename = 'kalman_filter_R_change.gif'; 
 
