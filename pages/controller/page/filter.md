@@ -27,19 +27,25 @@ IIR()
 
 #### 过程
 
-假设状态向量为$x$则$k$时刻的状态可由$k-1$时刻的状态表示如下：
+假设状态向量为$x \in \mathcal{R}^n$则$k$时刻的状态可由$k-1$时刻的状态表示如下：
 
 $$
 x_k=Ax_{k-1}+Bu_{k-1}+w_{k-1}
 $$
 
-$u_k$为$k$时刻的系统输入，$w_k$为$k$时刻的过程噪声。
+$u \in \mathcal{R}^l $为系统输入，$w_k$为$k$时刻的过程噪声。
 
-因为测量存在误差，假设$x_k$的观测值$z_k$：
+$A_{n \times n}$ 状态转移矩阵
+
+$B_{n \times l}$ 控制输入矩阵
+
+因为测量存在误差，假设$x$的观测值$z \in \mathcal{R}^m $：
 
 $$
 z_k=Hx_k+v_k
 $$
+
+$H_{m \times n}$ 状态观测矩阵
 
 $v_k$为$k$时刻的测量噪声。
 
@@ -68,6 +74,12 @@ e_k \equiv x_k - \hat{x} _k
 $$
 
 $\hat{x} _k^-$为$x_k$的先验值（观测值未获取时的预测值），$\hat{x} _k$为$x_k$的后验值（观测值$z_k$获取到后的估计值）。
+
+$$
+e_{k+1}^- = x_{k+1} - \hat{x}_{k+1}^- \\
+= (A x_k + B u_k + w_k) - (A \hat{x}_k + B u_k) \\
+= A(x_k - \hat{x}_k) + w_k
+$$
 
 
 估计误差的协方差$P_k^-=E[ e_k^- e_k^{-T}]$
@@ -99,6 +111,15 @@ $$
 P_k = E[(x_k - \hat{x}_k)(x_k - \hat{x}_k)^T]
 $$
 
+$$
+P_{k+1}^- = E[ e_{k+1}^- e_{k+1}^{-T}] \\
+= E[(x_k - \hat{x}_k)(x_k - \hat{x}_k)^T] \\
+=E[(Ae_k+w_k)(Ae_k+w_k)^T] \\
+=E[(Ae_k)(Ae_k)^T] + E[w_kw_k^T]
+=A E[e_ke_k^T] A^T + Q \\
+=A P_k A^T + Q
+$$
+
 #### 卡尔曼滤波器的计算过程
 
 ```c
@@ -113,27 +134,16 @@ for(;;)
 
 预测阶段
 
-$$
-\hat{x}_k^- = A \hat{x}_{k-1} + B u_{k-1}
-$$
-
-$$
-P_k^- = A P_{k-1} A^T + Q
-$$
+1. $ \hat{x}_k^- = A \hat{x}_{k-1} + B u_{k-1} $
+2. $P_k^- = A P_{k-1} A^T + Q$
 
 估计阶段
 
-$$
-K_k = P_k^- H^T (H P_k^- H^T + R)^{-1}
-$$
+3. $ K_k = P_k^- H^T (H P_k^- H^T + R)^{-1} $
+4. $ P_k = (I - K_kH)P_k^-$ 
+5. $ \hat{x}_k = \hat{x}_k^- + K_k (z_k - H \hat{x}_k^-) $ 状态更新
 
-$$
-\hat{x}_k = \hat{x}_k^- + K(z_k - H \hat{x}_k^-)
-$$
 
-$$
-P_k = (I - K_kH)P_k^-
-$$
 
 ### 陷波滤波器 (notch filter)
 
