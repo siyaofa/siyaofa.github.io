@@ -45,22 +45,21 @@ Multiwii是一开源的飞控项目。能够兼容绝大多数市面上常见的
 
 |源文件|说明|
 --|--
-Alarms.h Alarms.cpp|错误状态指示，警报。
+Alarms.h .cpp|错误状态指示，警报。
 config.h | 配置文件，根据硬件结构等配置相关选项。[配置含义](https://www.cnblogs.com/Tranquilty/p/4848853.html)
-def.h|
-EEPROM.h EEPROM.cpp|Electrically Erasable Programmable read only memory. 用于保存调试下发的配置参数，例如PID参数。
-GPS.h GPS.cpp| GPS传感器读数获取 <br> 位置估计 <br> 路径规划
-IMU.h IMU.cpp|  Inertial Measurement Unit.<br> 对加速度、陀螺仪、气压计、磁力等传感器读数进行估计
-LCD.h LCD.cpp|液晶屏操作，主要用来显示状态信息和错误信息
-MultiWii.cpp|主循环，包含三个抽象轴的控制器。
-MultiWii.h|
-MultiWii.ino|Arduino项目的文件。实际是空的，实现都在cpp内。
-Output.h Output.cpp|电机输出
-Protocol.h Protocol.cpp|串口通信协议
-RX.h RX.cpp| 接收模块，接受来自遥控器的指令并解析。
-Sensors.h Sensors.cpp| 通过*I2C*获取加速度传感器、陀螺仪、气压计、磁力计和超声波传感器的原始值。
-Serial.h Serial.cpp| 串口通讯模块，调试GUI程序使用的。
-Telemetry.h Telemetry.cpp|
+def.h | 通用配置定义
+EEPROM.h .cpp |Electrically Erasable Programmable read only memory. 用于保存调试下发的配置参数，例如PID参数。这样飞控就可以在下次启动的时候读取调试下发的参数。
+GPS.h .cpp | GPS传感器读数获取 <br> 位置估计 <br> 路径规划
+IMU.h .cpp | Inertial Measurement Unit.<br> 对加速度、陀螺仪、气压计、磁力等传感器读数进行估计。
+LCD.h .cpp |液晶屏操作，主要用来显示状态信息和错误信息。
+MultiWii.h .cpp |主循环，包含三个抽象轴的控制器。
+MultiWii.ino | Arduino项目的文件。实际是空的，实现都在cpp内。
+Output.h .cpp | 电机输出
+Protocol.h .cpp | 串口通信协议
+RX.h .cpp | 接收模块，接受来自遥控器的指令并解析。
+Sensors.h .cpp | 通过*I2C*获取加速度传感器、陀螺仪、气压计、磁力计和超声波传感器的原始值。
+Serial.h .cpp | 串口通讯模块，调试GUI程序使用的。
+Telemetry.h .cpp | 
 types.h|
 
 

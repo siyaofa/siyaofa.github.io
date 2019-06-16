@@ -1,6 +1,6 @@
 function [x_posteriori,K]=kalman_filter(z,u,A,B,R,Q,H)
 %z-观测值 u-输入值 R-测量噪声 Q-过程噪声 H-观测矩阵
-%
+%20190616 lous
 
 p_priori=zeros(size(z));%预测误差协方差
 p_posteriori=zeros(size(z));%估计误差协方差
