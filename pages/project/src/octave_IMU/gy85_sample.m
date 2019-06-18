@@ -20,9 +20,9 @@ gyro=zeros(1,4);
 
 ## 绕各轴旋转 校正加速度传感器
 for i=1:sample_num
-  srl_write(s1, "refresh");
+  ##srl_write(s1, "refresh");
   ## 等待arduino 返回数据
-  pause(pause_time)
+  ##pause(pause_time)
   [uint8_data,count] = srl_read(s1,20);
   if(count<20)
     disp("count<20 lost data")
