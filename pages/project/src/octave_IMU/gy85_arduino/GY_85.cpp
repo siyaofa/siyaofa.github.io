@@ -164,11 +164,9 @@ void GY_85::init()
     SetCompass();
     SetGyro();
 }
-//x-y-z axis[0]=10 axis[1]=32 axis[2]=54   
-void GY_85::read_acclerometer_raw(uint8_t* buff)
+//x-y-z axis[0]=10 axis[1]=32 axis[2]=54
+void GY_85::read_acclerometer_raw(uint8_t *buff)
 {
-
-   // static uint8_t buff[6];
 
     Wire.beginTransmission(ADXL345); // start transmission to device
     Wire.write(DATAX0);              // sends address to read from
@@ -178,23 +176,18 @@ void GY_85::read_acclerometer_raw(uint8_t* buff)
     Wire.requestFrom(ADXL345, 6);    // request 6 bytes from device
 
     uint8_t i = 0;
- 
+
     while (Wire.available()) // device may send less than requested (abnormal)
     {
-       buff[i] = Wire.read(); // receive a byte        
+        buff[i] = Wire.read(); // receive a byte
         i++;
     }
     Wire.endTransmission(); // end transmission
 
-    //    axis[0] = ((buff[1]) << 8) | buff[0];
-    //    axis[1] = ((buff[3]) << 8) | buff[2];
-    //    axis[2] = ((buff[5]) << 8) | buff[4];
-
-    //return buff;
 }
 
-//x-y-z axis[0]=01 axis[1]=45 axis[2]=23 
-void GY_85::read_compass_raw(uint8_t* buff)
+//x-y-z axis[0]=01 axis[1]=45 axis[2]=23
+void GY_85::read_compass_raw(uint8_t *buff)
 {
     //Tell the HMC5883 where to begin reading data
     Wire.beginTransmission(HMC5883);
@@ -209,30 +202,19 @@ void GY_85::read_compass_raw(uint8_t* buff)
         i++;
     }
 
-    //    if(6<=Wire.available()){
-    //        axis[0] = Wire.read()<<8;           //X msb
-    //        axis[0] |= Wire.read();             //X lsb
-    //        axis[2] = Wire.read()<<8;           //Z msb
-    //        axis[2] |= Wire.read();             //Z lsb
-    //        axis[1] = Wire.read()<<8;           //Y msb
-    //        axis[1] |= Wire.read();             //Y lsb
-    //    }
-    //return buff;
 }
 
 //x-y-z-temp axis[0]=45 axis[1]=23 axis=[2]=67 axis[4]=01
-void GY_85::read_gyro_raw(uint8_t* buff)
+void GY_85::read_gyro_raw(uint8_t *buff)
 {
 
     Wire.beginTransmission(ITG3200);
     Wire.write(0x1B);
     Wire.endTransmission();
-
     Wire.beginTransmission(ITG3200);
     Wire.requestFrom(ITG3200, 8); // request 8 bytes from ITG3200
 
     int i = 0;
-    //static uint8_t buff[8];
     while (Wire.available())
     {
         buff[i] = Wire.read();
@@ -240,10 +222,4 @@ void GY_85::read_gyro_raw(uint8_t* buff)
     }
     Wire.endTransmission();
 
-    //    axis[0] = ((buff[4] << 8) | buff[5]) - g_offx;
-    //    axis[1] = ((buff[2] << 8) | buff[3]) - g_offy;
-    //    axis[2] = ((buff[6] << 8) | buff[7]) - g_offz;
-    //    axis[3] = ((buff[0] << 8) | buff[1]);       // temperature
-
-    //return buff;
 }
