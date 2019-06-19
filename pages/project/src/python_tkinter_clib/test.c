@@ -9,20 +9,20 @@ int download()
     return 0;
 }
 
-int add(int a,int b,double *c )
+int add(int a, int b, double *c)
 {
-    *c=a+b;
-    printf("CDLL %d + %d = %lf \n",a,b,*c);
+    *c = a + b;
+    printf("CDLL %d + %d = %lf \n", a, b, *c);
     return 0;
 }
 
-int  initialize()
+int initialize()
 {
     printf("CDLL initialize\n");
     return 0;
 }
 
-int  terminate()
+int terminate()
 {
     printf("CDLL terminate\n");
     return 0;
@@ -34,10 +34,10 @@ int get_status()
     return 0;
 }
 
-int get_result(RESULT_STRUCT* result)
+int get_result(RESULT_STRUCT *result)
 {
     printf("CDLL get_result\n");
-    result->double_result=0.123;
-    result->int_result=1;
+    result->double_result = 0.123;
+    result->int_result = 1;
     return 0;
 }

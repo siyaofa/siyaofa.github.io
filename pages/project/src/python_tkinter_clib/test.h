@@ -6,8 +6,8 @@ typedef struct
 } RESULT_STRUCT;
 
 int download();
-int add(int a,int b,double *c );
+int add(int a, int b, double *c);
 int initialize();
 int terminate();
 int get_status();
-int get_result(RESULT_STRUCT* result);
+int get_result(RESULT_STRUCT *result);

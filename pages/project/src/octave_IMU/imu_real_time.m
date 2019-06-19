@@ -1,8 +1,8 @@
 function imu_real_time()
 
     title('Acc-Red Mag-Blue')
-    filename='GY-85 Acc Mag.gif';
-    for i = 1:10
+    filename='GY-85_Acc_Mag.gif';
+    for i = 1:100
 
         [acc_data, gyro_data, compass_data] = gy85_sample(1);
 
@@ -14,6 +14,7 @@ function imu_real_time()
         % calibration acc data
         acc_uvw = (acc_data - offset) ./ scale;
         % normalization compass vector
+        compass_data
         compass_uvw = 5 * compass_data / norm(compass_data);
         % current positon
         pos = [0, 0, 0];
