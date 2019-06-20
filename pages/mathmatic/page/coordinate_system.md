@@ -147,7 +147,7 @@ $$
 四元数$\mathbf{q}_a$和$\mathbf{q}_b$的乘为：
 
 $$
-\begin{array}{lll} \mathbf{q}_a \mathbf{q}_b &=&  {s_a}{s_b} - {x_a}{x_b} - {y_a}{y_b} - {z_a}{z_b}\\   &&+ \left( {{s_a}{x_b} + {x_a}{s_b} + {y_a}{z_b} - {z_a}{y_b}} \right)i\\   &&+ \left( {{s_a}{y_b} - {x_a}{z_b} + {y_a}{s_b} + {z_a}{b_b}} \right)j\\   &&+ \left( {{s_a}{z_b} + {x_a}{y_b} - {x_b}{y_a} + {z_a}{s_b}} \right)k  \end{array}
+\begin{array}{lll} \mathbf{q}_a \mathbf{q}_b & = &  s_a s_b - x_ax_b - y_ay_b - z_az_b \\ && + ( s_ax_b + x_as_b + y_az_b - z_ay_b )i \\ &&+ ( s_ay_b - x_az_b + y_as_b + z_ab_b )j \\ &&+ ( s_az_b + x_ay_b - x_by_a + z_as_b )k  \end{array}
 $$
 
 旋转后的点$\mathbf{p}'$即可表示为这样的乘积
