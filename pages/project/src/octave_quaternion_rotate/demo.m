@@ -15,7 +15,8 @@ axis([-3 3 -3 3 -3 3])
 filename='octave_quaternion_rotate.gif'
 
 for theta = 0:0.6:(2 * pi)
-    dst = quaternion_rotate(src, v, theta);
+    %dst = quaternion_rotate(src, v, theta);
+    dst = vector_rotate(src, v, theta);
     %plot3(dst);
     quiver3(0, 0, 0, dst(1), dst(2), dst(3));
 

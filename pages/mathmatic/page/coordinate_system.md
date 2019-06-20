@@ -15,6 +15,36 @@ v1.0    2019.06.20  lous    文件创建
 
 ## 三维直角坐标系转化
 
+欧拉角 转换矩阵 旋转向量 四元数 
+
+旋转向量和四元数计算相对简单些。
+
+### 欧拉角
+
+真是哪里都离不开这个男人……
+
+![欧拉角](../pic/euler_angles.jpg)
+
+$$
+[\mathbf{R}] = \begin{bmatrix}
+\cos \gamma & \sin \gamma & 0 \\
+-\sin \gamma & \cos \gamma & 0 \\
+0 & 0 & 1 \end{bmatrix} \begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos \beta & \sin \beta \\
+0 & -\sin \beta & \cos \beta \end{bmatrix} \begin{bmatrix}
+\cos \alpha & \sin \alpha & 0 \\
+-\sin \alpha & \cos \alpha & 0 \\
+0 & 0 & 1 \end{bmatrix}
+$$
+
+$$
+[\mathbf{R}] = \begin{bmatrix}
+\cos\alpha\cos\gamma-\cos\beta\sin\alpha\sin\gamma & \sin\alpha\cos\gamma+\cos\beta\cos\alpha\sin\gamma   & \sin\beta\sin\gamma
+\\-\cos\alpha\sin\gamma-\cos\beta\sin\alpha\cos\gamma & -\sin\alpha\sin\gamma+\cos\beta\cos\alpha\cos\gamma & \sin\beta\cos\gamma 
+\\ \sin\beta\sin\alpha & -\sin\beta\cos\alpha & \cos\beta 
+\end{bmatrix}
+$$
 
 ### 旋转矩阵表示
 
@@ -42,14 +72,52 @@ $$
 
 任意一个旋转都可以由三个旋转组合得到。
 
-通过旋转矩阵不能直观地看出旋转的方向和角度。
+$$
+\mathcal{M}(\hat{\mathbf{v}},\theta) = \begin{bmatrix}
+   \cos \theta + (1 - \cos \theta) x^2
+ & (1 - \cos \theta) x y - (\sin \theta) z 
+ & (1 - \cos \theta) x z + (\sin \theta) y  
+\\
+   (1 - \cos \theta) y x + (\sin \theta) z 
+ & \cos \theta + (1 - \cos \theta) y^2
+ & (1 - \cos \theta) y z - (\sin \theta) x
+\\
+   (1 - \cos \theta) z x - (\sin \theta) y
+ & (1 - \cos \theta) z y + (\sin \theta) x
+ & \cos \theta + (1 - \cos \theta) z^2 
+\end{bmatrix}
+$$
+
+通过旋转矩阵不能直观地看出旋转的方向和角度，直接能到角度算我输。
+
+生成元表达（没看懂……）
+
+$$
+\mathcal{M}(\hat{\mathbf{v}},\theta) 
+ = \exp\left( \begin{bmatrix}
+         0   &  -z\theta & y\theta \\
+   z\theta &     0    &  -x\theta  \\
+    -y\theta & x\theta &      0    \\
+\end{bmatrix}\right)
+$$
 
 旋转变换本身只有3个自由度，但旋转矩阵有9个元素，因此旋转矩阵中的元素不是相互独立的，这在非线性优化中会带来问题。
 
 
 ### 旋转向量表示
 
-设旋转向量的单位向量为 r，模为 θ。三维点（或者说三维向量）p 在旋转向量 r 的作用下变换至 p′，则：
+[罗德里格旋转公式](https://baike.baidu.com/item/%E7%BD%97%E5%BE%B7%E9%87%8C%E6%A0%BC%E6%97%8B%E8%BD%AC%E5%85%AC%E5%BC%8F) *Rodrigues' rotation formula*
+
+设$\mathbf{v}$是一个三维空间向量，$\mathbf{k}$是旋转轴的单位向量，则$\mathbf{v}$在右手螺旋定则意义下绕旋转轴k旋转角度$\theta$得到的向量可以由三个不共面的向量$\mathbf{v}$, $\mathbf{k}$和$\mathbf{k} \times \mathbf{v}$构成的标架表示。
+
+![](../pic/rotate_vector_geometry_baidu.png)
+
+$$
+\mathbf{ v_{rot} }=\cos\theta\cdot \mathbf{v} +(1-\cos\theta)(\mathbf{v} \cdot \mathbf{k})\mathbf{k} +\sin\theta\cdot \mathbf{k} \times \mathbf{v}
+$$
+
+
+设旋转向量的单位向量为 $r$，模为 $\theta$。三维点（或者说三维向量）$p$ 在旋转向量 $r$ 的作用下变换至 $p'$，则：
 
 $$
 p'=\cos\theta\cdot p+(1-\cos\theta)(p\cdot r)r+\sin\theta\cdot r \times p
@@ -183,10 +251,10 @@ end
 
 ## 参考
 
+- [百度百科 旋转矩阵](https://baike.baidu.com/item/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5)
+- [百度百科 罗德里格旋转公式](https://baike.baidu.com/item/%E7%BD%97%E5%BE%B7%E9%87%8C%E6%A0%BC%E6%97%8B%E8%BD%AC%E5%85%AC%E5%BC%8F)
 - [视觉SLAM中的数学基础 第四篇 李群与李代数（2）](https://www.cnblogs.com/gaoxiang12/p/5577912.html)
-
 - [三维坐标变换——旋转矩阵与旋转向量](https://blog.csdn.net/mightbxg/article/details/79363699)
-
 - [世界坐标系和相机坐标系,图像坐标系的关系](https://blog.csdn.net/waeceo/article/details/50580607)
-
 - [视觉SLAM中的数学基础 第二篇 四元数](https://www.cnblogs.com/gaoxiang12/p/5120175.html)
+
