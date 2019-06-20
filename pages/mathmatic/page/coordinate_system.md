@@ -89,7 +89,7 @@ $$
 其中
 
 $$
-\left\{ \begin{array}{l} {i^2} = {j^2} = {k^2} =  - 1\\ ij = k,ji =  - k\\ jk = i,kj =  - i\\ ki = j,ik =  - j \end{array} \right. 
+ \begin{array}{l} {i^2} = {j^2} = {k^2} =  - 1\\ ij = k,ji =  - k\\ jk = i,kj =  - i\\ ki = j,ik =  - j \end{array}
 $$
 
 绕单位向量$\mathbf{n}=\left[ n_x, n_y, n_z \right]^T$进行了角度为θ的旋转，那么这个旋转的四元数形式为：
@@ -105,11 +105,11 @@ q = q_0 + q_1 i + q_2 j + q_3 k
 $$
 
 $$
-\theta  = 2\arccos {q_0}
+\theta  = 2\arccos{ q_0 }
 $$
 
 $$
-{\left[ {{n_x},{n_y},{n_z}} \right]^T} = {{{\left[ {{q_1},{q_2},{q_3}} \right]}^T}}/{\sin \frac{\theta }{2}}
+ [ n_x , n_y , n_z ]^T = [q_1,q_2,q_3]^T \sin \frac{\theta}{2} 
 $$
 
 把三维空间点$[x,y,z]$用一个虚四元数$\mathbf{p}$来描述：
@@ -119,7 +119,7 @@ $$
 $$
 
 $$
-\mathbf{n}=\left[ n_x, n_y, n_z \right]^T
+\mathbf{n}=[ n_x, n_y, n_z ]^T
 $$
 
 $$
