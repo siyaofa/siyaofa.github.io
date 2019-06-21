@@ -12,12 +12,12 @@
 title: Siyaofa
 tagline:          'All is well'
 description:      '娄尚 - 个人博客'
-url:              https://siyaofa.github.io
+url:              https://lous.github.io
 baseurl:          /
 
 author:
   name:           'Siyaofa'
-  url:            https://siyaofa.github.io
+  url:            https://lous.github.io
 
 paginate:         5
 # markdown: kramdown
