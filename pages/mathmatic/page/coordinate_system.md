@@ -258,3 +258,4 @@ end
 - [世界坐标系和相机坐标系,图像坐标系的关系](https://blog.csdn.net/waeceo/article/details/50580607)
 - [视觉SLAM中的数学基础 第二篇 四元数](https://www.cnblogs.com/gaoxiang12/p/5120175.html)
 
+- [如何形象地理解四元数？](https://krasjet.github.io/quaternion/quaternion.pdf)
