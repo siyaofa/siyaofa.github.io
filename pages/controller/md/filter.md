@@ -193,7 +193,7 @@ $$
 \hat{x}_k = \hat{x}_k^- + K_k (z_k - H \hat{x}_k^-)
 $$
 
-[Octave Arduino 实际测试效果](../../project/page/octave_kalman_filter.md)
+[Octave Arduino 实际测试效果](../../project/md/octave_kalman_filter.md)
 
 [UNC 推导](https://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf)
 

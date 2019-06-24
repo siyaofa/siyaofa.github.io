@@ -20,7 +20,7 @@ title: Setpoint
 
 补充某场景下仿真，例如一质量为1kg的木块，在桌面上的静摩擦力系数为Ks，动摩擦力系数为Km，电机出力为线性的F=K·Input。设置点从0m以最大加速度1m/s^2，最大速度0.5m/s走到1m处。分析计算整个行程内的位置误差和速度误差。假设采样周期为1ms。
 
-[Octave 计算SPG](../../project/page/单轴轨迹三阶轨迹规划.md)图如下
+[Octave 计算SPG](../../project/md/单轴轨迹三阶轨迹规划.md)图如下
 
 ![三阶SPG规划](../../project/pic/spg_jerk_4_acc_0.4_vel_0.1_distance_-0.3.gif)
 

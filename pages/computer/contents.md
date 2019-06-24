@@ -3,7 +3,7 @@ layout: page
 title: 计算机
 ---
 
-## [计算机组成](page/computer)
+## [计算机组成](md/computer)
 
 [计算机](https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA)硬件主要组成有：CPU、主板、内存、硬盘、电源和周边外设所组成。
 
@@ -25,7 +25,7 @@ title: 计算机
 
 键盘、鼠标、触摸屏、声卡、显卡、网卡。
 
-## [操作系统](page/OS)
+## [操作系统](md/OS)
 
 操作系统是运行在硬件上的基础软件，能够把不同类型的硬件的对外接口统一。
 
@@ -35,6 +35,6 @@ title: 计算机
 
 嵌入式操作系统主要有Linux、Windows和Vxworks.
 
-## [TCP/IP](page/tcp_ip)
+## [TCP/IP](md/tcp_ip)
 
 OSI参考模型

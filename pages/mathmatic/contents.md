@@ -3,7 +3,7 @@ layout: page
 title: 数学
 ---
 
-## [复数](page/complex)
+## [复数](md/complex)
 
 傅里叶变换
 
@@ -11,9 +11,9 @@ title: 数学
 
 Z变换
 
-## [线性代数](page/linear_algebra)
+## [线性代数](md/linear_algebra)
 
-## [微分方程](page/differential_equation)
+## [微分方程](md/differential_equation)
 
-## [概率](page/probability.md)
+## [概率](md/probability.md)
 

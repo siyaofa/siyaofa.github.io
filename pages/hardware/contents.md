@@ -3,7 +3,7 @@ layout: page
 title: 硬件
 ---
 
-## [总线](page/BUS.md)
+## [总线](md/BUS.md)
 
 PCI总线
 
@@ -11,7 +11,7 @@ VME总线
 
 CAN总线
 
-## [FPGA](page/FPGA)
+## [FPGA](md/FPGA)
 
 现场可编程门阵列
 
