@@ -67,7 +67,7 @@ $T_d$ 微分时间
 
 #### 离散PID控制器
 
-[Python PID 仿真](../../project/page/python_pid_simulation.md)
+[Python PID 仿真](../../project/md/python_pid_simulation.md)
 
 C语言下的伪代码
 ```c
