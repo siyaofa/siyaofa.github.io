@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 计算机
+date:   2019-05-01
 ---
 
 ## [计算机组成](md/computer)

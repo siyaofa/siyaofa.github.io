@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 计算机组成
+date:   2019-05-01
 ---
 
 [计算机](https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA)硬件主要组成有：CPU、主板、内存、硬盘、电源和周边外设所组成。
