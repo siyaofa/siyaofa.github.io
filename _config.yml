@@ -9,15 +9,15 @@
 # relative_permalinks: true
 
 # Setup
-title: Siyaofa
-tagline:          'All is well'
+title: Lous
+tagline:          'Blog'
 description:      '娄尚 - 个人博客'
-url:              https://lous.github.io
+url:              https://siyaofa.github.io
 baseurl:          /
 
 author:
-  name:           'Siyaofa'
-  url:            https://lous.github.io
+  name:           'Lous'
+  url:            https://siyaofa.github.io
 
 paginate:         5
 # markdown: kramdown
