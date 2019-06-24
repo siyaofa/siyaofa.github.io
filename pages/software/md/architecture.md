@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 软件架构
+date:   2019-05-01
 ---
 
 # 软件架构

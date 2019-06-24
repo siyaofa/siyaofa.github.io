@@ -1,6 +1,7 @@
 ---
 layout: page
 title: FPGA
+date:   2019-05-01
 ---
 
 现场可编程门阵列(Field Programmable Gate Array)

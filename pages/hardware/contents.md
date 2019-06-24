@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 硬件
+date:   2019-05-01
 ---
 
 ## [总线](md/BUS.md)

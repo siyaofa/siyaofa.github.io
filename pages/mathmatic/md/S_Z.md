@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Laplace变换 Z变换之间的关系
+date:   2019-06-04
 ---
 
 <!--

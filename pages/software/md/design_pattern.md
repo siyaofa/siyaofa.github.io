@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 设计模式
+date:   2019-05-01
 ---
 
 # 设计模式

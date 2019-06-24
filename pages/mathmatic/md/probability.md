@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 概率
+date:   2019-06-16
 ---
 
 <!---

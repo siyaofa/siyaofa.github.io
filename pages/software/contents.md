@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 软件
+date:   2019-05-04
 ---
 
 ## [设计模式](md/design_pattern)

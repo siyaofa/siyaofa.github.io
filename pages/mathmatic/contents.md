@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 数学
+date:   2019-05-01
 ---
 
 ## [复数](md/complex)

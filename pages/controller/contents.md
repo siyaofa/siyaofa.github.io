@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 控制
+date:   2019-05-01
 ---
 
 <!-- {: .no_toc}

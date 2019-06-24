@@ -1,6 +1,7 @@
 ---
 layout: page
 title: SLAM 算法
+date:   2019-06-18
 ---
 
 <!---
