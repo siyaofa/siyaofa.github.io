@@ -96,4 +96,4 @@ title: Home
 
 按专业学科是无法囊括所有的事情，生活处处充满惊喜。
 
-[好友主页](https://blog.csdn.net/root_clive?t=1)
+[好友主页](https://blog.csdn.net/root_clive)
