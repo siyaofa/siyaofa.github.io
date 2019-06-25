@@ -1,0 +1,27 @@
+function [img,hue,saturation,value]=read_face(filename)
+img=imread(filename);
+hsv_map = rgb2hsv (img);
+hue=hsv_map(:,:,1);
+saturation=hsv_map(:,:,2);
+value=hsv_map(:,:,3);
+end
+
+%{
+ img=F;
+scal=0.1;
+T = [1,0,0;0,1,0;0,0,1];
+tT = T.*scal;
+tT(3,3) = 1;
+flag = sign(scal);
+[x,y,z] = size(img);
+tx = floor(x*scal);
+%ceil为向上取整函数
+ty = floor(y*scal);
+Image = zeros(tx,ty);
+for i=1:tx
+  for j=1:ty
+    temp = floor((tT^-1)*[i;j;1]);
+    Image(i,j) = img(temp(1),temp(2));
+end;
+end; 
+%}
