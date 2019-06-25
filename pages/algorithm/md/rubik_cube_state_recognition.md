@@ -26,27 +26,27 @@ v1.0    2019.06.25  lous    文件创建
 
 表面U
 
-![](../pic/rubik_cube_facelet/U.jpg)
+![](../pic/rubik_cube_facelet/U_cut.jpg)
 
 前面F
 
-![](../pic/rubik_cube_facelet/F.jpg)
+![](../pic/rubik_cube_facelet/F_cut.jpg)
 
 下面D
 
-![](../pic/rubik_cube_facelet/D.jpg)
+![](../pic/rubik_cube_facelet/D_cut.jpg)
 
 右面R
 
-![](../pic/rubik_cube_facelet/R.jpg)
+![](../pic/rubik_cube_facelet/R_cut.jpg)
 
 后面B
 
-![](../pic/rubik_cube_facelet/B.jpg)
+![](../pic/rubik_cube_facelet/B_cut.jpg)
 
 左面L
 
-![](../pic/rubik_cube_facelet/L.jpg)
+![](../pic/rubik_cube_facelet/L_cut.jpg)
 
 当时拍摄的是用Nokia，能看到是有明显的色差的
 
@@ -88,4 +88,6 @@ $Value < black\_value\_thresh$
 $(1-saturation\_weight)*Value+ saturation\_weight *(1-Saturation) > sv\_thresh$
 
 ![黑白](../pic/rubik_cube_facelet/UFDRBL_black_white.gif)
+
+到这一步就把彩色部分提取出来了，下一步我们需要根据色调对颜色进行分类。
 
