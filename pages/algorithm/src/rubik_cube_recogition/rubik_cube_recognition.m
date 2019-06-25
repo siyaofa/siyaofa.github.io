@@ -5,7 +5,8 @@ filenames = {'U_cut', 'F_cut', 'D_cut', 'R_cut', 'B_cut', 'L_cut'};
 ext = '.jpg';
 save_path = 'pic/';
 
-saturation_weight=0.7;
+saturation_weight = 0.95;
+sv_thresh = 0.75;
 
 for i = 1:6
     filename = filenames{i};
@@ -18,8 +19,9 @@ for i = 1:6
     subplot(5, 6, 6 + i); imshow(hue);
     subplot(5, 6, 12 + i); imshow(saturation);
     subplot(5, 6, 18 + i); imshow(value);
-    subplot(5, 6, 24 + i); imshow((1-saturation_weight)*value+saturation_weight*(1-saturation));
-
+    sv = (1 - saturation_weight) * value + saturation_weight * (1 - saturation);
+    subplot(5, 6, 24 + i); imshow(sv > sv_thresh);
+    disp(i)
     %{
     figure
     scatter(sin(hue(:)) .* saturation(:), cos(hue(:)) .* saturation(:), 'filled');
