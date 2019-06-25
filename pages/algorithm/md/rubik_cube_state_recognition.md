@@ -66,7 +66,7 @@ Saturation
 
 Value
 
-$0.05*Value+0.95*(1-Saturation) > 0.7$
+
 
 ![HSV空间](../pic/rubik_cube_facelet/UFDRBL.gif)
 
@@ -77,4 +77,15 @@ $0.05*Value+0.95*(1-Saturation) > 0.7$
 饱和度用于识别处白色的区块，这是因为HSV空间中黑色和白色的色调比较特殊。
 
 剔除了黑色和白色区域后，统计剩下区域的色调分布，其分布应该是聚集在hue尺度上五个不同的区域，需要注意到hue会翻转。
+
+
+saturation_weight = 0.95;
+sv_thresh = 0.75;
+black_value_thresh=0.2;
+
+$Value < black\_value\_thresh$
+
+$(1-saturation\_weight)*Value+ saturation\_weight *(1-Saturation) > sv\_thresh$
+
+![黑白](../pic/rubik_cube_facelet/UFDRBL_black_white.gif)
 
