@@ -115,13 +115,37 @@ $$
 
 可以看到在0.6-0.8之间是有混淆的
 
+初步估计5个值应该是0.15 0.28 0.68 0.73 0.83
+
+也就是说我们根本无法直接计算出0.7左右的两个hue值，但是可以通过概率估计
+
 突然想到了在做声纹识别时的一种特征提取方法，混合高斯模型。
 
 事实上我们可以认为色调的偏差分布是一个高斯分布，这样估算出的五个均值应该会非常接近理论值。
 
+```
+Clust 1: weight 0.420881
+        Mean: 0.248413
+        Variance: 0.0044690
+Clust 2: weight 0.300516
+        Mean: 0.747398
+        Variance: 0.0042292
+Clust 3: weight 0.119645
+        Mean: 0.748971
+        Variance: 0.0042653
+Clust 4: weight 0.0805644
+        Mean: 0.748187
+        Variance: 0.0042491
+Clust 5: weight 0.0783928
+        Mean: 0.748112
+        Variance: 0.0042475
+```
 
+实际依旧不理想……
 
 ## 参考
 
 - [wikipedia HSL HSV](https://en.wikipedia.org/wiki/HSL_and_HSV)
+
+- [MATLAB中“fitgmdist”的用法及其GMM聚类算法](https://www.cnblogs.com/kailugaji/p/10759419.html)
 
