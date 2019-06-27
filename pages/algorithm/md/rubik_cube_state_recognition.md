@@ -143,6 +143,55 @@ Clust 5: weight 0.0783928
 
 实际依旧不理想……
 
+从以上的尝试方法来看，我们可能需要有些先验知识。
+
+- 我们知道的是每个颜色应该是9个色块，不多也不能少。
+- 就算一张图上相机自身校正的色彩，两个不同的颜色也应该有一定差异，不然我们肉眼也无法分辨。
+- 每个方块应该是一个正方形，可以有轻微的形变。
+
+我们已经获取到了每一张图像上的除黑白外的mask。
+
+但是图像有噪点，通过腐蚀去除。
+
+
+![彩色mask腐蚀](../pic/rubik_cube_facelet/UFDRBL_color_mask_erode.png)
+
+左边是原始mask，右边为腐蚀之后的mask。
+
+重新统计hue值在 $width = \pm 0.05$ 的窗口内的总像素点的占比
+
+![Hue值0.1的窗口内占比](../pic/rubik_cube_facelet/UFDRBL_color_hue_hist_sum_in_window_0.1.gif)
+
+0.15 0.5 0.63 附近能看到有三个占比稳定在0.2的区域
+
+我们只要统计占比在20%左右的平稳区域就可找到几个比较好区分的颜色。
+
+平稳只需根据窗口内占比的方差做个简单判断。比如占比之和稳定在0.02的窗口内，
+标准差0.05以内占比在0.2左右的平滑区域。
+
+![Hue值方差0.05](../pic/rubik_cube_facelet/UFDRBL_color_hue_hist_sum_sigma.gif)
+
+原始直方图
+
+一定宽度内的占比
+
+一定宽度内占比的标准差
+
+稳定在一定宽度内占比为0.2的区域
+
+这些区域的中心就是各色块hue值的中心值
+
+通过连通域计算出中心为
+
+ `0.14000   0.48350   0.60250`
+
+
+到这一步，我们除了识别出黑白，还有以下几种颜色
+
+
+![已识别的彩色块](../pic/rubik_cube_facelet/UFDRBL_color_hue_labeled.gif)
+
+
 ## 参考
 
 - [wikipedia HSL HSV](https://en.wikipedia.org/wiki/HSL_and_HSV)
