@@ -1,13 +1,16 @@
 clear; close all; clc;
 
-file_path = '../../pic/rubik_cube_facelet/';
-filenames = {'U_cut', 'F_cut', 'D_cut', 'R_cut', 'B_cut', 'L_cut'};
+%file_path = '../../pic/rubik_cube_facelet/';
+%filenames = {'U_cut', 'F_cut', 'D_cut', 'R_cut', 'B_cut', 'L_cut'};
+
+file_path = 'pic/20190628/';
+filenames = {'U', 'F', 'D', 'R', 'B', 'L'};
 ext = '.jpg';
 save_path = 'pic/';
 
 saturation_weight = 0.95;
-sv_thresh = 0.75;
-black_value_thresh = 0.3;
+sv_thresh = 0.5;
+black_value_thresh = 0.1;
 
 hue_map = zeros(300, 300, 6);
 saturation_map = zeros(300, 300, 6);
@@ -21,9 +24,9 @@ for i = 1:6
     hue_map(:, :, i) = hue;
     saturation_map(:, :, i) = saturation;
     value_map(:, :, i) = value;
-    imwrite(hue, [save_path filename '_hue.jpg']);
-    imwrite(saturation, [save_path filename '_saturation.jpg']);
-    imwrite(value, [save_path filename '_value.jpg']);
+    %imwrite(hue, [save_path filename '_hue.jpg']);
+    %imwrite(saturation, [save_path filename '_saturation.jpg']);
+    %imwrite(value, [save_path filename '_value.jpg']);
 end
 
 
@@ -76,22 +79,27 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure
 h_no_bw_mask_erode_map=h_no_bw_mask_map;
-se1=strel('disk',5,0);
+h_no_bw_mask_open_map=h_no_bw_mask_map;
+color_mask_close_times=15;
+se1=strel('disk',color_mask_close_times,0);
 for i=1:6
-  h_no_bw_mask_erode_map(:,:,i)=imerode(h_no_bw_mask_map(:,:,i),se1);
-  subplot(3, 6, i); imshow(h_no_bw_mask_map(:,:,i));
-  subplot(3, 6, 6+i); imshow(h_no_bw_mask_erode_map(:,:,i));
+  h_no_bw_mask_open_map(:,:,i)=bwmorph(h_no_bw_mask_map(:,:,i),'open',30);
+  h_no_bw_mask_erode_map(:,:,i)=imerode(h_no_bw_mask_open_map(:,:,i),se1);
+  h_no_bw_mask_erode_map(:,:,i)=bwmorph(h_no_bw_mask_erode_map(:,:,i),'dilate',color_mask_close_times);
+  subplot(4, 6, i); imshow(h_no_bw_mask_map(:,:,i));
+  subplot(4, 6, 6+i); imshow(h_no_bw_mask_open_map(:,:,i));
+  subplot(4, 6, 12+i); imshow(h_no_bw_mask_erode_map(:,:,i));
   img = image_map{i};
   for j = 1:3
         img_color(:, :, j) = img(:, :, j) .* h_no_bw_mask_erode_map(:,:,i);
   end
-  subplot(3, 6, 12+i); imshow(img_color);
+  subplot(4, 6, 18+i); imshow(img_color);
 end
 
 %%%%%%%%%%%%%%%%%%%%
-sv_mask = ((1 - saturation_weight) * value_map + saturation_weight * (1 - saturation_map)) <= sv_thresh;
-value_mask = value_map >= black_value_thresh;
-color_mask = sv_mask .* value_mask;
+%sv_mask = ((1 - saturation_weight) * value_map + saturation_weight * (1 - saturation_map)) <= sv_thresh;
+%value_mask = value_map >= black_value_thresh;
+%color_mask = sv_mask .* value_mask;
 
 %{
 figure
