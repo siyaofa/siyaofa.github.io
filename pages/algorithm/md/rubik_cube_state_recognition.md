@@ -191,6 +191,19 @@ Clust 5: weight 0.0783928
 
 ![已识别的彩色块](../pic/rubik_cube_facelet/UFDRBL_color_hue_labeled.gif)
 
+#### 识别边缘颜色
+
+换了个魔方后，之前的识别效果差了很多。主要是因为魔方一个是白边一个是黑边。
+
+因此我们首先需要分析出魔方边缘的颜色，并根据这个颜色确定每个色块的大概中心位置。
+
+![黑色边缘魔方平均灰度图](../pic/rubik_cube_facelet/UFDRBL_black_edge_gray_flip_mean.gif)
+
+二值化方法，计算全局平均值，并以平均值作为阈值二值化灰度图。
+
+![白色边缘魔方平均灰度图](../pic/rubik_cube_facelet/UFDRBL_white_edge_gray_flip_mean.gif)
+
+白边魔方以同样的二值化方法处理后，效果并不好
 
 ## 参考
 

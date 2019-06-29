@@ -1,8 +1,8 @@
-function [img, hue, saturation, value] = read_face(filename)
+function [img, hue, saturation, value] = read_face(filename,face_size)
     pkg load image
     img = imread(filename);
     scale=1;
-    img=imresize(img,[300 300]);
+    img=imresize(img,[face_size face_size]);
     img = imsmooth(img, "Gaussian");
     hsv_map = rgb2hsv(img);
     hue = hsv_map(:, :, 1);
