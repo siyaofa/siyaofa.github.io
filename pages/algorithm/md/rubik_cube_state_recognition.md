@@ -257,7 +257,13 @@ white_facelet =
 
 
 
+### 色调
 
+对非黑白区域的色调，排序
+
+![黑边白色色块识别](../pic/rubik_cube_facelet/UFDRBL_color_hue_sorted_bar.gif)
+
+1至0翻转处连接还是比较平缓
 
 
 ## 参考
