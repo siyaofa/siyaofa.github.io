@@ -268,6 +268,11 @@ white_facelet =
 色块中心处的hue
 ![排序后的色块中心处的hue](../pic/rubik_cube_facelet/UFDRBL_facelet_center_hue_sorted_bar.gif)
 
+### 白边魔方目前可以识别出来
+
+黑边待研究
+
+
 
 
 ## 参考
