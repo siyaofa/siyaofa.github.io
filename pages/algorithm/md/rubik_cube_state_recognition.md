@@ -261,9 +261,13 @@ white_facelet =
 
 对非黑白区域的色调，排序
 
-![黑边白色色块识别](../pic/rubik_cube_facelet/UFDRBL_color_hue_sorted_bar.gif)
+![全局排序后的hue值](../pic/rubik_cube_facelet/UFDRBL_color_hue_sorted_bar.gif)
 
-1至0翻转处连接还是比较平缓
+1至0翻转处连接还是比较平缓，这样并不便于颜色的拾取。
+
+色块中心处的hue
+![排序后的色块中心处的hue](../pic/rubik_cube_facelet/UFDRBL_facelet_center_hue_sorted_bar.gif)
+
 
 
 ## 参考

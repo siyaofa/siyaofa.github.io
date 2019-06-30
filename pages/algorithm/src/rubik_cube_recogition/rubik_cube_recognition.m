@@ -1,6 +1,6 @@
 clear; close all; clc;
 
-image_flag=2;
+image_flag=1;
 
 if(image_flag==1)
 file_path = '../../pic/rubik_cube_facelet/';
@@ -14,7 +14,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % global parameter that maybe use in every step
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-facelet_pixel_num = 20;
+facelet_pixel_num = 100;
 edge_color=-1;%0-black 1-white
 saturation_weight = 0.95;
 sv_thresh = 0.5;
@@ -246,14 +246,13 @@ end
 % white can't be calc again, only color be in statistic
 color_hue_values=sort(hue_facelets(white_facelets==0));
 figure
-subplot(121);bar(color_hue_values);
+subplot(221);bar(color_hue_values);
 %shift 
 color_hue_values_shift_over=color_hue_values+0.2;
 color_hue_values_shift_over(color_hue_values_shift_over>1)=color_hue_values_shift_over(color_hue_values_shift_over>1)-1;
-subplot(122);bar(sort(color_hue_values_shift_over));
+subplot(222);bar(sort(color_hue_values_shift_over));
+%subplot(223);bar(sort(hue_map(color_mask_map==1)));
 
-%figure
-%bar(sort(hue_map(color_mask_map==1)));
 hue_ext=[color_hue_values;color_hue_values(1:9)];
 
 err=zeros(9,5);
@@ -271,3 +270,10 @@ hue_center=hue_average(min_index,:);
 disp('hue center value')
 disp(hue_center)
 
+for i=1:6
+facelet_label_map(:,:,i)=get_hue_label(hue_facelets(:,:,i),hue_center);
+end
+
+facelet_label_map(white_facelets==1)=1;
+
+disp(facelet_label_map)
