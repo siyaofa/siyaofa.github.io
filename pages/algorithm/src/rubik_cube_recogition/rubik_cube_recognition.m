@@ -1,6 +1,6 @@
 clear; close all; clc;
 
-image_flag=1;
+image_flag=2;
 
 if(image_flag==1)
 file_path = '../../pic/rubik_cube_facelet/';
@@ -14,7 +14,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % global parameter that maybe use in every step
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-facelet_pixel_num = 50;
+facelet_pixel_num = 20;
 edge_color=-1;%0-black 1-white
 saturation_weight = 0.95;
 sv_thresh = 0.5;
@@ -254,28 +254,20 @@ subplot(122);bar(sort(color_hue_values_shift_over));
 
 %figure
 %bar(sort(hue_map(color_mask_map==1)));
+hue_ext=[color_hue_values;color_hue_values(1:9)];
 
+err=zeros(9,5);
+hue_average=zeros(9,5);
+for i=1:9
+  shift_hue=hue_ext(i:i+44);
+  for j=1:5
+    err(i,j)=std(shift_hue(9*j-8:9*j))^2;
+    hue_average(i,j)=mean(shift_hue(9*j-8:9*j));
+  end
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[min_value,min_index]=min(mean(err,2));
+hue_center=hue_average(min_index,:);
+disp('hue center value')
+disp(hue_center)
 
