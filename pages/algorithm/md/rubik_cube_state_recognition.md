@@ -205,6 +205,61 @@ Clust 5: weight 0.0783928
 
 白边魔方以同样的二值化方法处理后，效果并不好
 
+我们需要先估计出边的颜色，如果是黑色，这届通过灰度二值化得到mask，而如果估计是白色，我们需要通过饱和度和灰度加权分析是白色二值化的阈值。
+
+#### 识别白色区域
+
+识别完边缘后，第一步需要做的是识别出最特殊的颜色，白色。
+
+
+
+```
+white_facelet =
+
+  0  0  1
+  0  0  0
+  0  0  0
+
+white_facelet =
+
+  0  0  1
+  1  1  0
+  1  0  0
+
+white_facelet =
+
+  0  0  0
+  0  0  0
+  0  0  0
+
+white_facelet =
+
+  0  0  0
+  0  0  1
+  0  1  0
+
+white_facelet =
+
+  0  0  1
+  0  0  0
+  0  0  0
+
+white_facelet =
+
+  0  0  0
+  0  0  1
+  0  0  0
+```
+
+![白边白色色块识别](../pic/rubik_cube_facelet/UFDRBL_white_edge_white_facelet_located.gif)
+
+![黑边白色色块识别](../pic/rubik_cube_facelet/UFDRBL_black_edge_white_facelet_located.gif)
+
+
+
+
+
+
 ## 参考
 
 - [wikipedia HSL HSV](https://en.wikipedia.org/wiki/HSL_and_HSV)

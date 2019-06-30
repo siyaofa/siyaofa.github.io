@@ -9,83 +9,122 @@ elseif(image_flag=2)
 file_path = 'pic/20190628/';
 filenames = {'U', 'F', 'D', 'R', 'B', 'L'};
 else
-
 end
-
-ext = '.jpg';
-save_path = 'pic/';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % global parameter that maybe use in every step
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 facelet_pixel_num = 100;
-
+edge_color=-1;%0-black 1-white
 saturation_weight = 0.95;
 sv_thresh = 0.5;
 black_value_thresh = 0.15;
-
-hue_map = zeros(3 * facelet_pixel_num, 3 * facelet_pixel_num, 6);
-saturation_map = zeros(3 * facelet_pixel_num, 3 * facelet_pixel_num, 6);
-value_map = zeros(3 * facelet_pixel_num, 3 * facelet_pixel_num, 6);
-gray_map = zeros(3 * facelet_pixel_num, 3 * facelet_pixel_num, 6);
-image_map = cell(6, 1);
+facelet_percentage=0.8;%1 for 100%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % load image
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-for i = 1:6
-    filename = filenames{i};
-    [img, hue, saturation, value] = read_face([file_path filename ext], 3 * facelet_pixel_num);
-    image_map{i} = img;
-    gray = rgb2gray(img);
-    hue_map(:, :, i) = hue;
-    saturation_map(:, :, i) = saturation;
-    value_map(:, :, i) = value;
-    gray_map(:, :, i) = double(gray) / 255;
-    %imwrite(hue, [save_path filename '_hue.jpg']);
-    %imwrite(saturation, [save_path filename '_saturation.jpg']);
-    %imwrite(value, [save_path filename '_value.jpg']);
-end
-
+save_jpg=0;
+[image_map,gray_map,hue_map,saturation_map,value_map]=load_images(
+file_path,filenames,facelet_pixel_num,save_jpg);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % show rgb and hue saturation value of image
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figure
-
-for i = 1:6
-
-    img = image_map{i};
-    hue = hue_map(:, :, i);
-    saturation = saturation_map(:, :, i);
-    value = value_map(:, :, i);
-    gray = gray_map(:, :, i);
-    subplot(5, 6, i); imshow(img);
-    subplot(5, 6, 6 + i); imshow(gray);
-    subplot(5, 6, 12 + i); imshow(hue);
-    subplot(5, 6, 18 + i); imshow(saturation);
-    subplot(5, 6, 24 + i); imshow(value);
-
-end
+%show_gray_hsv(image_map,gray_map,hue_map,saturation_map,value_map);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % show mean gray of image, calc gray flip 
 % this step is trying to estimate the edge gray value 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-figure
-mean_gray=mean( gray_map,3);
-flip_mean_gray=0.5*mean_gray+0.25*flipdim(mean_gray,1)+0.25*flipdim(mean_gray,2);
-subplot(211);imshow(flip_mean_gray);
-%subplot(222);hist(flip_mean_gray(:),10);
-gray_mean_value=mean(flip_mean_gray(:));
-subplot(212);imshow(im2bw(flip_mean_gray,gray_mean_value));
-disp(gray_mean_value)
+center_size=0.5;
+[flip_gray_map_mean,face,facelets] = facelet_center_mean(gray_map,center_size);
+facelet_gray_average=mean(facelets(:));
+disp('face gray mean');
+disp(face);
+disp('facelets center gray');
+disp(facelets);
+disp('facelets center gray average');
+disp(facelet_gray_average);
 
+if(face<mean(facelets(:)))
+disp('the edge color maybe black');
+edge_color=0;
+else
+disp('the edge color maybe white');
+edge_color=1;
+end
+
+edge_gray_thresh=facelet_gray_average;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% show mean value of image
+% this step is trying to estimate the value channel thresh
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+center_size=0.5;
+[flip_value_map_mean,value_average,facelets] = facelet_center_mean(value_map,center_size);
+disp('value mean');
+disp(value_average);
+disp('facelets center value');
+disp(facelets);
+
+
+
+sg_map=(1-saturation_map).*flip_gray_map_mean;
+[flip_sg_map_mean,sg_average,facelets] = facelet_center_mean(sg_map,center_size);
+disp('(1-saturation)*gray');
+disp(sg_average);
+disp('facelets center (1-saturation)*gray');
+disp(facelets);
+
+if(sg_average<mean(facelets(:)))
+sg_average=mean(facelets(:));
+end
+
+
+
+
+
+if(edge_color==0)
+
+figure
+subplot(211);imshow(flip_value_map_mean);
+subplot(212);imshow(im2bw(flip_value_map_mean,edge_gray_thresh));
+figure
+hist(flip_value_map_mean(:),10)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% show mean saturation of image, calc saturation flip 
+% this step is trying to estimate the edge saturation value 
+% try to find out whether the edge is white
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+elseif(edge_color==1)
+
+center_size=0.5;
+[flip_saturation_map_mean,saturation_average,facelets] = facelet_center_mean(saturation_map,center_size);
+facelet_saturation_average=mean(facelets(:));
+disp('saturation_mean_value');
+disp(saturation_average);
+disp('facelets center saturation ');
+disp(facelets);
+disp('facelets center saturation average');
+disp(facelet_saturation_average);
+
+figure
+subplot(211);imshow(flip_sg_map_mean);
+subplot(212);imshow(im2bw(flip_sg_map_mean,sg_average));
+figure
+hist(flip_sg_map_mean(:),10)
+else
+
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % try to find white region
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure
 
+white_facelets=zeros(3,3,6);
+sg_facelets=zeros(3,3,6);
 for i = 1:6
     img = image_map{i};
     hue = hue_map(:, :, i);
@@ -95,42 +134,27 @@ for i = 1:6
     subplot(4, 6, i); imshow(img);
     saturation_gray=(1-saturation).*gray;
     subplot(4, 6, 6 + i); imshow(saturation_gray);
-    subplot(4, 6, 12 + i); imshow(gray .* value);
-    subplot(4, 6, 18 + i); imshow(im2bw(saturation_gray,0.5));
+    subplot(4, 6, 12 + i); imshow(im2bw(saturation_gray,white_sg_thresh));
+    facelets=facelet_mean(saturation_gray,center_size);
+    sg_facelets(:,:,i)=facelets;
+end
+
+white_sg_thresh=0;
+sg_sort=sort(sg_facelets(:));
+white_sg_thresh=(sg_sort(end-9)+sg_sort(end-8))/2;
+
+for i=1:6
+  
+    white_facelet=im2bw(sg_facelets(:,:,i),white_sg_thresh);
+    subplot(4, 6, 18 + i);imshow(white_facelet);
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% hist of gray and hsv
+% hist of gray and hsv
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% figure
-% hist_bin = 10;
+show_gray_hsv_hist(image_map,gray_map,hue_map,saturation_map,value_map);
 
-% for i = 1:6
 
-%     img = image_map{i};
-%     hue = hue_map(:, :, i);
-%     saturation = saturation_map(:, :, i);
-%     value = value_map(:, :, i);
-%     gray = gray_map(:, :, i);
-%     subplot(4, 6, 0 + i); hist(gray(:), hist_bin);
-%     subplot(4, 6, 6 + i); hist(hue(:), hist_bin);
-%     subplot(4, 6, 12 + i); hist(saturation(:), hist_bin);
-%     subplot(4, 6, 18 + i); hist(value(:), hist_bin);
-
-% end
-
-figure
-hist_bin = 10;
-subplot(221); hist(gray_map(:), hist_bin);
-subplot(222); hist(hue_map(:), hist_bin);
-subplot(223); hist(saturation_map(:), hist_bin);
-subplot(224); hist(value_map(:), hist_bin);
-
-figure
-value_gray_map = value_map .* gray_map;
-saturation_gray_map = (1-saturation_map) .* gray_map;
-subplot(211); hist(value_gray_map(:), 100);
-subplot(212); hist(saturation_gray_map(:), 100);
 
 %%%%%%%%%%%%%%%%%%%%
 figure
@@ -160,7 +184,7 @@ for i = 1:6
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% get color mask - no black or white
+% get color mask - no black or white
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure
 h_no_bw_mask_erode_map = h_no_bw_mask_map;
@@ -209,7 +233,7 @@ plot(IDX);
 %}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% calculate hue hist of color pixels
+% calculate hue hist of color pixels
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 hue_color = hue_map(h_no_bw_mask_erode_map > 0);
 saturation_color = saturation_map(h_no_bw_mask_erode_map > 0);
@@ -219,7 +243,7 @@ hue_hist = hist(hue_color, bin_num) / size(hue_color, 1);
 hue_axis = (1:size(hue_hist, 2)) / bin_num;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% calculate percentage of hue in a window width=0.1
+% calculate percentage of hue in a window width=0.1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 hue_hist_sum = hue_hist;
 hue_hist_sigma = hue_hist;
@@ -255,7 +279,7 @@ for i = 1:length(hue_hist_sum)
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% calculate hue_hist_sum hue_hist_sigma
+% calculate hue_hist_sum hue_hist_sigma
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 hue_sigma_thresh = 0.005;
 hue_percentage_thresh = 0.1;
@@ -263,7 +287,7 @@ hue_hist_sum_valid_mask = (abs(hue_hist_sum - 0.2) < hue_percentage_thresh) .* (
 hue_hist_sum_valid = hue_hist_sum(hue_hist_sum_valid_mask > 0.5);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% hist sum sigma hue hist we want
+% hist sum sigma hue hist we want
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure
 subplot(411); plot(hue_axis, hue_hist);
@@ -272,7 +296,7 @@ subplot(413); plot(hue_axis, hue_hist_sigma);
 subplot(414); plot(hue_axis, hue_hist_sum .* hue_hist_sum_valid_mask);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% calculate hue of each color
+% calculate hue of each color
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [color_label, color_num] = bwlabel(hue_hist_sum_valid_mask, 4);
 
@@ -281,7 +305,7 @@ for i = 1:color_num
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% show the color that we recognition
+% show the color that we recognition
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 hue_map_calibrated = hue_map;
