@@ -37,4 +37,6 @@ AndroidManifest.xml 为整个项目的配置
 
 界面开发比想象中的要复杂很多，预计需要一个星期才能基本采集到想要的图像。
 
+`SurfaceHolder`预览相机内容
+
 
