@@ -4,7 +4,8 @@ function [image_map,gray_map,hue_map,saturation_map,value_map]=load_images(file_
 % gray [0~1]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
   
-ext = '.jpg';
+%ext = '.png';
+ext = '';
 save_path = 'pic/';
   
   image_map = cell(6, 1);

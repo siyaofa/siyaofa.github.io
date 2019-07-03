@@ -272,12 +272,84 @@ white_facelet =
 
 黑边待研究
 
+主要是之前采集的图像质量太差了，换个手机采集后识别效果明显好了
 
+
+### 安卓手机拍照后识别
+
+
+色块中心处的hue
+![排序后的色块中心处的hue](../pic/rubik_cube_facelet/UFDRBL_facelet_center_hue_sorted_bar_1_gif)
+
+hue值直方图明显好了许多
+
+![](..\pic\rubik_cube_state\white_edge_before.jpg)
+
+```
+kociemba.solve('DLFDUDRLLUBRBRFLBLDUFUFUBLUDDBFDRBFDBRFULRURRUBLDBFFLR')
+
+"B2 L' U' B R2 U' R' B U' R' L2 B2 R2 D' L2 D B2 L2"
+```
+![](..\pic\rubik_cube_state\white_edge_after.jpg)
+
+用另一个黑边的魔方重新测试
+
+
+![](..\pic\rubik_cube_state\black_edge_before.jpg)
+
+octave识别
+
+```
+Up.png
+   2   5   3
+   5   6   6
+   2   2   4
+Front.png
+   3   3   6
+   4   1   4
+   4   5   6
+Down.png
+   6   3   5
+   2   2   1
+   6   2   1
+Right.png
+   1   3   4
+   1   4   1
+   1   6   4
+Back.png
+   2   6   1
+   2   3   4
+   2   4   5
+Left.png
+   5   1   5
+   6   5   3
+   3   5   3
+ans = kociemba.solve('DLBLUUDDRFBRFRFFURBBURFRRLUUBLDDFUDFLFLULBBLBDUFDBRDRL')
+```
+
+python 求解还原步骤
+
+```
+kociemba.solve('DLBLUUDDRFBRFRFFURBBURFRRLUUBLDDFUDFLFLULBBLBDUFDBRDRL')
+"R F2 B' U' B' D2 F U2 D' L U2 R2 B2 L2 U R2 U' D2 R2 D"
+```
+![](..\pic\rubik_cube_state\black_edge_after.jpg)
+
+还原也成功了
+
+到此识别算法基本完成
+
+## Android 魔方识别
+
+考虑opencv库
+
+## [下一步 魔方还原算法](rubik_cube_solution)
 
 
 ## 参考
 
 - [wikipedia HSL HSV](https://en.wikipedia.org/wiki/HSL_and_HSV)
-
 - [MATLAB中“fitgmdist”的用法及其GMM聚类算法](https://www.cnblogs.com/kailugaji/p/10759419.html)
+- [Python kociemba 1.2.1](https://pypi.org/project/kociemba/)
+- [Android 接入 OpenCV库的三种方式](https://www.cnblogs.com/xiaoxiaoqingyi/p/6676096.html)
 

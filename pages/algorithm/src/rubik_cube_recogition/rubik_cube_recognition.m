@@ -1,13 +1,20 @@
 clear; close all; clc;
 
-image_flag=1;
+image_flag=4;
 
 if(image_flag==1)
 file_path = '../../pic/rubik_cube_facelet/';
 filenames = {'U_cut', 'F_cut', 'D_cut', 'R_cut', 'B_cut', 'L_cut'};
-elseif(image_flag=2)
+elseif(image_flag==2)
 file_path = 'pic/20190628/';
 filenames = {'U', 'F', 'D', 'R', 'B', 'L'};
+elseif(image_flag==3)
+file_path = 'pic\Anroid\Rubik Cube Pictures\';
+filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
+elseif(image_flag==4)
+file_path = 'pic\Anroid\Rubik Cube Pictures\201907040032\';
+filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
+
 else
 end
 
@@ -246,11 +253,11 @@ end
 % white can't be calc again, only color be in statistic
 color_hue_values=sort(hue_facelets(white_facelets==0));
 figure
-subplot(221);bar(color_hue_values);
+subplot(121);bar(color_hue_values);
 %shift 
 color_hue_values_shift_over=color_hue_values+0.2;
 color_hue_values_shift_over(color_hue_values_shift_over>1)=color_hue_values_shift_over(color_hue_values_shift_over>1)-1;
-subplot(222);bar(sort(color_hue_values_shift_over));
+subplot(122);bar(sort(color_hue_values_shift_over));
 %subplot(223);bar(sort(hue_map(color_mask_map==1)));
 
 hue_ext=[color_hue_values;color_hue_values(1:9)];
@@ -276,4 +283,10 @@ end
 
 facelet_label_map(white_facelets==1)=1;
 
-disp(facelet_label_map)
+
+for i=1:6
+disp(filenames{i})
+disp(facelet_label_map(:,:,i))
+end
+
+to_kociemba_input(facelet_label_map)

@@ -39,4 +39,81 @@ AndroidManifest.xml 为整个项目的配置
 
 `SurfaceHolder`预览相机内容
 
+通过如下代码可直接调用系统api拍摄照片
+
+```java
+Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra("android.intent.extras.CAMERA_FACING_FRONT", 1);
+                // 调用前置摄像头
+                startActivityForResult(intent, 1);
+```
+在这一步的基础上，需要在拍摄的时候给出一个拍摄的区域，类似二维码扫码时的界面。
+
+拍摄完成后我们只保存选定的正方形区域
+
+
+## 截取并保存图像
+
+给应用申请权限
+
+```xml
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+
+Android 7 以上还需要动态申请
+
+主活动
+
+![](..\pic\android_rubik_cube_helper\Home.png)
+
+子页面拍照
+
+![](..\pic\android_rubik_cube_helper\up_pic.png)
+
+保存至本地
+
+![](..\pic\android_rubik_cube_helper\local_pic.png)
+
+到这一步可以用octave离线计算
+
+因为相机拍摄的有空隙，所以手动截取了
+
+后续需要补充手机应用自动截取保存
+
+```
+Up.png
+   2   5   1
+   2   6   2
+   4   5   5
+Front.png
+   2   6   1
+   6   1   6
+   3   5   6
+Down.png
+   2   2   3
+   1   2   4
+   3   1   2
+Right.png
+   6   3   4
+   3   4   1
+   5   3   5
+Back.png
+   6   3   5
+   2   3   1
+   1   5   4
+Left.png
+   3   4   1
+   6   5   4
+   6   4   4
+```
+人肉对比了下，应该是正确的
+
+
+
+
+
+## 参考
+
+- [Android 基础入门教程 使用Camera拍照](http://www.runoob.com/w3cnote/android-tutorial-camera.html)
+- [解决安卓7.0系统写入SD卡权限失败问题](https://blog.csdn.net/wi2rfl78/article/details/78314286)
 
