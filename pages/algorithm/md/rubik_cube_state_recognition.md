@@ -345,6 +345,8 @@ kociemba.solve('DLBLUUDDRFBRFRFFURBBURFRRLUUBLDDFUDFLFLULBBLBDUFDBRDRL')
 
 ## [下一步 魔方还原算法](rubik_cube_solution)
 
+Android上还原算法已经实现，现在只差图像识别移植到Android就可以开始整合优化了。
+
 
 ## 参考
 

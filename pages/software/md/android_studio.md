@@ -61,3 +61,65 @@ allprojects {
 
 可能需要先学习Java……
 
+主活动
+
+![](..\pic\android_rubik_cube_helper\Home.png)
+
+子页面拍照
+
+![](..\pic\android_rubik_cube_helper\up_pic.png)
+
+保存至本地
+
+![](..\pic\android_rubik_cube_helper\local_pic.png)
+
+到这一步可以用octave离线计算
+
+因为相机拍摄的有空隙，所以手动截取了
+
+后续需要补充手机应用自动截取保存
+
+```
+Up.png
+   2   5   1
+   2   6   2
+   4   5   5
+Front.png
+   2   6   1
+   6   1   6
+   3   5   6
+Down.png
+   2   2   3
+   1   2   4
+   3   1   2
+Right.png
+   6   3   4
+   3   4   1
+   5   3   5
+Back.png
+   6   3   5
+   2   3   1
+   1   5   4
+Left.png
+   3   4   1
+   6   5   4
+   6   4   4
+```
+人肉对比了下，应该是正确的
+
+## Kociemba 还原算法
+
+随机生成魔方状态并还原
+
+![](../pic/android_rubik_cube_helper/random_state_kociemba_solution.png)
+
+结果显示在底部
+
+## 图像识别实现
+
+
+
+## 参考
+
+- [Android Studio开发入门-引用jar及so文件](https://www.cnblogs.com/xrwang/p/AndroidStudioImportJarAndSoLibrary.html)
+
