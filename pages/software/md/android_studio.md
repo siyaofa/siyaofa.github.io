@@ -119,6 +119,9 @@ Left.png
 
 Android 好像自带矩阵运算，可以考虑用直接用矩阵运算解决。因为opencv配置相对比较麻烦。
 
+[Android开发常用开源框架：图片处理](https://blog.csdn.net/axi295309066/article/details/56984137)
+
+
 
 ## 参考
 
