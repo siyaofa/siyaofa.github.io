@@ -37,6 +37,11 @@ gradle 不太清楚作用是什么
 
 而且`gradle.properties`文件代理出bug导致一直提示无法下载，删除重复项后可以下载了
 
+
+C:\Users\name\.gradle\gradle.properties
+
+居然也会有重复项……
+
 项目的`build.gradle`里加上代理
 
 ```
@@ -117,13 +122,23 @@ Left.png
 
 ## 图像识别实现
 
-Android 好像自带矩阵运算，可以考虑用直接用矩阵运算解决。因为opencv配置相对比较麻烦。
+Android 好像自带矩阵运算，可以考虑用直接用矩阵运算解决。
 
 [Android开发常用开源框架：图片处理](https://blog.csdn.net/axi295309066/article/details/56984137)
+
+经过半天的折腾最终Android Studio 下opencv配置好了。
+
+转灰度图了
+
+![Up 灰度图](../pic/android_rubik_cube_helper/up_gray_pic.png)
+
+
 
 
 
 ## 参考
 
 - [Android Studio开发入门-引用jar及so文件](https://www.cnblogs.com/xrwang/p/AndroidStudioImportJarAndSoLibrary.html)
+- [Android Studio-—使用OpenCV的配置方法和demo以及开发过程中遇到的问题解决](https://www.cnblogs.com/yunfang/p/6149831.html)
+- [使用Android Studio创建OpenCV 4.1.0 项目](https://blog.csdn.net/userhu2012/article/details/89522851)
 

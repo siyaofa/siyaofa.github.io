@@ -12,16 +12,16 @@ elseif(image_flag==3)
 file_path = 'pic\Anroid\Rubik Cube Pictures\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
 elseif(image_flag==4)
-file_path = 'pic\Anroid\Rubik Cube Pictures\201907040032\';
+%file_path = 'pic\Anroid\Rubik Cube Pictures\201907040032\';
+file_path = 'pic\Anroid\Rubik Cube Pictures\201907062217\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
-
 else
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % global parameter that maybe use in every step
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-facelet_pixel_num = 100;
+facelet_pixel_num = 60;
 edge_color=-1;%0-black 1-white
 saturation_weight = 0.95;
 sv_thresh = 0.5;
@@ -37,7 +37,7 @@ file_path,filenames,facelet_pixel_num,save_jpg);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % show rgb and hue saturation value of image
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%show_gray_hsv(image_map,gray_map,hue_map,saturation_map,value_map);
+show_gray_hsv(image_map,gray_map,hue_map,saturation_map,value_map);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % show mean gray of image, calc gray flip 
