@@ -13,7 +13,7 @@ file_path = 'pic\Anroid\Rubik Cube Pictures\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
 elseif(image_flag==4)
 %file_path = 'pic\Anroid\Rubik Cube Pictures\201907040032\';
-file_path = 'pic\Anroid\Rubik Cube Pictures\201907062217\';
+file_path = 'pic\Anroid\Rubik Cube Pictures\201907071942\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
 else
 end
