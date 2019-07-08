@@ -231,7 +231,7 @@ Mark下 2019年7月8日 22点02分
 
 ![第一次成功识别并还原的原始图像](../pic/android_rubik_cube_helper/fist_solution_app_screenshot.png)
 
-[安装包下载](../pkg/app-release.apk)
+[安装包下载](https://github.com/siyaofa/Rubik-Cube-Helper/releases/tag/1.0.0)
 
 ## 待优化问题
 
