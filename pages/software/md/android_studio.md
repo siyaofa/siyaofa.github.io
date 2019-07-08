@@ -231,6 +231,8 @@ Mark下 2019年7月8日 22点02分
 
 ![第一次成功识别并还原的原始图像](../pic/android_rubik_cube_helper/fist_solution_app_screenshot.png)
 
+[安装包下载](../pkg/app-release.apk)
+
 ## 待优化问题
 
 1. 应用界面应该有每张图的预览
