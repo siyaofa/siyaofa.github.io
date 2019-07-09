@@ -251,4 +251,4 @@ Mark下 2019年7月8日 22点02分
 - [Android Studio开发入门-引用jar及so文件](https://www.cnblogs.com/xrwang/p/AndroidStudioImportJarAndSoLibrary.html)
 - [Android Studio-—使用OpenCV的配置方法和demo以及开发过程中遇到的问题解决](https://www.cnblogs.com/yunfang/p/6149831.html)
 - [使用Android Studio创建OpenCV 4.1.0 项目](https://blog.csdn.net/userhu2012/article/details/89522851)
-
+- [Rubik Cube Animation Example In Android](http://www.edumobile.org/android/rubik-cube-animation-example-in-android/)
