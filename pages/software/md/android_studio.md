@@ -252,3 +252,7 @@ Mark下 2019年7月8日 22点02分
 - [Android Studio-—使用OpenCV的配置方法和demo以及开发过程中遇到的问题解决](https://www.cnblogs.com/yunfang/p/6149831.html)
 - [使用Android Studio创建OpenCV 4.1.0 项目](https://blog.csdn.net/userhu2012/article/details/89522851)
 - [Rubik Cube Animation Example In Android](http://www.edumobile.org/android/rubik-cube-animation-example-in-android/)
+- [Tutorial: Creating a Square Camera (With Preview) on ](https://kylewbanks.com/blog/tutorial-square-camera-with-preview-on-android)
+- [Android Camera 相机程序编写](https://www.cnblogs.com/mengdd/archive/2013/04/06/3002975.html)
+- [Rubik’s Cube simulator](https://github.com/stewdio/Cuber-DEMO)
+- [Android-Java和JavaScript相互调用](https://segmentfault.com/a/1190000004895840)
