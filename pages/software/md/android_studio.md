@@ -243,6 +243,67 @@ Mark下 2019年7月8日 22点02分
 
 其中大多都是软件相关问题，由于时间关系，后续不一定有时间跟进。
 
+## 同类产品Cubex
+
+居然在快完成时在Google商店上看到了Cubex，实在是无奈……
+
+作者diozz是用C#基于.Net框架开发的软件，使用过程中很容易会碰到应用卡死的情况。
+
+和Cubex侧重点不同，我们更加侧重于魔方的姿态识别。而Cubex更加倾向于软件的应用。
+
+Cube的思路应该是每个面简单把色块分类，而这个分类是直接根据预先设定的值来判断的。
+
+这样就涉及到了一个有意思的事情，兼容性。
+
+本来之前是用Java编写3D还原动画，但是看到Cubex后觉得还是直接用threejs 就可以了。
+
+作者在软件里给出了开源项目链接，我就直接引用了。
+
+## java调用JavaScript
+
+虽然都有java，但是是两个不同的语言
+
+使用Cuber 的过程中，百思不得其解Cubex是如何建立魔方初始状态的。
+
+我的思路是根据还原步骤，从原始状态逆序到当前魔方状态。
+
+但是这样，初始化的时间特别长。
+
+尝试修改初始化过程中```cubes.js```内的cubelet赋值，修改后魔方没有渲染出来。
+
+根据对cuber项目的理解，属性应该是改了，但是不知道改如何重新渲染。
+
+想了几个小时都没有想明白Cubex到底是如何实现的，忍不住出手逆向了……
+
+下载到了APK的包，从逆向的.dex文件中并没有看到有用的信息。
+
+```java
+webView.loadUrl("javascript:cube.twistQueue.add('R')");
+```
+
+这句话是我在java中调用JavaScript的语句
+
+按照我的理解，编译后字符串是不可能消失的
+
+也就是说除非作者重写了部分模块，否则不可能实现。
+
+对比Cuber-DEMO和Cubex资源下的cube.js 作者加了一个属性，旋转时间。
+
+难道diozz这么简单粗暴的解决了问题？
+
+因为Cubex是用xamarin开发的，所以从包下的Dll文件开始找思路，果然有个CubeX.dll
+
+返编译后最终找到了
+
+```csharp
+loader.webView.EvaluateJavascript("cube.setDuration(0); camera.fov = 30; cube.twistQueue.add('" + str + "'); ", null);
+```
+
+果然，就是这么粗暴！
+
+先按照这个思路解决，不得不说Cubex的界面做的是真好看，魔方助手的界面简直惨不忍睹啊！前端培训班了解下……
+
+
 
 
 
@@ -256,3 +317,4 @@ Mark下 2019年7月8日 22点02分
 - [Android Camera 相机程序编写](https://www.cnblogs.com/mengdd/archive/2013/04/06/3002975.html)
 - [Rubik’s Cube simulator](https://github.com/stewdio/Cuber-DEMO)
 - [Android-Java和JavaScript相互调用](https://segmentfault.com/a/1190000004895840)
+- [APK反编译](https://blog.csdn.net/s13383754499/article/details/78914592)
