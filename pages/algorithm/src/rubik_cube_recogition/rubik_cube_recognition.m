@@ -13,7 +13,7 @@ file_path = 'pic\Anroid\Rubik Cube Pictures\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
 elseif(image_flag==4)
 %file_path = 'pic\Anroid\Rubik Cube Pictures\201907040032\';
-file_path = 'pic\Anroid\Rubik Cube Pictures\201907071942\';
+file_path = 'pic\Anroid\Rubik Cube Pictures\201907162127\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
 else
 end
@@ -160,6 +160,8 @@ end
 white_sg_thresh=0;
 sg_sort=sort(sg_facelets(:));
 white_sg_thresh=(sg_sort(end-9)+sg_sort(end-8))/2;
+
+disp(white_sg_thresh)
 
 for i=1:6
     saturation = saturation_map(:, :, i);  
