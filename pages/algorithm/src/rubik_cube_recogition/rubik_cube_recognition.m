@@ -13,7 +13,8 @@ file_path = 'pic\Anroid\Rubik Cube Pictures\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
 elseif(image_flag==4)
 %file_path = 'pic\Anroid\Rubik Cube Pictures\201907040032\';
-file_path = 'pic\Anroid\Rubik Cube Pictures\201907162127\';
+%201907211052 201007211039
+file_path = 'pic\Anroid\Rubik Cube Pictures\201907211052\';
 filenames = {'Up.png', 'Front.png', 'Down.png', 'Right.png', 'Back.png', 'Left.png'};
 else
 end
@@ -38,6 +39,26 @@ file_path,filenames,facelet_pixel_num,save_jpg);
 % show rgb and hue saturation value of image
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 show_gray_hsv(image_map,gray_map,hue_map,saturation_map,value_map);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% calc gradient
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%image_gradient_map=image_map;
+for i=1:6
+  img=image_map{i};
+  img_grad=double(img);
+  for j=1:3
+    [Fx,Fy]=gradient(double(img(:,:,j)));%/255;
+    img_grad(:,:,j)=(Fx+Fy)/255;
+  end
+  image_gradient_map{i}=mean(img_grad,3);
+end
+figure
+for i=1:6
+  subplot(2,3,i);imshow(image_gradient_map{i});
+end
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % show mean gray of image, calc gray flip 
