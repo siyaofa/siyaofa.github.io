@@ -320,3 +320,4 @@ loader.webView.EvaluateJavascript("cube.setDuration(0); camera.fov = 30; cube.tw
 - [APK反编译](https://blog.csdn.net/s13383754499/article/details/78914592)
 - [Android必学之数据适配器BaseAdapter](https://www.cnblogs.com/caobotao/p/5061627.html)
 - [Unity和Android混合开发](https://www.cnblogs.com/guxin/p/8657876.html)
+- [Android中Java和JavaScript交互](https://droidyue.com/blog/2014/09/20/interaction-between-java-and-javascript-in-android/)
