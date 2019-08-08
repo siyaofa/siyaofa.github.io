@@ -22,7 +22,20 @@ graph LR;
 
 ## 常见控制器
 
-### PID控制器
+- 开环
+- 前馈
+- 反馈(闭环)
+
+### 开环控制器
+
+
+### 前馈控制器
+
+
+### 反馈控制器
+
+
+#### PID控制器
 
 无模型控制器，不需预先知道系统的传递函数就可以使用。
 
@@ -30,7 +43,7 @@ graph LR;
 
 更加详细内容请参见[PID控制器详情](PID.md)
 
-#### 连续PID控制器
+##### 连续PID控制器
 
 $$
 u(t)=K_pe(t)+K_i\int_0^te(\tau)d\tau+K_d\frac{d}{dt}e(t)
@@ -59,7 +72,7 @@ $T_d$ 微分时间
 
 因为标准形式的PID表达式各项系数都有着具体的物理含义，所以工程上一般使用标准形式的PID表达式。
 
-### LQG控制器
+#### LQG控制器
 
 https://zh.wikipedia.org/zh-hans/LQG%E6%8E%A7%E5%88%B6
 https://baike.baidu.com/item/LQR
@@ -70,7 +83,7 @@ https://wenku.baidu.com/view/ca8f8b68b84ae45c3b358c9a.html
 
 LQG即线性二次高斯控制
 
-### MPC
+#### MPC
 
 https://baike.baidu.com/item/MPC/3586091
 
