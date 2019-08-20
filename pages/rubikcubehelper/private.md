@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: 魔方助手隐私策略
 date:   2019-08-21
 ---
