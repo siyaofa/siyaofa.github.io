@@ -60,12 +60,285 @@ pip国内的一些镜像
 
 笔记本 CPU i5-4210M 2.6GHz
 
-stage=5，训练10min才到了4
+stage=6，训练10min才到了4
 
-
+```
+===== TRAINING 5-stage =====
+<BEGIN
+POS count : consumed   1856 : 1861
+NEG count : acceptanceRatio    5001 : 0.000506669
+Precalculation time: 1.482
++----+---------+---------+
+|  N |    HR   |    FA   |
++----+---------+---------+
+|   1|        1|        1|
++----+---------+---------+
+|   2|        1|        1|
++----+---------+---------+
+|   3|        1|        1|
++----+---------+---------+
+|   4|        1|        1|
++----+---------+---------+
+|   5|        1| 0.867427|
++----+---------+---------+
+|   6|        1| 0.604079|
++----+---------+---------+
+|   7| 0.999461| 0.546891|
++----+---------+---------+
+|   8| 0.999461| 0.438112|
++----+---------+---------+
+|   9| 0.999461| 0.356929|
++----+---------+---------+
+|  10| 0.999461| 0.323935|
++----+---------+---------+
+|  11| 0.999461| 0.239552|
++----+---------+---------+
+|  12| 0.999461| 0.152769|
++----+---------+---------+
+END>
+Training until now has taken 0 days 0 hours 44 minutes 46 seconds.
+```
 根本不敢想象15层以上要训练多久
 
 后面得测试下样本数和阶数与时间之间的大概关系
+
+```
+opencv_traincascade.exe -data xml -vec pos.vec -bg bg.txt -numPos 1772 -numNeg 3532 -numStages 5 -w 20 -h 20 -minHitRate 0.999000 -maxFalseAlarmRate 0.2 -weightTrimRate 0.95 -featureType LBP
+PARAMETERS:
+cascadeDirName: xml
+vecFileName: pos.vec
+bgFileName: bg.txt
+numPos: 1772
+numNeg: 3532
+numStages: 5
+precalcValBufSize[Mb] : 1024
+precalcIdxBufSize[Mb] : 1024
+acceptanceRatioBreakValue : -1
+stageType: BOOST
+featureType: LBP
+sampleWidth: 20
+sampleHeight: 20
+boostType: GAB
+minHitRate: 0.999
+maxFalseAlarmRate: 0.2
+weightTrimRate: 0.95
+maxDepth: 1
+maxWeakCount: 100
+Number of unique features given windowSize [20,20] : 3969
+
+
+===== TRAINING 4-stage =====
+<BEGIN
+POS count : consumed   1772 : 1776
+NEG count : acceptanceRatio    3532 : 0.0029611
+Precalculation time: 0.98
++----+---------+---------+
+|  N |    HR   |    FA   |
++----+---------+---------+
+|   1|        1|        1|
++----+---------+---------+
+|   2|        1|        1|
++----+---------+---------+
+|   3|        1|        1|
++----+---------+---------+
+|   4|        1|        1|
++----+---------+---------+
+|   5|        1| 0.851076|
++----+---------+---------+
+|   6| 0.999436| 0.627973|
++----+---------+---------+
+|   7| 0.999436| 0.428935|
++----+---------+---------+
+|   8| 0.999436|  0.44026|
++----+---------+---------+
+|   9| 0.999436|  0.36325|
++----+---------+---------+
+|  10| 0.999436| 0.229049|
++----+---------+---------+
+|  11| 0.999436| 0.250566|
++----+---------+---------+
+|  12| 0.999436| 0.178652|
++----+---------+---------+
+END>
+Training until now has taken 0 days 0 hours 5 minutes 15 seconds.
+
+
+```
+
+```
+opencv_traincascade.exe -data xml -vec pos.vec -bg bg.txt -numPos 1772 -numNeg 3532 -numStages 4 -w 20 -h 20 -minHitRate 0.999000 -maxFalseAlarmRate 0.2 -weightTrimRate 0.95 -featureType LBP
+PARAMETERS:
+cascadeDirName: xml
+vecFileName: pos.vec
+bgFileName: bg.txt
+numPos: 1772
+numNeg: 3532
+numStages: 4
+precalcValBufSize[Mb] : 1024
+precalcIdxBufSize[Mb] : 1024
+acceptanceRatioBreakValue : -1
+stageType: BOOST
+featureType: LBP
+sampleWidth: 20
+sampleHeight: 20
+boostType: GAB
+minHitRate: 0.999
+maxFalseAlarmRate: 0.2
+weightTrimRate: 0.95
+maxDepth: 1
+maxWeakCount: 100
+Number of unique features given windowSize [20,20] : 3969
+
+===== TRAINING 3-stage =====
+<BEGIN
+POS count : consumed   1772 : 1775
+NEG count : acceptanceRatio    3532 : 0.0116949
+Precalculation time: 1.026
++----+---------+---------+
+|  N |    HR   |    FA   |
++----+---------+---------+
+|   1|        1|        1|
++----+---------+---------+
+|   2|        1|        1|
++----+---------+---------+
+|   3|        1|        1|
++----+---------+---------+
+|   4| 0.999436|  0.77265|
++----+---------+---------+
+|   5| 0.999436| 0.738392|
++----+---------+---------+
+|   6|        1| 0.661099|
++----+---------+---------+
+|   7| 0.999436| 0.535391|
++----+---------+---------+
+|   8| 0.999436| 0.453851|
++----+---------+---------+
+|   9| 0.999436|   0.3641|
++----+---------+---------+
+|  10| 0.999436| 0.232163|
++----+---------+---------+
+|  11| 0.999436| 0.168743|
++----+---------+---------+
+END>
+Training until now has taken 0 days 0 hours 1 minutes 4 seconds.
+
+```
+
+
+减少样本
+
+```
+opencv_traincascade.exe -data xml -vec pos.vec -bg bg.txt -numPos 475 -numNeg 1000 -numStages 5 -w 20 -h 20 -minHitRate 0.999000 -maxFalseAlarmRate 0.2 -weightTrimRate 0.95 -featureType LBP
+PARAMETERS:
+cascadeDirName: xml
+vecFileName: pos.vec
+bgFileName: bg.txt
+numPos: 475
+numNeg: 1000
+numStages: 5
+precalcValBufSize[Mb] : 1024
+precalcIdxBufSize[Mb] : 1024
+acceptanceRatioBreakValue : -1
+stageType: BOOST
+featureType: LBP
+sampleWidth: 20
+sampleHeight: 20
+boostType: GAB
+minHitRate: 0.999
+maxFalseAlarmRate: 0.2
+weightTrimRate: 0.95
+maxDepth: 1
+maxWeakCount: 100
+Number of unique features given windowSize [20,20] : 3969
+
+
+===== TRAINING 4-stage =====
+<BEGIN
+POS count : consumed   475 : 475
+NEG count : acceptanceRatio    1000 : 0.00807324
+Precalculation time: 0.089
++----+---------+---------+
+|  N |    HR   |    FA   |
++----+---------+---------+
+|   1|        1|        1|
++----+---------+---------+
+|   2|        1|        1|
++----+---------+---------+
+|   3|        1|    0.538|
++----+---------+---------+
+|   4|        1|    0.698|
++----+---------+---------+
+|   5|        1|    0.359|
++----+---------+---------+
+|   6|        1|    0.359|
++----+---------+---------+
+|   7|        1|    0.218|
++----+---------+---------+
+|   8|        1|    0.085|
++----+---------+---------+
+END>
+Training until now has taken 0 days 0 hours 0 minutes 28 seconds.
+
+
+```
+
+
+```
+opencv_traincascade.exe -data xml -vec pos.vec -bg bg.txt -numPos 475 -numNeg 1000 -numStages 7 -w 20 -h 20 -minHitRate 0.999000 -maxFalseAlarmRate 0.2 -weightTrimRate 0.95 -featureType LBP
+PARAMETERS:
+cascadeDirName: xml
+vecFileName: pos.vec
+bgFileName: bg.txt
+numPos: 475
+numNeg: 1000
+numStages: 7
+precalcValBufSize[Mb] : 1024
+precalcIdxBufSize[Mb] : 1024
+acceptanceRatioBreakValue : -1
+stageType: BOOST
+featureType: LBP
+sampleWidth: 20
+sampleHeight: 20
+boostType: GAB
+minHitRate: 0.999
+maxFalseAlarmRate: 0.2
+weightTrimRate: 0.95
+maxDepth: 1
+maxWeakCount: 100
+Number of unique features given windowSize [20,20] : 3969
+
+===== TRAINING 6-stage =====
+<BEGIN
+POS count : consumed   475 : 475
+NEG count : acceptanceRatio    1000 : 0.00128723
+Precalculation time: 0.087
++----+---------+---------+
+|  N |    HR   |    FA   |
++----+---------+---------+
+|   1|        1|        1|
++----+---------+---------+
+|   2|        1|        1|
++----+---------+---------+
+|   3|        1|    0.573|
++----+---------+---------+
+|   4|        1|    0.678|
++----+---------+---------+
+|   5|        1|    0.352|
++----+---------+---------+
+|   6|        1|    0.333|
++----+---------+---------+
+|   7|        1|     0.23|
++----+---------+---------+
+|   8|        1|    0.073|
++----+---------+---------+
+END>
+Training until now has taken 0 days 0 hours 3 minutes 37 seconds.
+
+```
+
+测试之后发现深度增大之后对检测效果有改善
+
+加大后继续测试
 
 ## 测试过程中的问题
 

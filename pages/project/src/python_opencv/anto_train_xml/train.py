@@ -6,8 +6,8 @@ import shutil
 
 import process_bar
 
-raw_train_path="train_raw"
-train_path="train"
+raw_train_path=r"D:/TEMP/raw_images/auto_train/train_raw"
+train_path="D:/TEMP/raw_images/auto_train/train"
 
 raw_pos_path=raw_train_path+"/pos"
 pos_path=train_path+"/pos"
@@ -106,9 +106,9 @@ def train_xml(pos_num,neg_num,stage_num,pos_width,pos_height,hit_rate):
 ############################################
 pos_width=20
 pos_height=20
-neg_width=128
-neg_height=72
-stage_num=15
+neg_width=64
+neg_height=36
+stage_num=9
 hit_rate=0.999
 pos_ratio=0.95 #正样本中真正有效的比例
 
