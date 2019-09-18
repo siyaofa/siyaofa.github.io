@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import time
-face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+face_cascade = cv2.CascadeClassifier("cascade_stage_5_201909182130.xml")
 cap=cv2.VideoCapture(0)
   
 while True:

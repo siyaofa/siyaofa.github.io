@@ -4,6 +4,8 @@ import sys
 
 import shutil
 
+import process_bar
+
 raw_train_path="train_raw"
 train_path="train"
 
@@ -90,7 +92,7 @@ def create_pos_vec(pos_num,pos_width,pos_height):
 def train_xml(pos_num,neg_num,stage_num,pos_width,pos_height,hit_rate):
 	remove_if_exist("xml")
 	create_if_not_exist("xml")
-	cmd_str="opencv_traincascade.exe -data xml -vec pos.vec -bg bg.txt -numPos %d -numNeg %d -numStages %d -w %d -h %d -minHitRate %f -maxFalseAlarmRate 0.2 -weightTrimRate 0.95 -featureType LBP"%(pos_num,neg_num,stage_num,pos_width,pos_height,hit_rate)
+	cmd_str="opencv_traincascade.exe -data xml -vec pos.vec -bg bg.txt -numPos %d -numNeg %d -numStages %d -w %d -h %d -minHitRate %f -maxFalseAlarmRate 0.2 -weightTrimRate 0.95 -featureType LBP"%(int(pos_num),neg_num,stage_num,pos_width,pos_height,hit_rate)
 	print(cmd_str)
 	os.system(cmd_str) 
 
@@ -108,7 +110,7 @@ neg_width=128
 neg_height=72
 stage_num=15
 hit_rate=0.999
-
+pos_ratio=0.95 #正样本中真正有效的比例
 
 #拷贝负样本
 #resize_copy(raw_neg_path,neg_path,neg_width,neg_height)
@@ -121,4 +123,4 @@ neg_num=create_bg_txt(neg_path,bg_txt_filename)
 
 os.chdir(train_path)
 create_pos_vec(pos_num,pos_width,pos_height)
-train_xml(pos_num,neg_num,stage_num,pos_width,pos_height,hit_rate)
+train_xml(pos_num*pos_ratio,neg_num,stage_num,pos_width,pos_height,hit_rate)
