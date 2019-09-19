@@ -108,7 +108,7 @@ pos_width=20
 pos_height=20
 neg_width=64
 neg_height=36
-stage_num=9
+stage_num=11
 hit_rate=0.999
 pos_ratio=0.95 #正样本中真正有效的比例
 
