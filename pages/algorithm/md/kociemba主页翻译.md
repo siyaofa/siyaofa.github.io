@@ -102,4 +102,97 @@ DFR‹-URF, DLF‹-DFR, DBL ‹-DBL, DRB‹-DRB
 边也可以用类似的方式表示
 0：未翻转；1：翻转
 
+F用公式可以如下表示
+
+F(URF).c = UFL
+F(URF).o = 1
+F(UFL).c = DLF
+F(UFL).o = 2
+...
+
+R =
+|URF| UFL| ULB |UBR| DFR |DLF| DBL| DRB|
+|--|--|--|--|--|--|--|--|--|
+|c:DFR;o:2| c:UFL;o:0| c:ULB;o:0| c:URF;o:1 |c:DRB;o:1| c:DLF;o:0 |c:DBL;o:0 |c:UBR,o:2|
+
+F\*R 
+
+F(URF).c = UFL and F(URF).o = 1
+R(UBR).c = URF and R(UBR).o= 1
+
+F：URF‹-UFL ,R: UBR‹-URF, 所以F\*R的结果是 UBR‹-UFL. 
+(F*R)(UBR).c = UFL. 
+(F*R)(UBR).c = F(R(UBR).c).c.
+
+方向的变换稍微复杂些
+
+(F*R)(UBR).o=F(R(UBR).c).o+R(UBR).o.
+
+任意位置x处，A\*B 有：
+(A\*B)(x).c=A(B(x).c).c
+and
+(A\*B)(x).o=A(B(x).c).o+B(x).o
+
+>If we want also want to include the case of reflections, which we need if we apply symmetries of the cube, thing are a bit more complicated with the orientations of the corners. Instead of adding modulo 3 in the second equation above, which can be interpreted as a group operation in the cyclic group C3, we then work in the dihedral group D3. We describe the three extra elements in this group with the numbers 3, 4, and 5.
+
+## Coordinate 层面
+
+我们用自然数表示对边和角的状态，即对边和角的状态进行编码。
+
+### 角的方向编码
+
+R
+
+|URF| UFL| ULB |UBR| DFR |DLF| DBL| DRB|
+|--|--|--|--|--|--|--|--|--|
+|c:DFR;o:2| c:UFL;o:0| c:ULB;o:0| c:URF;o:1 |c:DRB;o:1| c:DLF;o:0 |c:DBL;o:0 |c:UBR,o:2|
+
+0 - 2186 (3^7 - 1).
+
+`2*3^6 + 0*3^5 + 0*3^4 + 1*3^3 +1*3^2 + 0*3^1 + 0*3^0 = 1494`
+
+其实就是把3进制2001100用十进制1494表示。
+
+为什么不算DRB呢？因为可由7个角的方向确定最后一个方向。
+
+### 边的方向编码
+
+12 条边的表示范围 0 - 2047 (2^11 - 1)
+
+### 角的位置编码
+
+0 - 40319 (8! - 1).
+
+|URF| UFL| ULB |UBR| DFR |DLF| DBL| DRB|
+|--|--|--|--|--|--|--|--|--|
+|c:DFR;o:2| c:UFL;o:0| c:ULB;o:0| c:URF;o:1 |c:DRB;o:1| c:DLF;o:0 |c:DBL;o:0 |c:UBR,o:2|
+||1| 1| 3| 0| 1| 1| 4|
+
+人为指定角的顺序 `URF<UFL<ULB<UBR<DFR<DLF<DBL<DRB`
+
+最后一行代表第二行中左边序号大于当前的个数
+
+c:URF左侧的DRF,UFL,ULB都比URF大，所以是3
+
+c:UBR左侧的DRF,DRB,DLF,DBL比UBR大，所以是4
+
+`1*1! + 1*2! + 3*3! + 0*4! + 1*5! + 1*6! + 4*7! = 21021`
+
+### 边位置编码
+
+类似的方式可知，编码范围 0 - (12! - 1)
+
+### 总的状态数
+
+魔方的状态可根据边角的位置、方向共同决定
+
+`(3^7) * (2^11) * (8!) * (12!)`
+
+因为有奇偶性，所以要除2
+
+`3^7 * 2^11 * 8! *12! /2 = 43,252,003,274,489,856,000`
+
+暴力穷举基本不用想了
+
+
 
