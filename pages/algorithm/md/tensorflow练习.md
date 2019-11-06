@@ -6,9 +6,15 @@ date:   2019-11-06
 
 ## 安装CPU版tensorflow 2.0
 
+`pip install tensorflow`
+
+2.0和1.x版本API接口变化较大
+
+## 测试
+
 ### MNIST 示例
 
-网上很多例子都是1.x的，导致花了很多时间找demo
+网上很多例子都是1.x的，导致花了很多时间找[demo](https://cloud.tencent.com/developer/article/1519704)
 
 ```python
 import tensorflow as tf
