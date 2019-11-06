@@ -4,9 +4,9 @@ title: tensorflow 2.0 练习
 date:   2019-11-06
 ---
 
-## 安装CPU版tensorflow
+## 安装CPU版tensorflow 2.0
 
-## MNIST 示例
+### MNIST 示例
 
 网上很多例子都是1.x的，导致花了很多时间找demo
 
