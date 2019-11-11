@@ -57,3 +57,11 @@ Epoch 5/5
 ```
 
 5次迭代可以到达98%的准确率
+
+## AMD显卡可以使用
+
+`pip install tensorflow-rocm`
+
+但是好像目前只支持Linux操作系统，坑人啊
+
+
