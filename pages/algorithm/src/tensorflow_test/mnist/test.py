@@ -34,14 +34,14 @@ if need_train:
               use_multiprocessing=True)
     # callbacks=[tensorboard_callback])
 
-    tf.keras.models.save_model(model, "trained")
+    tf.keras.models.save_model(model, "trained.h5")
     """ writer = tf.summary.create_file_writer(log_dir)
     with writer.as_default():
         for step in range(100):
             tf.summary.scalar("my_metric", 0.5, step=step)
             writer.flush() """
 else:
-    model = tf.keras.models.load_model("trained")
+    model = tf.keras.models.load_model("trained.h5")
 
 
 score=model.evaluate(x_test, y_test,verbose=0)

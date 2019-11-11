@@ -64,4 +64,34 @@ Epoch 5/5
 
 但是好像目前只支持Linux操作系统，坑人啊
 
+## keras使用GPU
+
+https://keras.io/why-use-keras/
+
+https://github.com/plaidml/plaidml
+
+AMD Opencl MNIST训练
+
+Ran in 182.81759595870972 seconds
+
+i5 CPU
+
+Ran in 54.19514775276184 seconds
+
+感觉Opencl就没必要用，还不如CPU优化的好。
+
+VGG19模型预测
+
+
+Using plaidml.keras.backend backend.
+INFO:plaidml:Opening device "opencl_amd_hainan.0"
+Running initial batch (compiling tile program)
+Timing inference...
+Ran in 39.326616525650024 seconds
+
+Running initial batch (compiling tile program)
+Timing inference...
+Ran in 37.10606551170349 seconds
+
+看来这个笔记本是没得救了
 
