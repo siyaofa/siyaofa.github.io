@@ -17,7 +17,7 @@ model = get_model(image_size)
 
 history = model.fit_generator(
     train_generator,
-    epochs=5,
+    epochs=60,
     validation_data=validation_generator,
     shuffle=True)
 
