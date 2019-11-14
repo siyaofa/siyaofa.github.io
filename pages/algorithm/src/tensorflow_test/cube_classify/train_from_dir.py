@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
-
+import time
 
 from create_model import get_model
 from load_cubes import get_generator
 '''
 从路径中训练模型
 '''
-train_dir = r'D:\TEMP\cube_classify\raw_from_user\train'
-validation_dir = r'D:\TEMP\cube_classify\raw_from_user\test'
+train_dir = r'D:\TEMP\cube_classify\raw_from_user\train_test_1\train'
+validation_dir = r'D:\TEMP\cube_classify\raw_from_user\train_test_1\test'
 
 image_size = (80, 60)
 class_num=6
@@ -17,7 +17,11 @@ train_generator, validation_generator = get_generator(
 
 model = get_model(image_size,class_num)
 
-model.save('cubes_3rd_%d_class.h5'%(class_num))
+time_str=time.strftime("%Y%m%d_%H%M%S", time.localtime()) 
+print(time_str)
+input_size='%dx%d'%(image_size[0],image_size[1])
+model_name=f'models/{time_str}_cubes_3rd_class_{class_num}_input_{input_size}.h5'
+model.save(model_name)
 
 history = model.fit_generator(
     train_generator,
@@ -25,7 +29,7 @@ history = model.fit_generator(
     validation_data=validation_generator,
     shuffle=True)
 
-model.save('cubes_3rd_%d_class.h5'%(class_num))
+model.save(model_name)
 
 print(history.history)
 

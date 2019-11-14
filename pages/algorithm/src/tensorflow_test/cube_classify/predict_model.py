@@ -7,10 +7,11 @@ import cv2 as cv
 import shutil
 
 #input_path=r'D:\TEMP\cube_classify\raw_from_user\predict\input'
-input_path=r'D:\TEMP\cube_classify\raw_from_user\raw_480x640'
-output_path=r'D:\TEMP\cube_classify\raw_from_user\predict\output'
+#input_path=r'D:\TEMP\cube_classify\raw_from_user\raw_480x640'
+input_path=r'D:\TEMP\cube_classify\cubes\predict'
+output_path=os.path.join(input_path,'output')
 image_size = (60, 80)
-model = models.load_model("cubes_3rd_5_class.h5")
+model = models.load_model(r'models\cubes_3rd_6_class.h5')
 
 def copy_to_label_dir(label,file_path):
 	'''
@@ -29,28 +30,24 @@ def predict_image_label(model,file_path):
 	'''
 	img = cv.imread(file_path)
 	img=cv.resize(img,image_size)
-	print(file_path,img.shape)
 	img = img.reshape((1,img.shape[0],img.shape[1],img.shape[2]))
 	#cv.imshow('img',img[0])
 	#cv.waitKey()
 	x=img/255.0
 	y=model.predict(x)[0]
 	label=np.where(y==np.max(y))[0][0]
-	print(label,file_path,img.shape)
+	print(label,file_path)
 	copy_to_label_dir(label,file_path)
 	return label
 
-
-
-
-
 dirs = os.listdir( input_path )
-
+index=0
 # 输出所有文件和文件夹
 for file in dirs:
 	file_path=os.path.join(input_path,file)
-	predict_image_label(model,file_path)
-	
+	index+=1
+	if (index%5==1):
+		predict_image_label(model,file_path)
 	
 
 #model.predict(x)
