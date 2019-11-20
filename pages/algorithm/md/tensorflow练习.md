@@ -183,3 +183,22 @@ Epoch 1/60
 ![](../pic/keras/cube_classify/plot/3_type_3x3x3_cube_training_and_validation_accuracy_epochs_60.png)
 
 ![](../pic/keras/cube_classify/plot/3_type_3x3x3_cube_training_and_validation_loss_epochs_60.png)
+
+## tensorflow 2.0 YOLOv3
+
+![](https://github.com/zzh8829/yolov3-tf2)
+
+人识别效果很好，测试时把脸捂住都能检测到人脸。i5笔记本大概2s一张图。
+
+yolov3-tiny.weights 速度虽然快很多的，150ms单张，但是效果不是很理想
+
+发现微软居然有开源的打标签工具[VOTT](https://github.com/Microsoft/VoTT)!!!
+
+[简单教程](https://blog.csdn.net/minstyrain/article/details/80832075)
+
+
+
+
+
+
+
