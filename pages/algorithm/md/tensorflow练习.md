@@ -196,7 +196,7 @@ yolov3-tiny.weights 速度虽然快很多的，150ms单张，但是效果不是�
 
 [简单教程](https://blog.csdn.net/minstyrain/article/details/80832075)
 
-
+[简单粗暴 TF2.0 ](https://tf.wiki/#) 教程不错
 
 
 
