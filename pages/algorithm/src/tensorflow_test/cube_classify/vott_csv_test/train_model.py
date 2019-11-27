@@ -38,7 +38,7 @@ def preprocess(x,y):
 train_images,train_outputs,test_images,test_outputs =get_image_path_and_output(data_path,csv_filename)
 batchsz = 32
 db_train = tf.data.Dataset.from_tensor_slices((train_images, train_outputs))
-db_train = db_train.shuffle(100).map(preprocess).batch(batchsz)
+db_train = db_train.shuffle(1000).map(preprocess).batch(batchsz)
 
 db_val = tf.data.Dataset.from_tensor_slices((test_images, test_outputs))
 db_val = db_val.map(preprocess).batch(batchsz)

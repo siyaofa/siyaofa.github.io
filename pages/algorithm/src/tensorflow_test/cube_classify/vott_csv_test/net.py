@@ -32,24 +32,24 @@ def create_model():
         activation='relu',
         input_shape=(90,120, 3)),
     MaxPooling2D((2, 2)),
-    Dropout(0.2),
+    Dropout(0.3),
     Conv2D(64, (3, 3), activation='relu'),
     MaxPooling2D((2, 2)),
-    Dropout(0.2),
+    Dropout(0.3),
     Conv2D(128, (3, 3), activation='relu'),
     MaxPooling2D((2, 2)),
-    Dropout(0.2),
+    Dropout(0.3),
     Conv2D(256, (3, 3), activation='relu'),
     MaxPooling2D((2, 2)),
     Flatten(),
     #BatchNormalization(), # 追加BN 层
-    Dropout(0.2),
+    Dropout(0.3),
     Dense(512, activation='relu'),
-    Dropout(0.2),
+    Dropout(0.3),
     Dense(128, activation='relu'),
-    Dropout(0.2),
+    Dropout(0.3),
     Dense(64, activation='relu'),
-    Dropout(0.2),
+    Dropout(0.3),
     Dense(36, activation='relu'),
     Dense(4, activation='relu')
     ])
@@ -59,3 +59,6 @@ def create_model():
     return model
 
 # create_model()
+
+if __name__=="__main__":
+    create_model()
