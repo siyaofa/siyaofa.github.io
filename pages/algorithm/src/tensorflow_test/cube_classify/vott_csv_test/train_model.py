@@ -4,7 +4,9 @@ import csv
 import os
 import tensorflow as tf
 from tensorflow.keras import layers,models
-from tensorflow.keras.layers import Conv2D,MaxPooling2D,Flatten,Dense,Dropout
+from tensorflow.keras.layers import Conv2D,MaxPooling2D,Flatten,Dense,Dropout,BatchNormalization
+
+from net import create_model
 
 from train_data import get_image_path_and_output
 
@@ -26,31 +28,10 @@ def preprocess(x,y):
     # 0~1 => D(0,1)
     # x = normalize(x) # 标准化
     y = tf.convert_to_tensor(y) # 转换成张量
+    print(y)
     return x, y
 
-def get_model():
-	model = models.Sequential()
-	model.add(Conv2D(32, (3, 3), activation='relu',
-							input_shape=(90,120, 3)))
-	model.add(MaxPooling2D((2, 2)))
-	model.add(Conv2D(64, (3, 3), activation='relu'))
-	model.add(MaxPooling2D((2, 2)))
-	model.add(Conv2D(128, (3, 3), activation='relu'))
-	model.add(MaxPooling2D((2, 2)))
-	model.add(Conv2D(128, (3, 3), activation='relu'))
-	model.add(MaxPooling2D((2, 2)))
-	model.add(Flatten())
-	model.add(Dense(256, activation='relu'))
-	model.add(Dropout(0.2))
-	model.add(Dense(64, activation='relu'))
-	model.add(Dropout(0.2))
-	model.add(Dense(36, activation='relu'))
-	model.add(Dense(4, activation='relu'))
-	#model.add(layers.Dense(3, activation='relu'))
-	model.summary()
-	model.compile(loss='mean_squared_error', optimizer='sgd',
-				  metrics=['mse'])
-	return model
+
 
 
 
@@ -62,19 +43,19 @@ db_train = db_train.shuffle(100).map(preprocess).batch(batchsz)
 db_val = tf.data.Dataset.from_tensor_slices((test_images, test_outputs))
 db_val = db_val.map(preprocess).batch(batchsz)
 
-model=get_model()
+model=create_model()
 
 
 early_stopping = tf.keras.callbacks.EarlyStopping(
 monitor='val_loss',
-min_delta=0.001,
-patience=10
+min_delta=0.00001,
+patience=20
 )
 
 history=model.fit(db_train,
 validation_data=db_val,
-validation_freq=1,
-epochs=100,
+#validation_freq=1,
+epochs=500 ,
 callbacks=[early_stopping])
 
 model.save("csv.h5")
@@ -92,9 +73,9 @@ plt.plot(epochs, loss, 'bo', label='Training loss')
 plt.plot(epochs, val_loss, 'b', label='validation loss')
 plt.title('Training and validation loss')
 plt.legend()
-plt.figure()
-plt.plot(epochs, mse, 'bo', label='Training mse')
-plt.plot(epochs, val_mse, 'b', label='validation mse')
-plt.title('Training and validation mse')
-plt.legend()
+# plt.figure()
+# plt.plot(epochs, mse, 'bo', label='Training mse')
+# plt.plot(epochs, val_mse, 'b', label='validation mse')
+# plt.title('Training and validation mse')
+# plt.legend()
 plt.show()
