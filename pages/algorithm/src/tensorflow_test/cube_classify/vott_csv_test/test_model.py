@@ -5,7 +5,7 @@ from train_data import *
 import cv2 as cv
 import math
 
-data_path=r'D:\Github\siyaofa.github.io\pages\algorithm\src\tensorflow_test\cube_classify\vott_csv_test\vott-csv-export'
+data_path=r'D:\TEMP\cube_classify\raw_from_user\yolov3_input\raw_480x640\vott-csv-export'
 
 imagename=r'23757.png'
 

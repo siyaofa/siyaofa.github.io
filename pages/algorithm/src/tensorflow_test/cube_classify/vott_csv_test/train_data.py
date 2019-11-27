@@ -34,12 +34,13 @@ def get_image_path_and_output(data_path,csv_filename):
         images[i]=os.path.join(data_path,images[i])
         [xmin,ymin,xmax,ymax]=outputs[i]
         outputs[i]=[float(xmin)/width,float(ymin)/height,float(xmax)/width,float(ymax)/height]
-
-    train_images=images[0:200]
-    train_outputs=outputs[0:200]
-    test_images=images[200:-10]
-    test_outputs=outputs[200:-10]
-    print(len(train_images),len(test_images))
+    total=len(images)
+    train_num=int(0.7*total)
+    train_images=images[0:train_num]
+    train_outputs=outputs[0:train_num]
+    test_images=images[train_num:-10]
+    test_outputs=outputs[train_num:-10]
+    print('train num ',len(train_images),'test num ',len(test_images))
     return train_images,train_outputs,test_images,test_outputs
 
 def get_image_ture_value(image_name,data_path,csv_filename):

@@ -42,7 +42,7 @@ def create_model():
     Conv2D(256, (3, 3), activation='relu'),
     MaxPooling2D((2, 2)),
     Flatten(),
-    BatchNormalization(), # 追加BN 层
+    #BatchNormalization(), # 追加BN 层
     Dropout(0.2),
     Dense(512, activation='relu'),
     Dropout(0.2),

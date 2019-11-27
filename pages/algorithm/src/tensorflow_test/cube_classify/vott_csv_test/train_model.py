@@ -10,7 +10,7 @@ from net import create_model
 
 from train_data import get_image_path_and_output
 
-data_path=r'D:\Github\siyaofa.github.io\pages\algorithm\src\tensorflow_test\cube_classify\vott_csv_test\vott-csv-export'
+data_path=r'D:\TEMP\cube_classify\raw_from_user\yolov3_input\raw_480x640\vott-csv-export'
 csv_filename=r'cube-export.csv'
 
 def preprocess(x,y):
@@ -48,14 +48,14 @@ model=create_model()
 
 early_stopping = tf.keras.callbacks.EarlyStopping(
 monitor='val_loss',
-min_delta=0.00001,
-patience=20
+min_delta=0.0001,
+patience=10
 )
 
 history=model.fit(db_train,
 validation_data=db_val,
 #validation_freq=1,
-epochs=500 ,
+epochs=100 ,
 callbacks=[early_stopping])
 
 model.save("csv.h5")
