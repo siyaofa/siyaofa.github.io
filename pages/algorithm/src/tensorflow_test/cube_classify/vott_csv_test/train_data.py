@@ -35,7 +35,7 @@ def get_image_path_and_output(data_path,csv_filename):
         [xmin,ymin,xmax,ymax]=outputs[i]
         outputs[i]=[float(xmin)/width,float(ymin)/height,float(xmax)/width,float(ymax)/height]
     total=len(images)
-    train_num=int(0.7*total)
+    train_num=int(0.8*total)
     train_images=images[0:train_num]
     train_outputs=outputs[0:train_num]
     test_images=images[train_num:-10]

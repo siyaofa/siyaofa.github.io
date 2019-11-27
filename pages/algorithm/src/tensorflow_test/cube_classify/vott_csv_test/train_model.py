@@ -5,6 +5,7 @@ import os
 import tensorflow as tf
 from tensorflow.keras import layers,models
 from tensorflow.keras.layers import Conv2D,MaxPooling2D,Flatten,Dense,Dropout,BatchNormalization
+from tensorflow.keras.callbacks import ModelCheckpoint
 
 from net import create_model
 
@@ -51,14 +52,21 @@ monitor='val_loss',
 min_delta=0.0001,
 patience=10
 )
-
+# checkpoint
+filepath = "weights-improvement-{epoch:02d}-{val_loss:.8f}.hdf5"
+# 中途训练效果提升, 则将文件保存, 每提升一次, 保存一次
+checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True,
+                            mode='min')
+callbacks_list = [checkpoint]
 history=model.fit(db_train,
 validation_data=db_val,
 #validation_freq=1,
-epochs=100 ,
-callbacks=[early_stopping])
+epochs=500,
+callbacks=callbacks_list)
 
 model.save("csv.h5")
+# load weights 加载模型权重
+# model.load_weights('weights.best.hdf5')
 
 print(history)
 
