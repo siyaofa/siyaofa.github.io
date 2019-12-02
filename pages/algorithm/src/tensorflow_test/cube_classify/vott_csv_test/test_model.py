@@ -5,9 +5,13 @@ from train_data import *
 import cv2 as cv
 import math
 import random
+import numpy as np
 
 
-
+def load_model():
+    model=models.load_model(r'csv.h5')
+    model.load_weights(r'weights\weights-improvement-67-0.00462946.hdf5')
+    return model
 
 def calc_predict_error(y,y_pre):
     xmin=y[0]-y_pre[0]
@@ -70,7 +74,7 @@ def show_predict(image_filename,model):
     (xmin,ymin,xmax,ymax)=y_pre
     cv.rectangle(img, (int(xmin),int(ymin) ), (int(xmax), int(ymax)), (0, 0, 255), 2)
     cv.imshow('predict',img)
-    cv.waitKey(0)
+    
 
 
 
@@ -89,18 +93,44 @@ def random_test():
         y_true,y_pre=get_true_and_predict(data_path,imagename,model)
         print(y_true,y_pre)
         show(os.path.join(data_path,imagename),y_true,y_pre)
+        key=cv.waitKey(1)
+        if key & 0xFF == ord('q'):
+            break
         #cv.waitKey(0)
 
 # random_test()
 
-def test_dir():
+def test_dir(model):
     dir=r'D:\TEMP\cube_classify\raw_from_user\raw_480x640'
     files=os.listdir(dir)
-    model=models.load_model(r'csv.h5')
-    model.load_weights(r'weights\weights-improvement-150-0.00273317.hdf5')
     while True:
         i=random.randint(0,len(files)-1)
         filename=files[i]
         show_predict(os.path.join(dir,filename),model)
 
-test_dir()
+
+def test_camera(model):
+    '''
+    实时测试
+    '''
+    #camera = cv.VideoCapture(0)
+    camera = cv.VideoCapture(r'D:\TEMP\cube_classify\cubes_from_video\VID_20191203_002446.mp4')
+    
+    while True:
+        grabbed, frame = camera.read()
+        #cv.imshow("cam",frame)      
+        frame=np.rot90(frame)
+        frame=np.rot90(frame)
+        frame=np.rot90(frame)
+        cv.imwrite("cam.png",frame)
+        #frame = cv.resize(frame, (90,120))
+        show_predict("cam.png",model)
+        key=cv.waitKey(1)
+        if key & 0xFF == ord('q'):
+            break
+
+
+model=load_model()
+#model=None
+test_camera(model)
+#test_dir(model)
