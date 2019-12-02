@@ -1,7 +1,7 @@
 # -*- encoding=utf-8 -*-
 import os
 import csv
-
+import random
 
 def parse_csv(csv_filename):
     '''
@@ -21,7 +21,18 @@ def parse_csv(csv_filename):
                 outputs.append(output)
                 labels.append(label)
             line_num+=1
-    return images,outputs,labels
+    # shuffle
+    total=len(images)
+    random_slice=random.sample(range(total),total)
+    print(random_slice)
+    shuffle_images=[]
+    shuffle_outputs=[]
+    shuffle_labels=[]
+    for i in range(total):
+        shuffle_images.append(images[random_slice[i]])
+        shuffle_outputs.append(outputs[random_slice[i]])
+        shuffle_labels.append(labels[random_slice[i]])
+    return shuffle_images,shuffle_outputs,shuffle_labels
 
 def get_image_path_and_output(data_path,csv_filename):
     '''
@@ -35,6 +46,9 @@ def get_image_path_and_output(data_path,csv_filename):
         [xmin,ymin,xmax,ymax]=outputs[i]
         outputs[i]=[float(xmin)/width,float(ymin)/height,float(xmax)/width,float(ymax)/height]
     total=len(images)
+    #random_slice=random.sample(range(total),total)
+    
+    #images=images[random_slice]
     train_num=int(0.8*total)
     train_images=images[0:train_num]
     train_outputs=outputs[0:train_num]

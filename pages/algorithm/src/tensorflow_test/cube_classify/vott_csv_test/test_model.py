@@ -94,11 +94,13 @@ def random_test():
 # random_test()
 
 def test_dir():
-    dir=r'D:\TEMP\cube_classify\cubes\train\black'
+    dir=r'D:\TEMP\cube_classify\raw_from_user\raw_480x640'
     files=os.listdir(dir)
     model=models.load_model(r'csv.h5')
-    model.load_weights('best-weights-improvement-293-0.00070862.hdf5')
-    for filename in files:
+    model.load_weights(r'weights\weights-improvement-150-0.00273317.hdf5')
+    while True:
+        i=random.randint(0,len(files)-1)
+        filename=files[i]
         show_predict(os.path.join(dir,filename),model)
 
 test_dir()

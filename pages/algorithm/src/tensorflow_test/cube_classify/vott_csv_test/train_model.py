@@ -11,8 +11,8 @@ from net import create_model
 
 from train_data import get_image_path_and_output
 
-data_path=r'D:\TEMP\cube_classify\raw_from_user\yolov3_input\raw_480x640\vott-csv-export'
-csv_filename=r'cube-export.csv'
+data_path=r'D:\TEMP\cube_classify\raw_from_user\vott\vott-csv-export'
+csv_filename=r'cube4points-export.csv'
 
 def preprocess(x,y):
     # x: 图片的路径List，y：图片的数字编码List
@@ -53,11 +53,11 @@ min_delta=0.0001,
 patience=10
 )
 # checkpoint
-filepath = "weights-improvement-{epoch:02d}-{val_loss:.8f}.hdf5"
+filepath = "weights\weights-improvement-{epoch:02d}-{val_loss:.8f}.hdf5"
 # 中途训练效果提升, 则将文件保存, 每提升一次, 保存一次
 checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True,
                             mode='min')
-callbacks_list = [checkpoint]
+callbacks_list = [checkpoint,early_stopping]
 history=model.fit(db_train,
 validation_data=db_val,
 #validation_freq=1,
