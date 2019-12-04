@@ -10,7 +10,7 @@ import numpy as np
 
 def load_model():
     model=models.load_model(r'csv.h5')
-    model.load_weights(r'weights\weights-improvement-67-0.00462946.hdf5')
+    #model.load_weights(r'weights\weights.hdf5')
     return model
 
 def calc_predict_error(y,y_pre):
@@ -107,20 +107,23 @@ def test_dir(model):
         i=random.randint(0,len(files)-1)
         filename=files[i]
         show_predict(os.path.join(dir,filename),model)
+        key=cv.waitKey(1)
+        if key & 0xFF == ord('q'):
+            break
 
 
 def test_camera(model):
     '''
     实时测试
     '''
-    #camera = cv.VideoCapture(0)
-    camera = cv.VideoCapture(r'D:\TEMP\cube_classify\cubes_from_video\VID_20191203_002446.mp4')
+    camera = cv.VideoCapture(0)
+    # camera = cv.VideoCapture(r'D:\TEMP\cube_classify\cubes_from_video\VID_20191203_002446.mp4')
     
     while True:
         grabbed, frame = camera.read()
         #cv.imshow("cam",frame)      
-        frame=np.rot90(frame)
-        frame=np.rot90(frame)
+        # frame=np.rot90(frame)
+        # frame=np.rot90(frame)
         frame=np.rot90(frame)
         cv.imwrite("cam.png",frame)
         #frame = cv.resize(frame, (90,120))
