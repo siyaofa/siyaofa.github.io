@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="">
+    <meta name="author" content="Lous">
+    <title>Play Cube</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/starter-template.css" rel="stylesheet">
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
+    <script src="js/vendor/collapse.js"></script>
+    <script src="js/vendor/three.js"></script>
+    <script src="js/vendor/Tween.js"></script>
+
+    <script src="js/vendor/TrackballControls.js"></script>
+</head>
+
+<body style="background-color: #1F1F1F">
+
+    <div class="container">
+
+        <div class="btn-group-justified" role="group">
+
+            <div class="btn-group" role="group">
+                <button type="button" onclick="set_current_color(4)" class="btn btn-large m-3"
+                    style="background-color: #FFFFFF">
+                    1
+                </button>
+            </div>
+
+            <div class="btn-group" role="group">
+                <button type="button" onclick="set_current_color(2)" class="btn btn-large"
+                    style="background-color: #FF6F00">2</button>
+            </div>
+
+            <div class="btn-group" role="group">
+                <button type="button" onclick="set_current_color(0)" class="btn btn-large"
+                    style="background-color: #0000D0">3</button>
+            </div>
+
+
+        </div>
+
+        <div class="btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <button type="button" onclick="set_current_color(3)" class="btn btn-default"
+                    style="background-color: #F00000">4 </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" onclick="set_current_color(1)" class="btn btn-default"
+                    style="background-color: #00A000">5 </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" onclick="set_current_color(5)" class="btn btn-default"
+                    style="background-color: #F0E000">6 </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <canvas class='img-responsive' style="height: 100%;width: 100%;min-height: 300px;" id="canvas-threejs">
+
+    </canvas>
+</body>
+<script src="js/siyaofa/ui.js"></script>
+<script src="js/siyaofa/cube.js"></script>
+<script src="js/siyaofa/setup.js"></script>
+
+</html>
